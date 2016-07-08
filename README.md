@@ -7,7 +7,7 @@ Package license: PostgreSQL
 
 Feedstock license: BSD 3-Clause
 
-Summary: PostgreSQL is a powerful, open source object-relational database system
+Summary: PostgreSQL is a powerful, open source object-relational database system.
 
 
 

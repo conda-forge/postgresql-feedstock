@@ -13,7 +13,6 @@ source:
 
 build:
     number: 0
-    skip: True  # [win]
     features:
         - vc9  # [win and py27]
         - vc10  # [win and py34]
@@ -22,8 +21,8 @@ build:
 requirements:
     build:
         - python
-        - openssl 1.0.*
         - perl  # [win]
+        - openssl 1.0.*
         - zlib 1.2.*
     run:
         - python
@@ -38,7 +37,7 @@ test:
 about:
     home: http://www.postgresql.org/
     license: PostgreSQL
-    summary: PostgreSQL is a powerful, open source object-relational database system
+    summary: 'PostgreSQL is a powerful, open source object-relational database system.'
 
 extra:
     recipe-maintainers:
