@@ -1,3 +1,7 @@
+:: Make sure you have sed, gawk, cat, and cp.
+set PATH=%PATH%;C:\msys64\usr\bin
+
+
 cd src\tools\msvc
 
 echo $config-^>{openssl} = '%LIBRARY_PREFIX%'; >> config.pl
