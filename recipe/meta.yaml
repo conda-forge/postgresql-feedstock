@@ -25,6 +25,7 @@ requirements:
         - perl  # [win]
         - openssl 1.0.*
         - zlib 1.2.*
+        - m2-diffutils  # [win]
     run:
         - python
         - openssl 1.0.*
