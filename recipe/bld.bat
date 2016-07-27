@@ -1,7 +1,3 @@
-:: Make sure you have sed, gawk, cat, and cp.
-set PATH=%PATH%;C:\msys64\usr\bin
-
-
 cd src\tools\msvc
 
 echo $config-^>{openssl} = '%LIBRARY_PREFIX%'; >> config.pl
@@ -54,4 +50,4 @@ call :done 0
 
 :done
   pg_ctl stop -D data -m i
-  exit 1
+  exit %~1
