@@ -21,9 +21,9 @@ call install.bat "%LIBRARY_PREFIX%"
 if errorlevel 1 exit 1
 
 REM On windows, it is necessary to start a server for the tests to connect to and run on
-mkdir data
-initdb -D data
-"pg_ctl" -D "data" -l logfile start
+mkdir _data
+"%LIBRARY_BIN%\initdb.exe" -D _data
+"pg_ctl" -D "_data" -l logfile start
 
 call vcregress check
 if errorlevel 1 call :done 1
@@ -49,5 +49,5 @@ if errorlevel 1 call :done 1
 call :done 0
 
 :done
-  pg_ctl stop -D data -m i
+  pg_ctl stop -D _data -m i
   exit %~1
