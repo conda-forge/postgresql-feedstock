@@ -5,7 +5,7 @@ echo $config-^>{zlib} = '%LIBRARY_PREFIX%';    >> config.pl
 echo $config-^>{python} = '%PREFIX%';          >> config.pl
 
 :: Appveyor's postgres install is on PATH and interferes with testing
-IF "%APPVEYOR%" == "TRUE" (
+IF NOT "%APPVEYOR%" == "" (
     RD /S /Q "C:\Program Files\PostgreSQL"
 )
 
