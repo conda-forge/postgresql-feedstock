@@ -23,10 +23,35 @@ call msbuild %SRC_DIR%\pgsql.sln /p:Configuration=Release /p:Platform="%ARCH%" /
 if errorlevel 1 exit 1
 call install.bat "%LIBRARY_PREFIX%"
 if errorlevel 1 exit 1
+
+REM On windows, it is necessary to start a server for the tests to connect to and run on
+mkdir data
+initdb -D data
+"pg_ctl" -D "data" -l logfile start
+
 call vcregress check
-if errorlevel 1 exit 1
+if errorlevel 1 call :done 1
 call vcregress installcheck
-if errorlevel 1 exit 1
+if errorlevel 1 call :done 1
 call vcregress plcheck
-if errorlevel 1 exit 1
+if errorlevel 1 call :done 1
 call vcregress contribcheck
+if errorlevel 1 call :done 1
+call vcregress modulescheck
+if errorlevel 1 call :done 1
+call vcregress ecpgcheck
+if errorlevel 1 call :done 1
+call vcregress isolationcheck
+if errorlevel 1 call :done 1
+call vcregress upgradecheck
+if errorlevel 1 call :done 1
+:: This requires an extra perl module to run.  See
+::    https://www.postgresql.org/docs/current/static/install-windows-full.html#AEN29138
+:: call vcregress bincheck
+:: if errorlevel 1 call :done 1
+
+call :done 0
+
+:done
+  pg_ctl stop -D data -m i
+  exit 1
