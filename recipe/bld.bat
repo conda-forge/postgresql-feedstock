@@ -8,6 +8,10 @@ echo $config-^>{python} = '%PREFIX%';          >> config.pl
 IF NOT "%APPVEYOR%" == "" (
     ECHO Deleting AppVeyor's PostgreSQL installs
     RD /S /Q "C:\Program Files\PostgreSQL"
+
+    ECHO Deleting tablespace regression tests that do not run on appveyor
+    rm ..\..\test\regress\input\tablespace.source
+    rm ..\..\test\regress\output\tablespace.source
 )
 
 :: Need to move a more current msbuild into PATH.  32-bit one in particular on AppVeyor barfs on the solution that
