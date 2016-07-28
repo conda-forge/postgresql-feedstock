@@ -29,7 +29,7 @@ REM On windows, it is necessary to start a server for the tests to connect to an
 ECHO Creating data dir in C:\pgdata
 mkdir C:\pgdata
 :: Ensure that the work dir is writeable by the test process
-icacls "c:\pgdata" /grant Everyone:(OI)(CI)F
+icacls "c:\pgdata" /grant Everyone:(OI)(CI)F /T
 "%LIBRARY_BIN%\initdb.exe" -D C:\pgdata
 "%LIBRARY_BIN%\pg_ctl" -D "C:\pgdata" -l logfile start
 
