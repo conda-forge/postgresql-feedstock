@@ -42,6 +42,9 @@ echo Started server I think...
 
 set PATH
 
+echo outputting all variables
+set
+
 call vcregress check
 if errorlevel 1 call :done 1
 call vcregress installcheck
