@@ -20,15 +20,17 @@ if "%ARCH%" == "32" (
 )
 
 perl mkvcbuild.pl
-call msbuild %SRC_DIR%\pgsql.sln /p:Configuration=Release /p:Platform="%ARCH%" /verbosity:detailed
+call msbuild %SRC_DIR%\pgsql.sln /p:Configuration=Release /p:Platform="%ARCH%" /m
 if errorlevel 1 exit 1
 call install.bat "%LIBRARY_PREFIX%"
 if errorlevel 1 exit 1
 
 REM On windows, it is necessary to start a server for the tests to connect to and run on
-mkdir _data
-"%LIBRARY_BIN%\initdb.exe" -D _data
-"pg_ctl" -D "_data" -l logfile start
+mkdir C:\data
+"%LIBRARY_BIN%\initdb.exe" -D C:\data
+"%LIBRARY_BIN%\pg_ctl" -D "C:\data" -l logfile start
+
+set PATH
 
 call vcregress check
 if errorlevel 1 call :done 1
@@ -54,5 +56,6 @@ if errorlevel 1 call :done 1
 call :done 0
 
 :done
-  pg_ctl stop -D _data -m i
+  :: Kill any running server
+  "%LIBRARY_BIN%\pg_ctl" stop -D _data -m i
   exit %~1
