@@ -8,10 +8,6 @@ echo $config-^>{python} = '%PREFIX%';          >> config.pl
 IF NOT "%APPVEYOR%" == "" (
     ECHO Deleting AppVeyor's PostgreSQL installs
     RD /S /Q "C:\Program Files\PostgreSQL"
-
-    ECHO Deleting tablespace regression tests that do not run on appveyor
-    rm ..\..\test\regress\input\tablespace.source
-    rm ..\..\test\regress\output\tablespace.source
 )
 
 :: Need to move a more current msbuild into PATH.  32-bit one in particular on AppVeyor barfs on the solution that
@@ -42,13 +38,6 @@ mkdir C:\pgdata
 icacls "c:\pgdata" /grant Everyone:(OI)(CI)F /T
 "%LIBRARY_BIN%\initdb.exe" -D C:\pgdata
 "%LIBRARY_BIN%\pg_ctl" -D "C:\pgdata" -l logfile start
-
-echo Started server I think...
-
-set PATH
-
-echo outputting all variables
-set
 
 call vcregress check
 :: if errorlevel 1 call :done 1
