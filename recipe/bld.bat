@@ -26,9 +26,14 @@ call install.bat "%LIBRARY_PREFIX%"
 if errorlevel 1 exit 1
 
 REM On windows, it is necessary to start a server for the tests to connect to and run on
-mkdir C:\data
-"%LIBRARY_BIN%\initdb.exe" -D C:\data
-"%LIBRARY_BIN%\pg_ctl" -D "C:\data" -l logfile start
+ECHO Creating data dir in C:\pgdata
+mkdir C:\pgdata
+:: Ensure that the work dir is writeable by the test process
+icacls "c:\pgdata" /grant Everyone:(OI)(CI)F
+"%LIBRARY_BIN%\initdb.exe" -D C:\pgdata
+"%LIBRARY_BIN%\pg_ctl" -D "C:\pgdata" -l logfile start
+
+echo Started server I think...
 
 set PATH
 
@@ -57,5 +62,6 @@ call :done 0
 
 :done
   :: Kill any running server
-  "%LIBRARY_BIN%\pg_ctl" stop -D _data -m i
+  "%LIBRARY_BIN%\pg_ctl" stop -D C:\pgdata -m i
+  rd /s /q C:\pgdata
   exit %~1
