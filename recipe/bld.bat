@@ -25,6 +25,11 @@ if errorlevel 1 exit 1
 call install.bat "%LIBRARY_PREFIX%"
 if errorlevel 1 exit 1
 
+echo Outputting versions: ctl, config, client
+pg_ctl --version
+pg_config --version
+psql --version
+
 REM On windows, it is necessary to start a server for the tests to connect to and run on
 ECHO Creating data dir in C:\pgdata
 mkdir C:\pgdata
