@@ -1,3 +1,4 @@
+@echo on
 cd src\tools\msvc
 
 echo $config-^>{openssl} = '%LIBRARY_PREFIX%'; >> config.pl
@@ -65,5 +66,6 @@ call :done 0
 :done
   :: Kill any running server
   "%LIBRARY_BIN%\pg_ctl" stop -D C:\pgdata -m i
+  :: clean up temporary database
   rd /s /q C:\pgdata
   exit %~1
