@@ -13,9 +13,10 @@ IF NOT "%APPVEYOR%" == "" (
 
 :: Need to move a more current msbuild into PATH.  32-bit one in particular on AppVeyor barfs on the solution that
 ::    Postgres writes here.  This one comes from the Win7 SDK (.net 4.0), and is known to work.
+set "PATH=%CD%;C:\Windows\Microsoft.NET\Framework\v4.0.30319;%PATH%"
+COPY "C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\bin\dumpbin.exe" .\
+
 if "%ARCH%" == "32" (
-   COPY C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe .\
-   set "PATH=%CD%;%PATH%"
    set ARCH=Win32
 ) else (
    set ARCH=x64
