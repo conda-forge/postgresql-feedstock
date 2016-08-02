@@ -26,7 +26,6 @@ requirements:
         - perl  # [win]
         - zlib 1.2.*
     run:
-        - python
         - openssl 1.0.*
         - zlib 1.2.*
 
