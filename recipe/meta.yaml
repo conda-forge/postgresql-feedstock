@@ -12,7 +12,7 @@ source:
         - fix_libraries_win.patch  # [win]
 
 build:
-    number: 0
+    number: 1
     skip: True  # [win]
     features:
         - vc9  # [win and py27]
