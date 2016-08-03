@@ -11,9 +11,17 @@ IF NOT "%APPVEYOR%" == "" (
     RD /S /Q "C:\Program Files\PostgreSQL"
 )
 
-:: Need to move a more current msbuild into PATH.  32-bit one in particular on AppVeyor barfs on the solution that
-::    Postgres writes here.  This one comes from the Win7 SDK (.net 4.0), and is known to work.
-set "PATH=%CD%;C:\Windows\Microsoft.NET\Framework\v4.0.30319;%PATH%"
+if "%PY_VER%" == "2.7" goto :msbuildpath
+if "%PY_VER%" == "3.4" goto :msbuildpath
+goto :havemsbuild
+
+:msbuildpath
+  :: Need to move a more current msbuild into PATH.  32-bit one in particular on AppVeyor barfs on the solution that
+  ::    Postgres writes here.  This one comes from the Win7 SDK (.net 4.0), and is known to work.
+  set "PATH=%CD%;C:\Windows\Microsoft.NET\Framework\v4.0.30319;%PATH%"
+
+:havemsbuild
+
 
 if "%ARCH%" == "32" (
    set ARCH=Win32
