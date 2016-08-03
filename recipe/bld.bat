@@ -68,4 +68,8 @@ call :done 0
   "%LIBRARY_BIN%\pg_ctl" stop -D C:\pgdata -m i
   :: clean up temporary database
   rd /s /q C:\pgdata
+
+  :: make sure that all postgres server instances die
+  taskkill /F /IM postgres.exe /T
+
   exit %~1
