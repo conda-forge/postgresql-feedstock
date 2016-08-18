@@ -1,4 +1,5 @@
-{% set version = "9.5.3" %}
+{% set version = "9.5.4" %}
+{% set sha256 = "cf5e571164ad66028ecd7dd8819e3765470d45bcd440d258b686be7e69c76ed0" %}
 
 package:
   name: postgresql
@@ -7,7 +8,7 @@ package:
 source:
   fn: postgresql-{{ version }}.tar.bz2
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
-  sha256: 7385c01dc58acba8d7ac4e6ad42782bd7c0b59272862a3a3d5fe378d4503a0b4
+  sha256: {{ sha256 }}
   patches:
     - fix_libraries_win.patch  # [win]
     - timezone.patch  # [win and py35]
