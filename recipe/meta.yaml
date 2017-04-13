@@ -48,8 +48,8 @@ test:
   commands:
     - pg_config
     - postgres --help
-    - conda inspect linkages postgresql # [linux]
-    - conda inspect objects postgresql  # [osx]
+    - conda inspect linkages postgresql  # [linux]
+    - conda inspect objects postgresql   # [osx]
 
 about:
   home: http://www.postgresql.org/
