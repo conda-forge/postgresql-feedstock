@@ -28,7 +28,7 @@ requirements:
     - m2-diffutils     # [win]
     - m2-flex          # [win]
     - openssl 1.0.*
-    - perl   >=5.20    # [win]
+    - perl   >=5.22    # [win]
     - posix    # [win]
     - python
     - vc   9  # [win and py27]
