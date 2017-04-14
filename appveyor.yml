@@ -15,16 +15,6 @@ environment:
 
   matrix:
     - TARGET_ARCH: x86
-      CONDA_PERL: 5.20.3.1
-      CONDA_PY: 27
-      CONDA_INSTALL_LOCN: C:\\Miniconda
-
-    - TARGET_ARCH: x64
-      CONDA_PERL: 5.20.3.1
-      CONDA_PY: 27
-      CONDA_INSTALL_LOCN: C:\\Miniconda-x64
-
-    - TARGET_ARCH: x86
       CONDA_PERL: 5.22.0.1
       CONDA_PY: 27
       CONDA_INSTALL_LOCN: C:\\Miniconda
@@ -45,16 +35,6 @@ environment:
       CONDA_INSTALL_LOCN: C:\\Miniconda-x64
 
     - TARGET_ARCH: x86
-      CONDA_PERL: 5.20.3.1
-      CONDA_PY: 35
-      CONDA_INSTALL_LOCN: C:\\Miniconda35
-
-    - TARGET_ARCH: x64
-      CONDA_PERL: 5.20.3.1
-      CONDA_PY: 35
-      CONDA_INSTALL_LOCN: C:\\Miniconda35-x64
-
-    - TARGET_ARCH: x86
       CONDA_PERL: 5.22.0.1
       CONDA_PY: 35
       CONDA_INSTALL_LOCN: C:\\Miniconda35
@@ -73,16 +53,6 @@ environment:
       CONDA_PERL: 5.22.2.1
       CONDA_PY: 35
       CONDA_INSTALL_LOCN: C:\\Miniconda35-x64
-
-    - TARGET_ARCH: x86
-      CONDA_PERL: 5.20.3.1
-      CONDA_PY: 36
-      CONDA_INSTALL_LOCN: C:\\Miniconda36
-
-    - TARGET_ARCH: x64
-      CONDA_PERL: 5.20.3.1
-      CONDA_PY: 36
-      CONDA_INSTALL_LOCN: C:\\Miniconda36-x64
 
     - TARGET_ARCH: x86
       CONDA_PERL: 5.22.0.1
