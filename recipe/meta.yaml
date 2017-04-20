@@ -1,5 +1,5 @@
-{% set version = "9.5.4" %}
-{% set sha256 = "cf5e571164ad66028ecd7dd8819e3765470d45bcd440d258b686be7e69c76ed0" %}
+{% set version = "9.6.1" %}
+{% set sha256 = "e5101e0a49141fc12a7018c6dad594694d3a3325f5ab71e93e0e51bd94e51fcd" %}
 
 package:
   name: postgresql
