@@ -24,30 +24,32 @@ build:
 
 requirements:
   build:
-    - m2-bison          # [win]
-    - m2-diffutils      # [win]
-    - m2-flex           # [win]
-    - openssl 1.0.*
-    - perl    5.22.2.1  # [win]
-    - posix   # [win]
     - python
-    - vc   9  # [win and py27]
-    - vc  14  # [win and py >= 35]
+    - m2-bison  # [win]
+    - m2-diffutils  # [win]
+    - m2-flex  # [win]
+    - openssl 1.0.*
+    - perl 5.22.2.1  # [win]
+    - posix  # [win]
     - zlib 1.2.*
-    - krb5    # [not osx]
+    - krb5  # [not osx]
+    - vc 9  # [win and py27]
+    - vc 10  # [win and py34]
+    - vc 14  # [win and (py35 or py36)]
   run:
     - openssl 1.0.*
-    - vc   9  # [win and py27]
-    - vc  14  # [win and py >= 35]
     - zlib 1.2.*
-    - krb5    # [not osx]
+    - krb5  # [not osx]
+    - vc 9  # [win and py27]
+    - vc 10  # [win and py34]
+    - vc 14  # [win and (py35 or py36)]
 
 test:
   commands:
     - pg_config
     - postgres --help
-    - conda inspect linkages postgresql  # [linux]
-    - conda inspect objects postgresql   # [osx]
+    - conda inspect linkages postgresql  # [not win]
+    - conda inspect objects postgresql  # [osx]
 
 about:
   home: http://www.postgresql.org/
