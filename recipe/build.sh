@@ -6,7 +6,7 @@ fi
 
 ./configure \
     --prefix=$PREFIX \
-    --without-readline \
+    --with-readline \
     --with-libraries=$PREFIX/lib \
     --with-includes=$PREFIX/include \
     --with-openssl \
