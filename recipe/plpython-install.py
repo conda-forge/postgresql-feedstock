@@ -3,14 +3,11 @@ from subprocess import check_call
 
 SRC_DIR = environ['SRC_DIR']
 INSTALL_DIRS = [
-  'src/backend',
-  'src/backend/replication/libpqwalreceiver',
-  'src/backend/utils/mb/conversion_procs',
-  'src/backend/snowball',
-  'src/timezone',
-  'src/pl/plpgsql',
+  'src/pl/plpython',
+  'contrib/hstore_plpython',
+  'contrib/ltree_plpython',
 ]
-BUILD_DIRS = [ 'src/port' ]
+BUILD_DIRS = []
 BUILD_DIRS += INSTALL_DIRS
 
 for dir in BUILD_DIRS:

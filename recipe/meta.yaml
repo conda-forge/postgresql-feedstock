@@ -54,6 +54,14 @@ outputs:
       test:
         script: client-test.sh
 
+    - name: postgresql-plpython
+      requirements:
+        - python
+        - postgresql-server {{ version }}
+      script: plpython-install.py
+      test:
+        script: plpython-test.sh
+
     - name: postgresql-server
       requirements:
         - postgresql-client {{ version }}

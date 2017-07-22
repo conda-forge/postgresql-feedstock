@@ -10,6 +10,7 @@ fi
     --with-libraries=$PREFIX/lib \
     --with-includes=$PREFIX/include \
     --with-openssl \
+    --with-python \
     --with-gssapi
 
 make -j $CPU_COUNT
