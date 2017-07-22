@@ -12,6 +12,5 @@ fi
     --with-openssl \
     --with-gssapi
 
-make
+make -j $CPU_COUNT
 # make check # Failing with 'initdb: cannot be run as root'.
-make install

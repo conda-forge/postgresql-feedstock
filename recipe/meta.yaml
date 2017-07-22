@@ -31,27 +31,40 @@ requirements:
     - openssl 1.0.*
     - perl 5.22.2.1  # [win]
     - posix  # [win]
-    - readline  # [not win]
+    - readline  6.2.* # [not win]
     - zlib 1.2.*
     - krb5  # [not osx]
     - vc 9  # [win and py27]
     - vc 10  # [win and py34]
     - vc 14  # [win and (py35 or py36)]
   run:
-    - openssl 1.0.*
-    - readline  # [not win]
-    - zlib 1.2.*
-    - krb5  # [not osx]
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and (py35 or py36)]
+    - postgresql-server {{ version }}
 
-test:
-  commands:
-    - pg_config
-    - postgres --help
-    - conda inspect linkages postgresql  # [not win]
-    - conda inspect objects postgresql  # [osx]
+outputs:
+    - name: postgresql-client
+      requirements:
+        - openssl 1.0.*
+        - readline  6.2.* # [not win]
+        - zlib 1.2.*
+        - krb5  # [not osx]
+        - vc 9  # [win and py27]
+        - vc 10  # [win and py34]
+        - vc 14  # [win and (py35 or py36)]
+      script: client-install.py
+      test:
+        script: client-test.sh
+
+    - name: postgresql-server
+      requirements:
+        - postgresql-client {{ version }}
+      script: server-install.py
+      test:
+        script: server-test.sh
+
+#test:
+#  commands:
+#    - conda inspect linkages postgresql  # [not win]
+#    - conda inspect objects postgresql  # [osx]
 
 about:
   home: http://www.postgresql.org/
