@@ -15,7 +15,7 @@ source:
     - symbol_tempfile.patch  # [win]
 
 build:
-  skip: True  # [win and py36]
+  skip: True  # [win]
   number: 3
   features:
     - vc9  # [win and py27]
