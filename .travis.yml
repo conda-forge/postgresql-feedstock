@@ -54,6 +54,9 @@ install:
       conda config --set show_channel_urls true
       conda install --yes --quiet conda-forge-build-setup
       source run_conda_forge_build_setup
+      # Many outputs not supported correctly in conda-build 2.x
+      conda install -n root --yes --quiet conda-build=3
+
 
 script:
   - conda build ./recipe
