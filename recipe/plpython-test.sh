@@ -1,2 +1,4 @@
 conda inspect linkages postgresql-plpython
-conda inspect objects postgresql-plpython
+if [ "$(uname)" == "Darwin" ]; then
+    conda inspect objects postgresql-plpython
+fi
