@@ -9,7 +9,7 @@ INSTALL_DIRS = filter(path.isdir, glob(path.join(SRC_DIR, 'contrib', '*')))
 INSTALL_DIRS = filter(lambda x: not (x.endswith('plpython')
                                      or x.endswith('plperl')
                                      or x.endswith('start-scripts')
-                                     or (platform.system() != 'Linux' and x.endswith('sepgsql'))),
+                                     or x.endswith('sepgsql')),
                       INSTALL_DIRS)
 INSTALL_DIRS = list(INSTALL_DIRS)
 
