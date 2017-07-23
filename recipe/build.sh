@@ -11,6 +11,8 @@ fi
     --with-includes=$PREFIX/include \
     --with-openssl \
     --with-python \
+    --with-uuid=e2fs \
+    --with-libxml \
     --with-gssapi
 
 make -j $CPU_COUNT
