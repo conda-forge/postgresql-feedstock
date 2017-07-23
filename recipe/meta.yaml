@@ -35,6 +35,7 @@ requirements:
     - zlib 1.2.*
     - krb5  # [not osx]
     - libxslt 1.1.*
+    - libuuid 1.0.*
     - vc 9  # [win and py27]
     - vc 10  # [win and py34]
     - vc 14  # [win and (py35 or py36)]
@@ -48,7 +49,6 @@ outputs:
         - readline 6.2.*  # [not win]
         - zlib 1.2.*
         - krb5  # [not osx]
-        - libxslt 1.1.*
         - vc 9  # [win and py27]
         - vc 10  # [win and py34]
         - vc 14  # [win and (py35 or py36)]
@@ -67,6 +67,7 @@ outputs:
     - name: postgresql-contrib
       requirements:
         - postgresql-server {{ version }}
+        - libuuid 1.0.*
         - libxslt 1.1.*
       script: contrib-install.py
       test:
