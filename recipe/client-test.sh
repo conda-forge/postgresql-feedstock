@@ -5,3 +5,6 @@ fi
 
 pg_config
 psql --help
+
+# Test pgxs file exists
+[ -f `pg_config --pgxs` ]
