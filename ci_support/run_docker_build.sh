@@ -57,6 +57,9 @@ conda clean --lock
 conda install --yes --quiet conda-forge-build-setup
 source run_conda_forge_build_setup
 
+# Many outputs not supported correctly in conda-build 2.x
+conda install -n root --yes --quiet conda-build=3
+
 # Embarking on 3 case(s).
     set -x
     export CONDA_PY=27

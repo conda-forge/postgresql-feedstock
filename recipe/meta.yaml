@@ -15,8 +15,8 @@ source:
     - symbol_tempfile.patch  # [win]
 
 build:
-  skip: True  # [win and py36]
-  number: 2
+  skip: True  # [win]
+  number: 3
   features:
     - vc9  # [win and py27]
     - vc10  # [win and py34]
@@ -31,27 +31,56 @@ requirements:
     - openssl 1.0.*
     - perl 5.22.2.1  # [win]
     - posix  # [win]
-    - readline  # [not win]
+    - readline 6.2.*  # [not win]
     - zlib 1.2.*
     - krb5  # [not osx]
+    - libxml2 2.9.*
+    - libxslt 1.1.*
+    - libuuid 1.0.*  # [not win]
     - vc 9  # [win and py27]
     - vc 10  # [win and py34]
     - vc 14  # [win and (py35 or py36)]
   run:
-    - openssl 1.0.*
-    - readline  # [not win]
-    - zlib 1.2.*
-    - krb5  # [not osx]
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and (py35 or py36)]
+    - postgresql-server {{ version }}
 
-test:
-  commands:
-    - pg_config
-    - postgres --help
-    - conda inspect linkages postgresql  # [not win]
-    - conda inspect objects postgresql  # [osx]
+outputs:
+    - name: postgresql-client
+      requirements:
+        - openssl 1.0.*
+        - readline 6.2.*  # [not win]
+        - zlib 1.2.*
+        - krb5  # [not osx]
+        - vc 9  # [win and py27]
+        - vc 10  # [win and py34]
+        - vc 14  # [win and (py35 or py36)]
+      script: client-install.py
+      test:
+        script: client-test.sh
+
+    - name: postgresql-plpython
+      requirements:
+        - python
+        - postgresql-server {{ version }}
+      script: plpython-install.py
+      test:
+        script: plpython-test.sh
+
+    - name: postgresql-contrib
+      requirements:
+        - postgresql-server {{ version }}
+        - libuuid 1.0.*  # [not win]
+        - libxslt 1.1.*
+      script: contrib-install.py
+      test:
+        script: contrib-test.sh
+
+    - name: postgresql-server
+      requirements:
+        - postgresql-client {{ version }}
+        - libxml2 2.9.*
+      script: server-install.py
+      test:
+        script: server-test.sh
 
 about:
   home: http://www.postgresql.org/
