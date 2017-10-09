@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$(uname)" == "Darwin" ]; then
-    LDFLAGS="-rpath $PREFIX/lib $LDFLAGS"
+    LDFLAGS="-Wl,-rpath,$PREFIX/lib $LDFLAGS"
 fi
 
 ./configure \
@@ -12,6 +12,6 @@ fi
     --with-openssl \
     --with-gssapi
 
-make
+make -j $CPU_COUNT
 # make check # Failing with 'initdb: cannot be run as root'.
 make install

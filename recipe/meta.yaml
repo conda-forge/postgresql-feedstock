@@ -1,5 +1,5 @@
-{% set version = "9.6.3" %}
-{% set sha256 = "1645b3736901f6d854e695a937389e68ff2066ce0cde9d73919d6ab7c995b9c6" %}
+{% set version = "9.6.5" %}
+{% set sha256 = "06da12a7e3dddeb803962af8309fa06da9d6989f49e22865335f0a14bad0744c" %}
 
 package:
   name: postgresql
@@ -16,11 +16,11 @@ source:
 
 build:
   skip: True  # [win and py36]
-  number: 2
+  number: 0
   features:
-    - vc9  # [win and py27]
-    - vc10  # [win and py34]
-    - vc14  # [win and (py35 or py36)]
+    - vc{{ vc }}  # [win]
+  run_exports:
+    - libpq  >={{ version }}
 
 requirements:
   build:
@@ -28,23 +28,13 @@ requirements:
     - m2-bison  # [win]
     - m2-diffutils  # [win]
     - m2-flex  # [win]
-    - openssl 1.0.*
     - perl 5.22.2.1  # [win]
     - posix  # [win]
+  host:
+    - openssl
     - readline  # [not win]
-    - zlib 1.2.*
+    - zlib
     - krb5  # [not osx]
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and (py35 or py36)]
-  run:
-    - openssl 1.0.*
-    - readline  # [not win]
-    - zlib 1.2.*
-    - krb5  # [not osx]
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and (py35 or py36)]
 
 test:
   commands:
