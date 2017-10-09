@@ -15,7 +15,6 @@ source:
     - symbol_tempfile.patch  # [win]
 
 build:
-  skip: True  # [win and py36]
   number: 0
   features:
     - vc{{ vc }}  # [win]
@@ -24,11 +23,11 @@ build:
 
 requirements:
   build:
-    - python
+    - {{ compiler('c') }}
     - m2-bison  # [win]
     - m2-diffutils  # [win]
     - m2-flex  # [win]
-    - perl 5.22.2.1  # [win]
+    - perl   # [win]
     - posix  # [win]
   host:
     - openssl
