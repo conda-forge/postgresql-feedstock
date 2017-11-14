@@ -1,9 +1,9 @@
 @echo on
-cd src\tools\msvc
+
+pushd src\tools\msvc
 
 echo $config-^>{openssl} = '%LIBRARY_PREFIX%'; >> config.pl
 echo $config-^>{zlib} = '%LIBRARY_PREFIX%';    >> config.pl
-echo $config-^>{python} = '%PREFIX%';          >> config.pl
 
 :: Appveyor's postgres install is on PATH and interferes with testing
 IF NOT "%APPVEYOR%" == "" (
@@ -29,8 +29,9 @@ if "%ARCH%" == "32" (
    set ARCH=x64
 )
 
-perl mkvcbuild.pl
-call msbuild %SRC_DIR%\pgsql.sln /p:Configuration=Release /p:Platform="%ARCH%" /m
+perl -I %SRC_DIR%\src\tools\msvc -I %SRC_DIR% mkvcbuild.pl
+if errorlevel 1 exit 1
+call msbuild %SRC_DIR%\pgsql.sln /p:Configuration=Release /p:Platform="%ARCH%"
 if errorlevel 1 exit 1
 call install.bat "%LIBRARY_PREFIX%"
 if errorlevel 1 exit 1
