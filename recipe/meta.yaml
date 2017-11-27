@@ -30,7 +30,7 @@ requirements:
     - openssl
     - readline  # [not win]
     - zlib
-    - krb5
+    - krb5  # [not osx]
 
 test:
   commands:
