@@ -15,7 +15,7 @@ source:
 
 build:
   skip: True  # [win and py36]
-  number: 3
+  number: 4
   features:
     - vc9  # [win and py27]
     - vc14  # [win and (py35 or py36)]
@@ -29,14 +29,14 @@ requirements:
     - openssl 1.0.*
     - perl 5.22.2.1  # [win]
     - posix  # [win]
-    - readline  # [not win]
+    - readline 7.0  # [not win]
     - zlib 1.2.11
     - krb5  # [not osx]
     - vc 9  # [win and py27]
     - vc 14  # [win and (py35 or py36)]
   run:
     - openssl 1.0.*
-    - readline  # [not win]
+    - readline 7.0  # [not win]
     - zlib 1.2.11
     - krb5  # [not osx]
     - vc 9  # [win and py27]
