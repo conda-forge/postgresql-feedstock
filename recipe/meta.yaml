@@ -15,7 +15,7 @@ source:
 
 build:
   skip: True  # [win and py36]
-  number: 4
+  number: 5
   features:
     - vc9  # [win and py27]
     - vc14  # [win and (py35 or py36)]
@@ -32,13 +32,18 @@ requirements:
     - readline 7.0  # [not win]
     - zlib 1.2.11
     - krb5  # [not osx]
+    - libxml2 2.9.*
+    - libxslt 1.1.*
+    - libuuid 1.0.*  # [not win]
     - vc 9  # [win and py27]
     - vc 14  # [win and (py35 or py36)]
   run:
+    - python
     - openssl 1.0.*
     - readline 7.0  # [not win]
     - zlib 1.2.11
     - krb5  # [not osx]
+    - libxml2 2.9.*
     - vc 9  # [win and py27]
     - vc 14  # [win and (py35 or py36)]
 
