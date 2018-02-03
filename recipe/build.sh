@@ -13,5 +13,5 @@ fi
     --with-gssapi
 
 make
-# make check # Failing with 'initdb: cannot be run as root'.
+make check
 make install
