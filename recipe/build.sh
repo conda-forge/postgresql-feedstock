@@ -10,8 +10,15 @@ fi
     --with-libraries=$PREFIX/lib \
     --with-includes=$PREFIX/include \
     --with-openssl \
+    --with-python \
+    --with-uuid=e2fs \
+    --with-libxml \
     --with-gssapi
 
-make
-# make check # Failing with 'initdb: cannot be run as root'.
+make -j $CPU_COUNT
+make -j $CPU_COUNT -C contrib
+
+make check
+
 make install
+make install -C contrib
