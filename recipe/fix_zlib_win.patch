@@ -1,0 +1,13 @@
+diff --git a/src/tools/msvc/Solution.pm b/src/tools/msvc/Solution.pm
+index 9ba3acf..ccb77d6 100644
+--- a/src/tools/msvc/Solution.pm
++++ b/src/tools/msvc/Solution.pm
+@@ -519,7 +519,7 @@ sub AddProject
+ 	if ($self->{options}->{zlib})
+ 	{
+ 		$proj->AddIncludeDir($self->{options}->{zlib} . '\include');
+-		$proj->AddLibrary($self->{options}->{zlib} . '\lib\zdll.lib');
++		$proj->AddLibrary($self->{options}->{zlib} . '\lib\zlib.lib');
+ 	}
+ 	if ($self->{options}->{openssl})
+ 	{
