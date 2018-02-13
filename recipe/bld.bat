@@ -4,6 +4,9 @@ cd src\tools\msvc
 echo $config-^>{openssl} = '%LIBRARY_PREFIX%'; >> config.pl
 echo $config-^>{zlib} = '%LIBRARY_PREFIX%';    >> config.pl
 echo $config-^>{python} = '%PREFIX%';          >> config.pl
+echo $config-^>{xml} = '%LIBRARY_PREFIX%';     >> config.pl
+echo $config-^>{xslt} = '%LIBRARY_PREFIX%';    >> config.pl
+echo $config-^>{iconv} = '%LIBRARY_PREFIX%';   >> config.pl
 
 :: Appveyor's postgres install is on PATH and interferes with testing
 IF NOT "%APPVEYOR%" == "" (
