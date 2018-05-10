@@ -1,0 +1,10 @@
+krb5:
+- '1.14'
+pin_run_as_build:
+  krb5:
+    max_pin: x.x
+  python:
+    min_pin: x.x
+    max_pin: x.x
+python:
+- '3.5'
