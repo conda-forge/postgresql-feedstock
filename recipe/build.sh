@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export
-
 if [ "$(uname)" == "Darwin" ]; then
     LDFLAGS="-rpath $PREFIX/lib $LDFLAGS"
 fi
