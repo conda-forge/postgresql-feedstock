@@ -1,7 +1,7 @@
 c_compiler:
-- vs2015
+- vs2008
 cxx_compiler:
-- vs2015
+- vs2008
 fortran_compiler:
 - gfortran
 krb5:
@@ -31,6 +31,6 @@ python:
 readline:
 - '7.0'
 vc:
-- '14'
+- '9'
 zlib:
 - '1.2'

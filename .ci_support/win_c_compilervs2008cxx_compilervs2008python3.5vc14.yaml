@@ -1,7 +1,7 @@
 c_compiler:
-- vs2015
+- vs2008
 cxx_compiler:
-- vs2015
+- vs2008
 fortran_compiler:
 - gfortran
 krb5:

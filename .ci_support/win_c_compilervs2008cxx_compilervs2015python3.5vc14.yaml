@@ -1,5 +1,5 @@
 c_compiler:
-- vs2015
+- vs2008
 cxx_compiler:
 - vs2015
 fortran_compiler:

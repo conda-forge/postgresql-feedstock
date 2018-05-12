@@ -32,10 +32,5 @@ readline:
 - '7.0'
 vc:
 - '9'
-zip_keys:
-- - python
-  - vc
-  - c_compiler
-  - cxx_compiler
 zlib:
 - '1.2'
