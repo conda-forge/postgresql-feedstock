@@ -14,7 +14,6 @@ source:
     - fix_gss_win64.patch  # [win64]
 
 build:
-  skip: True  # [win and py36]
   number: 0
   features:
     - vc{{ vc }}  # [win]
