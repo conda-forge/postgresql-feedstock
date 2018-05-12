@@ -32,7 +32,7 @@ requirements:
     - openssl
     - perl 5.22.2.1  # [win]
     - posix  # [win]
-    - readline # [not win]
+    - readline  # [not win]
     - zlib
     - krb5  # [not osx]
     - libxml2
@@ -43,7 +43,7 @@ requirements:
   run:
     - python
     - openssl
-    - readline # [not win]
+    - readline  # [not win]
     - zlib
     - krb5  # [not osx]
     - libxml2
