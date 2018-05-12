@@ -17,7 +17,7 @@ build:
   skip: True  # [win and py36]
   number: 0
   features:
-    - vc  # [win]
+    - vc{{ vc }}  # [win]
 
 requirements:
   build:
