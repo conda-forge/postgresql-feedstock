@@ -14,14 +14,16 @@ Summary: PostgreSQL is a powerful, open source object-relational database system
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/postgresql-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/postgresql-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/postgresql-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/postgresql-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/postgresql-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/postgresql-feedstock/branch/master)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/postgresql-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/postgresql-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/postgresql-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/postgresql-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/postgresql-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/postgresql-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/postgresql/badges/version.svg)](https://anaconda.org/conda-forge/postgresql)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/postgresql/badges/downloads.svg)](https://anaconda.org/conda-forge/postgresql)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-postgresql-green.svg)](https://anaconda.org/conda-forge/postgresql) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/postgresql.svg)](https://anaconda.org/conda-forge/postgresql) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/postgresql.svg)](https://anaconda.org/conda-forge/postgresql) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/postgresql.svg)](https://anaconda.org/conda-forge/postgresql) |
 
 Installing postgresql
 =====================

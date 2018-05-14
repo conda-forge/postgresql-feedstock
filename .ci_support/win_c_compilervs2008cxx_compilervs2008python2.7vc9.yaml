@@ -1,0 +1,41 @@
+c_compiler:
+- vs2008
+cxx_compiler:
+- vs2008
+fortran_compiler:
+- gfortran
+krb5:
+- '1.14'
+libxml2:
+- '2.9'
+openssl:
+- 1.0.2
+pin_run_as_build:
+  krb5:
+    max_pin: x.x
+  libxml2:
+    max_pin: x.x
+  openssl:
+    max_pin: x.x.x
+  python:
+    min_pin: x.x
+    max_pin: x.x
+  readline:
+    max_pin: x.x
+  vc:
+    max_pin: x
+  zlib:
+    max_pin: x.x
+python:
+- '2.7'
+readline:
+- '7.0'
+vc:
+- '9'
+zip_keys:
+- - python
+  - vc
+  - c_compiler
+  - cxx_compiler
+zlib:
+- '1.2'
