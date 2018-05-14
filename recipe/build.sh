@@ -1,6 +1,8 @@
 #!/bin/bash
 
-LDFLAGS="-rpath $PREFIX/lib $LDFLAGS"
+if [ "$(uname)" == "Darwin" ]; then
+    LDFLAGS="-rpath $PREFIX/lib $LDFLAGS"
+fi
 
 ./configure \
     --prefix=$PREFIX \

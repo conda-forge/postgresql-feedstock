@@ -1,5 +1,5 @@
-{% set version = "10.3" %}
-{% set sha256 = "6ea268780ee35e88c65cdb0af7955ad90b7d0ef34573867f223f14e43467931a" %}
+{% set version = "10.4" %}
+{% set sha256 = "1b60812310bd5756c62d93a9f93de8c28ea63b0df254f428cd1cf1a4d9020048" %}
 
 package:
   name: postgresql
@@ -14,41 +14,39 @@ source:
     - fix_gss_win64.patch  # [win64]
 
 build:
-  skip: True  # [win and py36]
   number: 0
-  features:
-    - vc9  # [win and py27]
-    - vc14  # [win and (py35 or py36)]
 
 requirements:
   build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}  # [not win]
+  host:
     - python
     - m2-bison  # [win]
     - m2-diffutils  # [win]
     - m2-flex  # [win]
-    - openssl 1.0.*
+    - openssl
     - perl 5.22.2.1  # [win]
     - posix  # [win]
-    - readline 7.0  # [not win]
-    - zlib 1.2.11
+    - readline  # [not win]
+    - zlib
     - krb5  # [not osx]
-    - libxml2 2.9.*
+    - libxml2
     - libxslt 1.1.*
     - libuuid 1.0.*  # [not win]
     - msinttypes  # [win and py27]
-    - vc 9  # [win and py27]
-    - vc 14  # [win and (py35 or py36)]
+    - vc  # [win]
   run:
     - python
-    - openssl 1.0.*
-    - readline 7.0  # [not win]
-    - zlib 1.2.11
+    - openssl
+    - readline  # [not win]
+    - zlib
     - krb5  # [not osx]
-    - libxml2 2.9.*
+    - libxml2
     - libxslt 1.1.*
     - libuuid 1.0.*  # [not win]
-    - vc 9  # [win and py27]
-    - vc 14  # [win and (py35 or py36)]
+    - vc  # [win]
 
 test:
   commands:
