@@ -12,6 +12,7 @@ source:
   sha256: {{ sha256 }}
   patches:
     - 0001-fix-win-zlib-name.patch
+    - 0002-disable-new-dtags.patch
 
 build:
   number: 0
