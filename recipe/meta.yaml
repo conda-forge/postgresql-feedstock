@@ -1,5 +1,5 @@
-{% set version = "10.3" %}
-{% set sha256 = "6ea268780ee35e88c65cdb0af7955ad90b7d0ef34573867f223f14e43467931a" %}
+{% set version = "10.4" %}
+{% set sha256 = "1b60812310bd5756c62d93a9f93de8c28ea63b0df254f428cd1cf1a4d9020048" %}
 {% set libpqver = '.'.join(("5", version.split('.')[0])) %}
 
 package:
@@ -23,7 +23,7 @@ requirements:
     - m2-diffutils     # [win]
     - m2-flex          # [win]
     # perl pinned to older version due to issues with @INC not being recursive or something like that.
-    - perl  5.20.*     # [win]
+    - perl             # [win]
     - posix            # [win]
   host:
     - krb5             # [not osx]
@@ -33,11 +33,14 @@ requirements:
 
 outputs:
   - name: postgresql
+    build:
+      run_exports:
+        - {{ pin_subpackage('libpq') }}
     requirements:
       build:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
-        - perl  5.20.*     # [win]
+        - perl                 # [win]
       host:
         # these are here for sake of run_exports taking effect
         - krb5             # [not osx]
@@ -55,7 +58,7 @@ outputs:
     script: install_db.sh   # [unix
     script: install_db.bat  # [win]
     about:
-      summary: 'PostgreSQL is a powerful, open source object-relational database system.'
+      summary: PostgreSQL is a powerful, open source object-relational database system.
 
   - name: libpq
     build:
@@ -65,7 +68,7 @@ outputs:
       build:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
-        - perl  5.20.*     # [win]
+        - perl                 # [win]
       host:
         # these are here for sake of run_exports taking effect
         - krb5     # [not osx]
