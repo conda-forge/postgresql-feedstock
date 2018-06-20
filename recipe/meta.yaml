@@ -29,6 +29,7 @@ requirements:
     - perl             # [win]
     - posix            # [win]
     - libxml2
+    - libxslt 1.1.*
     - krb5             # [not osx]
     - openssl
     - msinttypes  # [win and py27]
