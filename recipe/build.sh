@@ -1,9 +1,5 @@
 #!/bin/bash
 
-if [ "$(uname)" == "Darwin" ]; then
-    LDFLAGS="-rpath $PREFIX/lib $LDFLAGS"
-fi
-
 ./configure \
     --prefix=$PREFIX \
     --with-readline \
@@ -24,5 +20,4 @@ make check -C src/pl
 make check -C contrib
 make check -C src/interfaces/ecpg
 
-make install
 make install -C contrib

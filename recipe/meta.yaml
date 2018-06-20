@@ -1,17 +1,17 @@
 {% set version = "10.4" %}
 {% set sha256 = "1b60812310bd5756c62d93a9f93de8c28ea63b0df254f428cd1cf1a4d9020048" %}
+{% set libpqver = '.'.join(("5", version.split('.')[0])) %}
 
 package:
-  name: postgresql
+  name: postgresql-split
   version: {{ version }}
 
 source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
   sha256: {{ sha256 }}
   patches:
-    - fix_zlib_win.patch  # [win]
-    - fix_gss_win32.patch  # [win32]
-    - fix_gss_win64.patch  # [win64]
+    - 0001-fix-win-zlib-name.patch
+    - 0002-disable-new-dtags.patch
 
 build:
   number: 0
@@ -22,44 +22,86 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
   host:
-    - python
-    - m2-bison  # [win]
-    - m2-diffutils  # [win]
-    - m2-flex  # [win]
+    - m2-bison         # [win]
+    - m2-diffutils     # [win]
+    - m2-flex          # [win]
+    # perl pinned to older version due to issues with @INC not being recursive or something like that.
+    - perl             # [win]
+    - posix            # [win]
+  host:
+    - krb5             # [not osx]
     - openssl
-    - perl 5.22.2.1  # [win]
-    - posix  # [win]
-    - readline  # [not win]
-    - zlib
-    - krb5  # [not osx]
-    - libxml2
-    - libxslt 1.1.*
-    - libuuid 1.0.*  # [not win]
     - msinttypes  # [win and py27]
     - vc  # [win]
-  run:
-    - python
     - openssl
-    - readline  # [not win]
+    - readline         # [not win]
     - zlib
-    - krb5  # [not osx]
-    - libxml2
-    - libxslt 1.1.*
-    - libuuid 1.0.*  # [not win]
     - vc  # [win]
 
-test:
-  commands:
-    - pg_config
-    - postgres --help
-    - conda inspect linkages $PKG_NAME  # [not win]
-    - conda inspect objects $PKG_NAME  # [osx]
+outputs:
+  - name: postgresql
+    build:
+      run_exports:
+        - {{ pin_subpackage('libpq') }}
+    requirements:
+      build:
+        # solely for sake of lining up vc versions and other runtimes
+        - {{ compiler('c') }}
+        - perl                 # [win]
+      host:
+        # these are here for sake of run_exports taking effect
+        - krb5             # [not osx]
+        - openssl
+        - readline         # [not win]
+        - zlib
+        - {{ pin_subpackage('libpq', exact=True) }}
+      run:
+        - {{ pin_subpackage('libpq', exact=True) }}
+    test:
+      commands:
+        - postgres --help
+        - conda inspect linkages postgresql  # [not win]
+        - conda inspect objects postgresql  # [osx]
+    script: install_db.sh   # [unix
+    script: install_db.bat  # [win]
+    about:
+      summary: PostgreSQL is a powerful, open source object-relational database system.
+
+  - name: libpq
+    build:
+      run_exports:
+        - {{ pin_subpackage('libpq') }}
+    requirements:
+      build:
+        # solely for sake of lining up vc versions and other runtimes
+        - {{ compiler('c') }}
+        - perl                 # [win]
+      host:
+        # these are here for sake of run_exports taking effect
+        - krb5     # [not osx]
+        - openssl
+        - readline         # [not win]
+        - zlib
+    script: install_runtime.sh   # [unix
+    script: install_runtime.bat  # [win]
+    test:
+      commands:
+        - pg_config
+        - test -f $PREFIX/lib/libpq.so.{{ libpqver }}      # [linux]
+        - test -f $PREFIX/lib/libpq.so.5                   # [linux]
+        - test -f $PREFIX/lib/libpq.so                     # [linux]
+        - test -f $PREFIX/lib/libpq.{{ libpqver }}.dylib   # [osx]
+        - test -f $PREFIX/lib/libpq.5.dylib                # [osx]
+        - test -f $PREFIX/lib/libpq.dylib                  # [osx]
+        - IF NOT EXIST %LIBRARY_BIN%\libpq.dll EXIT 1      # [win]
+        - IF NOT EXIST %LIBRARY_BIN%\pg_config.exe EXIT 1  # [win]
+    about:
+      summary: The postgres runtime libraries and utilities (not the server itself)
 
 about:
   home: http://www.postgresql.org/
   license: PostgreSQL
   license_file: COPYRIGHT
-  summary: 'PostgreSQL is a powerful, open source object-relational database system.'
 
 extra:
   recipe-maintainers:
