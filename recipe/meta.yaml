@@ -28,7 +28,7 @@ requirements:
     # perl pinned to older version due to issues with @INC not being recursive or something like that.
     - perl             # [win]
     - posix            # [win]
-  host:
+    - libxml2
     - krb5             # [not osx]
     - openssl
     - msinttypes  # [win and py27]
