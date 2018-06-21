@@ -1,3 +1,6 @@
+set -x
+set -e
+
 export PG_CONFIG_ARGS="--with-python"
-$RECIPE_DIR/build.sh
+bash $RECIPE_DIR/build.sh
 make install
