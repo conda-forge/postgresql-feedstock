@@ -38,6 +38,11 @@ requirements:
     - readline         # [not win]
     - zlib
     - vc  # [win]
+    - libuuid
+  run:
+    - krb5
+    - openssl
+    - readline        # [not win]
 
 outputs:
   - name: postgresql
