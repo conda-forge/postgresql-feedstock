@@ -9,8 +9,7 @@
     --with-uuid=e2fs \
     --with-libxml \
     --with-libxslt \
-    --with-gssapi \
-    ${PG_CONFIG_ARGS}
+    --with-gssapi
 
 make -j $CPU_COUNT
 make -j $CPU_COUNT -C contrib
