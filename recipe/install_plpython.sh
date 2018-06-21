@@ -1,2 +1,3 @@
 export PG_CONFIG_ARGS="--with-python"
-source build.sh
+$RECIPE_DIR/build.sh
+make install
