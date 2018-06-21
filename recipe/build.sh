@@ -6,17 +6,16 @@
     --with-libraries=$PREFIX/lib \
     --with-includes=$PREFIX/include \
     --with-openssl \
-    --with-python \
     --with-uuid=e2fs \
     --with-libxml \
     --with-libxslt \
-    --with-gssapi
+    --with-gssapi \
+    ${PG_CONFIG_ARGS}
 
 make -j $CPU_COUNT
 make -j $CPU_COUNT -C contrib
 
 make check
-make check -C src/pl
 make check -C contrib
 make check -C src/interfaces/ecpg
 

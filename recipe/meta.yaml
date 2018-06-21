@@ -68,6 +68,30 @@ outputs:
     about:
       summary: PostgreSQL is a powerful, open source object-relational database system.
 
+  - name: postgresql-plpython
+    build:
+      run_exports:
+        - {{ pin_subpackage('postgresql-plpython') }}
+    requirements:
+      build:
+        # solely for sake of lining up vc versions and other runtimes
+        - {{ compiler('c') }}
+        - perl                 # [win]
+      host:
+        # these are here for sake of run_exports taking effect
+        - krb5     # [not osx]
+        - openssl
+        - readline         # [not win]
+        - zlib
+        - {{ pin_subpackage('postgresql', exact=True) }}
+        - python
+      run:
+        - {{ pin_subpackage('postgresql', exact=True) }}
+        - python
+    script: install_plpython.sh  # [unix]
+    about:
+      summary: The plpythonu postgresql extension
+
   - name: libpq
     build:
       run_exports:
