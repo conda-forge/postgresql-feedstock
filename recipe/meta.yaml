@@ -63,6 +63,10 @@ outputs:
         - {{ pin_subpackage('libpq', exact=True) }}
       run:
         - {{ pin_subpackage('libpq', exact=True) }}
+        - krb5
+        - openssl
+        - readline         # [not win]
+        - zlib
     test:
       commands:
         - postgres --help
@@ -93,6 +97,10 @@ outputs:
       run:
         - {{ pin_subpackage('postgresql', exact=True) }}
         - python
+        - krb5
+        - openssl
+        - readline         # [not win]
+        - zlib
     script: install_plpython.sh  # [unix]
     about:
       summary: The plpythonu postgresql extension
