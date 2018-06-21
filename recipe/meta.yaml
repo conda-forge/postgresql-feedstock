@@ -38,7 +38,7 @@ requirements:
     - readline         # [not win]
     - zlib
     - vc  # [win]
-    - libuuid
+    - libuuid         # [not win]
   run:
     - krb5
     - openssl
@@ -102,6 +102,10 @@ outputs:
         - readline         # [not win]
         - zlib
     script: install_plpython.sh  # [unix]
+    test:
+      commands:
+        - conda inspect linkages postgresql-plpython  # [not win]
+        - conda inspect objects postgresql-plpython  # [osx]
     about:
       summary: The plpythonu postgresql extension
 
