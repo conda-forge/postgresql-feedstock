@@ -25,6 +25,7 @@ Current release info
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libpq-green.svg)](https://anaconda.org/conda-forge/libpq) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libpq.svg)](https://anaconda.org/conda-forge/libpq) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libpq.svg)](https://anaconda.org/conda-forge/libpq) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libpq.svg)](https://anaconda.org/conda-forge/libpq) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-postgresql-green.svg)](https://anaconda.org/conda-forge/postgresql) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/postgresql.svg)](https://anaconda.org/conda-forge/postgresql) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/postgresql.svg)](https://anaconda.org/conda-forge/postgresql) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/postgresql.svg)](https://anaconda.org/conda-forge/postgresql) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-postgresql--plpython-green.svg)](https://anaconda.org/conda-forge/postgresql-plpython) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/postgresql-plpython.svg)](https://anaconda.org/conda-forge/postgresql-plpython) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/postgresql-plpython.svg)](https://anaconda.org/conda-forge/postgresql-plpython) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/postgresql-plpython.svg)](https://anaconda.org/conda-forge/postgresql-plpython) |
 
 Installing postgresql-split
 ===========================
@@ -35,10 +36,10 @@ Installing `postgresql-split` from the `conda-forge` channel can be achieved by 
 conda config --add channels conda-forge
 ```
 
-Once the `conda-forge` channel has been enabled, `libpq, postgresql` can be installed with:
+Once the `conda-forge` channel has been enabled, `libpq, postgresql, postgresql-plpython` can be installed with:
 
 ```
-conda install libpq postgresql
+conda install libpq postgresql postgresql-plpython
 ```
 
 It is possible to list all of the versions of `libpq` available on your platform with:

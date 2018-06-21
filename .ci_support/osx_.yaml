@@ -8,6 +8,8 @@ fortran_compiler:
 - toolchain_fort
 krb5:
 - '1.14'
+libxml2:
+- '2.9'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 macos_min_version:
@@ -19,14 +21,23 @@ perl:
 pin_run_as_build:
   krb5:
     max_pin: x.x
+  libxml2:
+    max_pin: x.x
   openssl:
     max_pin: x.x.x
   perl:
+    max_pin: x.x
+  python:
+    min_pin: x.x
     max_pin: x.x
   readline:
     max_pin: x
   zlib:
     max_pin: x.x
+python:
+- '2.7'
+- '3.5'
+- '3.6'
 readline:
 - '7.0'
 zlib:
