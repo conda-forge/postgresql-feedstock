@@ -144,6 +144,7 @@ about:
   home: http://www.postgresql.org/
   license: PostgreSQL
   license_file: COPYRIGHT
+  summary: multi-ouput recipe for postgresql
 
 extra:
   recipe-maintainers:
