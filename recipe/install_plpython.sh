@@ -10,7 +10,7 @@ export PYTHON=$PREFIX/bin/python
     --with-uuid=e2fs \
     --with-libxml \
     --with-libxslt \
-    --with-gssapi
+    --with-gssapi \
     --with-python
 
 for dir in src/pl/plpython contrib/hstore_plpython; do
