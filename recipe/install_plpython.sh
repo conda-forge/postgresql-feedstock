@@ -15,6 +15,7 @@ export PYTHON=$PREFIX/bin/python
 
 for dir in src/pl/plpython contrib/hstore_plpython; do
   pushd $dir
+  make clean
   make
   make install
   popd
