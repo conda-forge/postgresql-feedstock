@@ -67,6 +67,7 @@ outputs:
         - openssl
         - readline         # [not win]
         - zlib
+        - libxml2
     test:
       commands:
         - postgres --help
