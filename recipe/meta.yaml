@@ -61,6 +61,7 @@ outputs:
         - openssl
         - readline         # [not win]
         - zlib
+        - libxml2
         - {{ pin_subpackage('libpq', exact=True) }}
       run:
         - {{ pin_subpackage('libpq', exact=True) }}
@@ -68,7 +69,6 @@ outputs:
         - openssl
         - readline         # [not win]
         - zlib
-        - libxml2
     test:
       commands:
         - postgres --help
