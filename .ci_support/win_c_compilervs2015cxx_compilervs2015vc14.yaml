@@ -7,7 +7,7 @@ cxx_compiler:
 fortran_compiler:
 - flang
 krb5:
-- '1.16'
+- '1.14'
 libxml2:
 - '2.9'
 openssl:
