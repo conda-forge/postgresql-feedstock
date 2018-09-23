@@ -1,9 +1,13 @@
 c_compiler:
 - vs2008
+channel_sources:
+- conda-forge,defaults
+channel_targets:
+- conda-forge main
 cxx_compiler:
 - vs2008
 krb5:
-- '1.14'
+- '1.16'
 libxml2:
 - '2.9'
 openssl:
