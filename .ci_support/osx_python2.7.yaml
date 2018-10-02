@@ -1,32 +1,40 @@
+MACOSX_DEPLOYMENT_TARGET:
+- '10.9'
 c_compiler:
-- vs2008
+- toolchain_c
+channel_sources:
+- conda-forge,defaults
+channel_targets:
+- conda-forge main
 cxx_compiler:
-- vs2008
+- toolchain_cxx
 fortran_compiler:
-- flang
+- toolchain_fort
 krb5:
-- '1.14'
+- '1.16'
+libuuid:
+- 2.32.1
 libxml2:
 - '2.9'
+macos_machine:
+- x86_64-apple-darwin13.4.0
+macos_min_version:
+- '10.9'
 openssl:
 - 1.0.2
-perl:
-- '5.26'
 pin_run_as_build:
   krb5:
     max_pin: x.x
+  libuuid:
+    max_pin: x
   libxml2:
     max_pin: x.x
   openssl:
     max_pin: x.x.x
-  perl:
-    max_pin: x.x
   python:
     min_pin: x.x
     max_pin: x.x
   readline:
-    max_pin: x
-  vc:
     max_pin: x
   zlib:
     max_pin: x.x
@@ -34,12 +42,5 @@ python:
 - '2.7'
 readline:
 - '7.0'
-vc:
-- '9'
-zip_keys:
-- - python
-  - vc
-  - c_compiler
-  - cxx_compiler
 zlib:
 - '1.2'
