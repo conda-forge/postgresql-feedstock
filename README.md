@@ -1,13 +1,13 @@
-About postgresql
-================
+About postgresql-split
+======================
 
-Home: http://www.postgresql.org/
+Home: 
 
-Package license: PostgreSQL
+Package license: 
 
 Feedstock license: BSD 3-Clause
 
-Summary: PostgreSQL is a powerful, open source object-relational database system.
+Summary: The postgres runtime libraries and utilities (not the server itself)
 
 
 
@@ -23,27 +23,29 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libpq-green.svg)](https://anaconda.org/conda-forge/libpq) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libpq.svg)](https://anaconda.org/conda-forge/libpq) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libpq.svg)](https://anaconda.org/conda-forge/libpq) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libpq.svg)](https://anaconda.org/conda-forge/libpq) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-postgresql-green.svg)](https://anaconda.org/conda-forge/postgresql) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/postgresql.svg)](https://anaconda.org/conda-forge/postgresql) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/postgresql.svg)](https://anaconda.org/conda-forge/postgresql) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/postgresql.svg)](https://anaconda.org/conda-forge/postgresql) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-postgresql--plpython-green.svg)](https://anaconda.org/conda-forge/postgresql-plpython) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/postgresql-plpython.svg)](https://anaconda.org/conda-forge/postgresql-plpython) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/postgresql-plpython.svg)](https://anaconda.org/conda-forge/postgresql-plpython) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/postgresql-plpython.svg)](https://anaconda.org/conda-forge/postgresql-plpython) |
 
-Installing postgresql
-=====================
+Installing postgresql-split
+===========================
 
-Installing `postgresql` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `postgresql-split` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
 ```
 
-Once the `conda-forge` channel has been enabled, `postgresql` can be installed with:
+Once the `conda-forge` channel has been enabled, `libpq, postgresql, postgresql-plpython` can be installed with:
 
 ```
-conda install postgresql
+conda install libpq postgresql postgresql-plpython
 ```
 
-It is possible to list all of the versions of `postgresql` available on your platform with:
+It is possible to list all of the versions of `libpq` available on your platform with:
 
 ```
-conda search postgresql --channel conda-forge
+conda search libpq --channel conda-forge
 ```
 
 
@@ -58,13 +60,13 @@ for each of the installable packages. Such a repository is known as a *feedstock
 A feedstock is made up of a conda recipe (the instructions on what and how to build
 the package) and the necessary configurations for automatic building using freely
 available continuous integration services. Thanks to the awesome service provided by
-[CircleCI](https://circleci.com/), [AppVeyor](http://www.appveyor.com/)
+[CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/)
 and [TravisCI](https://travis-ci.org/) it is possible to build and upload installable
 packages to the [conda-forge](https://anaconda.org/conda-forge)
-[Anaconda-Cloud](http://docs.anaconda.org/) channel for Linux, Windows and OSX respectively.
+[Anaconda-Cloud](https://anaconda.org/) channel for Linux, Windows and OSX respectively.
 
 To manage the continuous integration and simplify feedstock maintenance
-[conda-smithy](http://github.com/conda-forge/conda-smithy) has been developed.
+[conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
@@ -83,24 +85,24 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating postgresql-feedstock
-=============================
+Updating postgresql-split-feedstock
+===================================
 
-If you would like to improve the postgresql recipe or build a new
+If you would like to improve the postgresql-split recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/postgresql-feedstock are
+Note that all branches in the conda-forge/postgresql-split-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
  * If the version of a package **is not** being increased, please add or increase
-   the [``build/number``](http://conda.pydata.org/docs/building/meta-yaml.html#build-number-and-string).
+   the [``build/number``](https://conda.io/docs/user-guide/tasks/build-packages/define-metadata.html#build-number-and-string).
  * If the version of a package **is** being increased, please remember to return
-   the [``build/number``](http://conda.pydata.org/docs/building/meta-yaml.html#build-number-and-string)
+   the [``build/number``](https://conda.io/docs/user-guide/tasks/build-packages/define-metadata.html#build-number-and-string)
    back to 0.

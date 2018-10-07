@@ -1,5 +1,6 @@
-#!/bin/bash
-
+set -x
+set -e
+export PYTHON=$PREFIX/bin/python
 ./configure \
     --prefix=$PREFIX \
     --with-readline \
@@ -9,13 +10,13 @@
     --with-uuid=e2fs \
     --with-libxml \
     --with-libxslt \
-    --with-gssapi
+    --with-gssapi \
+    --with-python
 
-make -j $CPU_COUNT
-make -j $CPU_COUNT -C contrib
-
-make check
-make check -C contrib
-make check -C src/interfaces/ecpg
-
-make install -C contrib
+for dir in src/pl/plpython contrib/hstore_plpython; do
+  pushd $dir
+  make clean
+  make
+  make install
+  popd
+done
