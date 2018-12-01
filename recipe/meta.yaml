@@ -15,7 +15,7 @@ source:
     - fix_gss_win64.patch           # [win64]
 
 build:
-  number: 1000
+  number: 1001
 
 requirements:
   build:
