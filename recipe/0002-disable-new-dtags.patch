@@ -1,0 +1,13 @@
+--- work/src/makefiles/Makefile.linux.orig	2018-05-31 18:45:31.530493654 +0000
++++ work/src/makefiles/Makefile.linux	2018-05-31 18:48:31.665401369 +0000
+@@ -3,7 +3,9 @@
+ export_dynamic = -Wl,-E
+ # Use --enable-new-dtags to generate DT_RUNPATH instead of DT_RPATH.
+ # This allows LD_LIBRARY_PATH to still work when needed.
+-rpath = -Wl,-rpath,'$(rpathdir)',--enable-new-dtags
++# rpath = -Wl,-rpath,'$(rpathdir)',--enable-new-dtags
++# But for Anaconda Distribution it allows LD_LIBRARY_PATH to break everything when not needed.
++rpath = -Wl,-rpath,'$(rpathdir)',--disable-new-dtags
+ 
+ DLSUFFIX = .so
+ 
