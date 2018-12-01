@@ -19,5 +19,3 @@ make -j $CPU_COUNT -C contrib
 # make check
 # make check -C contrib
 # make check -C src/interfaces/ecpg
-
-make install -C contrib
