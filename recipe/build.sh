@@ -9,7 +9,8 @@
     --with-uuid=e2fs \
     --with-libxml \
     --with-libxslt \
-    --with-gssapi
+    --with-gssapi \
+    --with-system-tzdata=$PREFIX/share/zoneinfo
 
 make -j $CPU_COUNT
 make -j $CPU_COUNT -C contrib

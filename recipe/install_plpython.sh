@@ -11,6 +11,7 @@ export PYTHON=$PREFIX/bin/python
     --with-libxml \
     --with-libxslt \
     --with-gssapi \
+    --with-system-tzdata=$PREFIX/share/zoneinfo \
     --with-python
 
 for dir in src/pl/plpython contrib/hstore_plpython; do

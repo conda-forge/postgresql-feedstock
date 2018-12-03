@@ -40,10 +40,12 @@ requirements:
     - zlib
     - vc  # [win]
     - libuuid         # [not win]
+    - tzcode          # [not win]
   run:
     - krb5
     - openssl
     - readline        # [not win]
+    - tzcode          # [not win]
 
 outputs:
   - name: postgresql
@@ -60,6 +62,7 @@ outputs:
         - krb5             # [not osx]
         - openssl
         - readline         # [not win]
+        - tzcode          # [not win]
         - zlib
         - libxml2
         - {{ pin_subpackage('libpq', exact=True) }}
@@ -68,6 +71,7 @@ outputs:
         - krb5
         - openssl
         - readline         # [not win]
+        - tzcode          # [not win]
         - zlib
     test:
       commands:
@@ -130,6 +134,7 @@ outputs:
         - krb5     # [not osx]
         - openssl
         - readline         # [not win]
+        - tzcode          # [not win]
         - zlib
     script: install_runtime.sh   # [unix
     script: install_runtime.bat  # [win]
