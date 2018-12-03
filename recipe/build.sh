@@ -17,6 +17,6 @@ make -j $CPU_COUNT -C contrib
 
 # make check # Failing with 'initdb: cannot be run as root'.
 
-# make check
-# make check -C contrib
+make check
+make check -C contrib
 # make check -C src/interfaces/ecpg
