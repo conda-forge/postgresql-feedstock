@@ -1,5 +1,5 @@
-{% set version = "11.0" %}
-{% set sha256 = "bf9bba03d0c3902c188af12e454b35343c4a9bf9e377ec2fe50132efb44ef36b" %}
+{% set version = "11.1" %}
+{% set sha256 = "90815e812874831e9a4bf6e1136bf73bc2c5a0464ef142e2dfea40cda206db08" %}
 {% set libpqver = '.'.join(("5", version.split('.')[0])) %}
 
 package:
