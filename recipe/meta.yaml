@@ -1,21 +1,20 @@
 {% set version = "9.6.11" %}
+{% set libpqver = '.'.join(("5", version.split('.')[0])) %}
 
 package:
-  name: postgresql
+  name: postgresql-split
   version: {{ version }}
 
 source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
   sha256: 38250adc69a1e8613fb926c894cda1d01031391a03648894b9a6e13ff354a530
   patches:
-    - fix_zlib_win.patch  # [win]
-    - fix_gss_win32.patch  # [win32]
-    - fix_gss_win64.patch  # [win64]
-    # https://www.postgresql.org/message-id/attachment/43919/0002-Support-parallel-build-with-MSBuild.patch
-    - symbol_tempfile.patch  # [win]
+    - 0001-fix-win-zlib-name.patch
+    - 0002-disable-new-dtags.patch
+    - fix_gss_win64.patch           # [win64]
 
 build:
-  number: 0
+  number: 1000
 
 requirements:
   build:
@@ -23,44 +22,140 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
   host:
-    - python
-    - m2-bison  # [win]
-    - m2-diffutils  # [win]
-    - m2-flex  # [win]
-    - openssl
-    - perl 5.22.2.1  # [win]
-    - posix  # [win]
-    - readline  # [not win]
-    - zlib
-    - krb5  # [not osx]
+    - m2-bison         # [win]
+    - m2-diffutils     # [win]
+    - m2-flex          # [win]
+    # perl pinned to older version due to issues with @INC not being recursive or something like that.
+    - perl             # [win]
+    - posix            # [win]
     - libxml2
     - libxslt 1.1.*
-    - libuuid 1.0.*  # [not win]
+    - krb5             # [not osx]
+    - openssl
     - msinttypes  # [win and py27]
     - vc  # [win]
-  run:
-    - python
     - openssl
-    - readline  # [not win]
+    - readline         # [not win]
     - zlib
-    - krb5  # [not osx]
-    - libxml2
-    - libxslt 1.1.*
-    - libuuid 1.0.*  # [not win]
     - vc  # [win]
+    - libuuid         # [not win]
+    - tzcode          # [not win]
+  run:
+    - krb5
+    - openssl
+    - readline        # [not win]
+    - tzcode          # [not win]
 
-test:
-  commands:
-    - pg_config
-    - postgres --help
-    - conda inspect linkages $PKG_NAME  # [not win]
-    - conda inspect objects $PKG_NAME  # [osx]
+outputs:
+  - name: postgresql
+    build:
+      run_exports:
+        - {{ pin_subpackage('libpq') }}
+    requirements:
+      build:
+        # solely for sake of lining up vc versions and other runtimes
+        - {{ compiler('c') }}
+        - perl                 # [win]
+      host:
+        # these are here for sake of run_exports taking effect
+        - krb5             # [not osx]
+        - openssl
+        - readline         # [not win]
+        - tzcode          # [not win]
+        - zlib
+        - libxml2
+        - {{ pin_subpackage('libpq', exact=True) }}
+      run:
+        - {{ pin_subpackage('libpq', exact=True) }}
+        - krb5
+        - openssl
+        - readline         # [not win]
+        - tzcode          # [not win]
+        - zlib
+    test:
+      commands:
+        - postgres --help
+        - conda inspect linkages postgresql  # [not win]
+        - conda inspect objects postgresql  # [osx]
+    script: install_db.sh   # [unix
+    script: install_db.bat  # [win]
+    about:
+      summary: PostgreSQL is a powerful, open source object-relational database system.
+
+  - name: postgresql-plpython
+    build:
+      run_exports:
+        - {{ pin_subpackage('postgresql-plpython') }}
+    requirements:
+      build:
+        # solely for sake of lining up vc versions and other runtimes
+        - {{ compiler('c') }}
+        - perl                 # [win]
+      host:
+        # these are here for sake of run_exports taking effect
+        - krb5     # [not osx]
+        - openssl
+        - readline         # [not win]
+        - zlib
+        - {{ pin_subpackage('postgresql', exact=True) }}
+        - python
+        - libxml2
+        - libxslt 1.1.*
+        - msinttypes  # [win and py27]
+        - vc  # [win]
+        - libuuid         # [not win]
+      run:
+        - {{ pin_subpackage('postgresql', exact=True) }}
+        - python
+        - krb5
+        - openssl
+        - readline         # [not win]
+        - zlib
+    script: install_plpython.sh  # [unix]
+    test:
+      commands:
+        - conda inspect linkages postgresql-plpython  # [not win]
+        - conda inspect objects postgresql-plpython  # [osx]
+    about:
+      summary: The plpythonu postgresql extension
+
+  - name: libpq
+    build:
+      run_exports:
+        - {{ pin_subpackage('libpq') }}
+    requirements:
+      build:
+        # solely for sake of lining up vc versions and other runtimes
+        - {{ compiler('c') }}
+        - perl                 # [win]
+      host:
+        # these are here for sake of run_exports taking effect
+        - krb5     # [not osx]
+        - openssl
+        - readline         # [not win]
+        - tzcode          # [not win]
+        - zlib
+    script: install_runtime.sh   # [unix
+    script: install_runtime.bat  # [win]
+    test:
+      commands:
+        - pg_config
+        - test -f $PREFIX/lib/libpq.so.{{ libpqver }}      # [linux]
+        - test -f $PREFIX/lib/libpq.so.5                   # [linux]
+        - test -f $PREFIX/lib/libpq.so                     # [linux]
+        - test -f $PREFIX/lib/libpq.{{ libpqver }}.dylib   # [osx]
+        - test -f $PREFIX/lib/libpq.5.dylib                # [osx]
+        - test -f $PREFIX/lib/libpq.dylib                  # [osx]
+        - IF NOT EXIST %LIBRARY_BIN%\libpq.dll EXIT 1      # [win]
+        - IF NOT EXIST %LIBRARY_BIN%\pg_config.exe EXIT 1  # [win]
+    about:
+      summary: The postgres runtime libraries and utilities (not the server itself)
 
 about:
   home: http://www.postgresql.org/
   license: PostgreSQL
   license_file: COPYRIGHT
-  summary: 'PostgreSQL is a powerful, open source object-relational database system.'
+  summary: multi-ouput recipe for postgresql
 
 extra:
   recipe-maintainers:
