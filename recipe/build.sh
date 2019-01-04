@@ -1,5 +1,6 @@
 #!/bin/bash
 
+autoreconf
 ./configure \
     --prefix=$PREFIX \
     --with-readline \

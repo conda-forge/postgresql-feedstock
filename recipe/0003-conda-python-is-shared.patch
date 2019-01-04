@@ -1,0 +1,13 @@
+diff --git a/configure.in b/configure.in
+index 3c3420b..2b7d7c0 100644
+--- a/configure.in
++++ b/configure.in
+@@ -1003,6 +1003,8 @@ if test "$with_python" = yes; then
+     fi
+   fi
+ 
++  # Conda's Python is always shared.
++  python_enable_shared=1
+   if test "$python_enable_shared" != 1; then
+     AC_MSG_ERROR([cannot build PL/Python because libpython is not a shared library
+ You might have to rebuild your Python installation.  Refer to the
