@@ -1,5 +1,4 @@
-{% set version = "9.6.9" %}
-{% set sha256 = "b97952e3af02dc1e446f9c4188ff53021cc0eed7ed96f254ae6daf968c443e2e" %}
+{% set version = "9.6.11" %}
 
 package:
   name: postgresql
@@ -7,7 +6,7 @@ package:
 
 source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
-  sha256: {{ sha256 }}
+  sha256: 38250adc69a1e8613fb926c894cda1d01031391a03648894b9a6e13ff354a530
   patches:
     - fix_zlib_win.patch  # [win]
     - fix_gss_win32.patch  # [win32]
