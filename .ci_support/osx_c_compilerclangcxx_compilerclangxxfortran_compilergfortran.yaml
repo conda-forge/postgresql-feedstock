@@ -9,9 +9,9 @@ channel_sources:
 channel_targets:
 - conda-forge gcc7
 cxx_compiler:
-- toolchain_cxx
+- clangxx
 fortran_compiler:
-- toolchain_fort
+- gfortran
 krb5:
 - '1.16'
 libuuid:
