@@ -22,7 +22,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
-    - automake
+    - automake  # [unix]
   host:
     - m2-bison         # [win]
     - m2-diffutils     # [win]
