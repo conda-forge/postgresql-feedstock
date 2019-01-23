@@ -18,8 +18,7 @@ Summary: The postgres runtime libraries and utilities (not the server itself)
 Current build status
 ====================
 
-[![Linux](https://img.shields.io/circleci/project/github/conda-forge/postgresql-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/postgresql-feedstock)
-[![OSX](https://img.shields.io/travis/conda-forge/postgresql-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/postgresql-feedstock)
+[![Linux,OSX](https://img.shields.io/circleci/project/github/conda-forge/postgresql-feedstock/master.svg?label=Linux,OSX)](https://circleci.com/gh/conda-forge/postgresql-feedstock)
 [![Windows](https://img.shields.io/appveyor/ci/conda-forge/postgresql-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/postgresql-feedstock/branch/master)
 
 Current release info
