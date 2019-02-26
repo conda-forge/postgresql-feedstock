@@ -13,6 +13,8 @@ source:
     - 0001-fix-win-zlib-name.patch
     - 0002-disable-new-dtags.patch
     - fix_gss_win64.patch           # [win64]
+    - 0003-Parameterize-krb5-files-location-as-per-ARCH.patch
+    - 0004-fix-windows-openssl-links-for-openssl-1.1.1.patch
 
 build:
   number: 0
@@ -31,10 +33,9 @@ requirements:
     - posix            # [win]
     - libxml2
     - libxslt 1.1.*
-    - krb5             # [not osx]
+    - krb5
     - openssl
-    - msinttypes  # [win and py27]
-    - vc  # [win]
+    - msinttypes  # [win and vc<14]
     - openssl
     - readline         # [not win]
     - zlib
@@ -57,14 +58,16 @@ outputs:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - perl                 # [win]
+        - make             # [unix]
       host:
         # these are here for sake of run_exports taking effect
-        - krb5             # [not osx]
+        - krb5
         - openssl
         - readline         # [not win]
         - tzcode          # [not win]
         - zlib
         - libxml2
+        - msinttypes       # [win and vc<14]
         - {{ pin_subpackage('libpq', exact=True) }}
       run:
         - {{ pin_subpackage('libpq', exact=True) }}
@@ -129,14 +132,16 @@ outputs:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - perl                 # [win]
+        - make             # [unix]
       host:
         # these are here for sake of run_exports taking effect
-        - krb5     # [not osx]
+        - krb5
         - openssl
         - readline         # [not win]
         - tzcode          # [not win]
         - zlib
-    script: install_runtime.sh   # [unix
+        - msinttypes       # [win and vc<14]
+    script: install_runtime.sh   # [unix]
     script: install_runtime.bat  # [win]
     test:
       commands:
