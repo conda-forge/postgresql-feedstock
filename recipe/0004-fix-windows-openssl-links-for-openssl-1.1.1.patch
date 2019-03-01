@@ -1,36 +1,36 @@
-From b41564e27486461b77898a4ad399e0584ad52411 Mon Sep 17 00:00:00 2001
-From: Michael Sarahan <msarahan@gmail.com>
-Date: Wed, 19 Dec 2018 08:32:30 -0600
+From 73785e4f0780b1462899b440c549b2a75d9f231e Mon Sep 17 00:00:00 2001
+From: Marius van Niekerk <marius.v.niekerk@gmail.com>
+Date: Thu, 28 Feb 2019 19:38:04 -0500
 Subject: [PATCH] fix windows openssl links for openssl 1.1.1
 
 ---
- src/include/pg_config.h.win32   | 3 +++
- src/tools/msvc/Solution.pm      | 4 ++--
- src/tools/msvc/Solution.pm.orig | 4 ++--
- 3 files changed, 7 insertions(+), 4 deletions(-)
+ src/include/pg_config.h.win32 | 6 +++---
+ src/tools/msvc/Solution.pm    | 4 ++--
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/src/include/pg_config.h.win32 b/src/include/pg_config.h.win32
-index 7023a6a..ad40471 100644
+index cd9df86acd..53621693df 100644
 --- a/src/include/pg_config.h.win32
 +++ b/src/include/pg_config.h.win32
-@@ -74,12 +74,15 @@
+@@ -73,13 +73,13 @@
+ #endif
  
  /* Define to 1 if you have the `ASN1_STRING_get0_data' function. */
- /* #undef HAVE_ASN1_STRING_GET0_DATA */
+-/* #undef HAVE_ASN1_STRING_GET0_DATA */
 +#define HAVE_ASN1_STRING_GET0_DATA 1
  
  /* Define to 1 if you have the `BIO_get_data' function. */
- /* #undef HAVE_BIO_GET_DATA */
+-/* #undef HAVE_BIO_GET_DATA */
 +#define HAVE_BIO_GET_DATA 1
  
  /* Define to 1 if you have the `BIO_meth_new' function. */
- /* #undef HAVE_BIO_METH_NEW */
+-/* #undef HAVE_BIO_METH_NEW */
 +#define HAVE_BIO_METH_NEW 1
  
  /* Define to 1 if you have the `cbrt' function. */
  //#define HAVE_CBRT 1
 diff --git a/src/tools/msvc/Solution.pm b/src/tools/msvc/Solution.pm
-index 312f8a4..80e028d 100644
+index 78db247b29..feee9b8eb2 100644
 --- a/src/tools/msvc/Solution.pm
 +++ b/src/tools/msvc/Solution.pm
 @@ -591,9 +591,9 @@ sub AddProject
@@ -45,22 +45,6 @@ index 312f8a4..80e028d 100644
  		}
  	}
  	if ($self->{options}->{nls})
-diff --git a/src/tools/msvc/Solution.pm.orig b/src/tools/msvc/Solution.pm.orig
-index 81f5b91..18cb1ac 100644
---- a/src/tools/msvc/Solution.pm.orig
-+++ b/src/tools/msvc/Solution.pm.orig
-@@ -591,9 +591,9 @@ sub AddProject
- 			# We don't expect the config-specific library to be here,
- 			# so don't ask for it in last parameter
- 			$proj->AddLibrary(
--				$self->{options}->{openssl} . '\lib\ssleay32.lib', 0);
-+				$self->{options}->{openssl} . '\lib\libcrypto.lib', 0);
- 			$proj->AddLibrary(
--				$self->{options}->{openssl} . '\lib\libeay32.lib', 0);
-+				$self->{options}->{openssl} . '\lib\libssl.lib', 0);
- 		}
- 	}
- 	if ($self->{options}->{nls})
 -- 
-2.19.1
+2.20.1
 
