@@ -1,7 +1,3 @@
-<!--
-# -*- mode: jinja -*-
--->
-
 About postgresql-split
 ======================
 
@@ -21,6 +17,13 @@ Current build status
 [![Linux](https://img.shields.io/circleci/project/github/conda-forge/postgresql-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/postgresql-feedstock)
 [![OSX](https://img.shields.io/travis/conda-forge/postgresql-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/postgresql-feedstock)
 [![Windows](https://img.shields.io/appveyor/ci/conda-forge/postgresql-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/postgresql-feedstock/branch/master)
+[![Build Status](https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/postgresql-feedstock?branchName=master)](https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=master)
+| Variant | Status |
+| ------- | ------ |
+| `linux` | [![Build Status](https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/postgresql-feedstock?branchName=master&jobName=linux&configuration=linux_)](https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=master) |
+| `osx` | [![Build Status](https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/postgresql-feedstock?branchName=master&jobName=osx&configuration=osx_)](https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=master) |
+| `win_c_compilervs2008cxx_compilervs2008vc9` | [![Build Status](https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/postgresql-feedstock?branchName=master&jobName=win&configuration=win_c_compilervs2008cxx_compilervs2008vc9)](https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=master) |
+| `win_c_compilervs2015cxx_compilervs2015vc14` | [![Build Status](https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/postgresql-feedstock?branchName=master&jobName=win&configuration=win_c_compilervs2015cxx_compilervs2015vc14)](https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=master) |
 
 Current release info
 ====================
