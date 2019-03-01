@@ -1,10 +1,12 @@
 c_compiler:
 - vs2015
+- vs2015
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
 cxx_compiler:
+- vs2015
 - vs2015
 krb5:
 - '1.16'
@@ -31,8 +33,10 @@ pin_run_as_build:
   zlib:
     max_pin: x.x
 python:
+- '3.6'
 - '3.7'
 vc:
+- '14'
 - '14'
 zip_keys:
 - - python
