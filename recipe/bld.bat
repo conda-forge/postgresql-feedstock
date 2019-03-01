@@ -33,7 +33,7 @@ if "%ARCH%" == "32" (
    set ARCH=x64
 )
 
-perl -I %SRC_DIR%\src\tools\msvc -I %SRC_DIR% mkvcbuild.pl
+perl mkvcbuild.pl
 if %ERRORLEVEL% NEQ 0 exit 1
 
 call msbuild %SRC_DIR%\pgsql.sln /p:Configuration=Release /p:Platform="%ARCH%"

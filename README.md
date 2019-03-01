@@ -17,6 +17,13 @@ Current build status
 [![Linux](https://img.shields.io/circleci/project/github/conda-forge/postgresql-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/postgresql-feedstock)
 [![OSX](https://img.shields.io/travis/conda-forge/postgresql-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/postgresql-feedstock)
 [![Windows](https://img.shields.io/appveyor/ci/conda-forge/postgresql-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/postgresql-feedstock/branch/master)
+[![Build Status](https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/postgresql-feedstock?branchName=master)](https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=master)
+| Variant | Status |
+| ------- | ------ |
+| `linux` | [![Build Status](https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/postgresql-feedstock?branchName=master&jobName=linux&configuration=linux_)](https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=master) |
+| `osx` | [![Build Status](https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/postgresql-feedstock?branchName=master&jobName=osx&configuration=osx_)](https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=master) |
+| `win_c_compilervs2008cxx_compilervs2008vc9` | [![Build Status](https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/postgresql-feedstock?branchName=master&jobName=win&configuration=win_c_compilervs2008cxx_compilervs2008vc9)](https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=master) |
+| `win_c_compilervs2015cxx_compilervs2015vc14` | [![Build Status](https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/postgresql-feedstock?branchName=master&jobName=win&configuration=win_c_compilervs2015cxx_compilervs2015vc14)](https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=&branchName=master) |
 
 Current release info
 ====================
@@ -51,6 +58,8 @@ conda search libpq --channel conda-forge
 
 About conda-forge
 =================
+
+[![Powered by NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](http://numfocus.org)
 
 conda-forge is a community-led conda channel of installable packages.
 In order to provide high-quality builds, the process has been automated into the
@@ -106,3 +115,13 @@ In order to produce a uniquely identifiable distribution:
  * If the version of a package **is** being increased, please remember to return
    the [``build/number``](https://conda.io/docs/user-guide/tasks/build-packages/define-metadata.html#build-number-and-string)
    back to 0.
+
+Feedstock Maintainers
+=====================
+
+* [@gillins](https://github.com/gillins/)
+* [@mariusvniekerk](https://github.com/mariusvniekerk/)
+* [@msarahan](https://github.com/msarahan/)
+* [@ocefpaf](https://github.com/ocefpaf/)
+* [@sodre](https://github.com/sodre/)
+
