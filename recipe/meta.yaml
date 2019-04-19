@@ -13,11 +13,10 @@ source:
     - 0001-fix-win-zlib-name.patch
     - 0002-disable-new-dtags.patch
     - fix_gss_win64.patch           # [win64]
-    # - 0003-Parameterize-krb5-files-location-as-per-ARCH.patch
     - 0004-fix-windows-openssl-links-for-openssl-1.1.1.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -40,7 +39,6 @@ requirements:
     - openssl
     - readline         # [not win]
     - zlib
-    - vc  # [win]
     - libuuid         # [not win]
     - tzcode          # [not win]
   run:
@@ -108,7 +106,6 @@ outputs:
         - libxml2
         - libxslt 1.1.*
         - msinttypes  # [win and py27]
-        - vc  # [win]
         - libuuid         # [not win]
       run:
         - {{ pin_subpackage('postgresql', exact=True) }}
