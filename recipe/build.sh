@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# avoid absolute-paths in compilers
+export CC=$(basename "$CC")
+export CXX=$(basename "$CXX")
+export FC=$(basename "$FC")
+
 ./configure \
     --prefix=$PREFIX \
     --with-readline \
@@ -22,3 +27,5 @@ if [ ${target_platform} == linux-64 ]; then
     make check -C contrib
 fi
 # make check -C src/interfaces/ecpg
+
+
