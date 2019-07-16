@@ -27,5 +27,3 @@ if [ ${target_platform} == linux-64 ]; then
     make check -C contrib
 fi
 # make check -C src/interfaces/ecpg
-
-
