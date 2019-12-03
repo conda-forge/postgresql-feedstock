@@ -1,0 +1,11 @@
+--- ./src/backend/libpq/be-secure-gssapi.c.old	2019-12-03 11:56:28.503246131 +1000
++++ ./src/backend/libpq/be-secure-gssapi.c	2019-12-03 12:01:16.984184529 +1000
+@@ -467,7 +467,7 @@
+ 	 * doesn't support the cred store extensions, so use the env var.
+ 	 */
+ 	if (pg_krb_server_keyfile != NULL && strlen(pg_krb_server_keyfile) > 0)
+-		setenv("KRB5_KTNAME", pg_krb_server_keyfile, 1);
++		_putenv_s("KRB5_KTNAME", pg_krb_server_keyfile); /* TODO: should be using pgwin32_putenv instead? */
+ 
+ 	while (true)
+ 	{
