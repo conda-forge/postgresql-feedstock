@@ -17,7 +17,7 @@ source:
 
 build:
   number: 0
-  skip: True  # [win and vc<14]
+  skip: True  # [win and float(vc) < 14]
 
 requirements:
   build:
@@ -36,7 +36,7 @@ requirements:
     - libxslt 1.1.*
     - krb5
     - openssl
-    - msinttypes  # [win and vc<14]
+    - msinttypes  # [win and float(vc) < 14]
     - openssl
     - readline         # [not win]
     - zlib
@@ -68,7 +68,7 @@ outputs:
         - tzcode          # [not win]
         - zlib
         - libxml2
-        - msinttypes       # [win and vc<14]
+        - msinttypes       # [win and float(vc) < 14]
         - {{ pin_subpackage('libpq', exact=True) }}
       run:
         - {{ pin_subpackage('libpq', exact=True) }}
@@ -142,7 +142,7 @@ outputs:
         - readline         # [not win]
         - tzcode          # [not win]
         - zlib
-        - msinttypes       # [win and vc<14]
+        - msinttypes       # [win and float(vc) <14]
     script: install_runtime.sh   # [unix]
     script: install_runtime.bat  # [win]
     test:
