@@ -1,4 +1,4 @@
-{% set version = "12.1" %}
+{% set version = "12.2" %}
 {% set libpqver = '.'.join(("5", version.split('.')[0])) %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
-  sha256: a09bf3abbaf6763980d0f8acbb943b7629a8b20073de18d867aecdb7988483ed
+  sha256: ad1dcc4c4fc500786b745635a9e1eba950195ce20b8913f50345bb7d5369b5de
   patches:
     - patches/0001-fix-win-zlib-name.patch
     - patches/0002-disable-new-dtags.patch
@@ -17,7 +17,7 @@ source:
 
 build:
   number: 0
-  skip: True  # [win and vc<14]
+  skip: True  # [win and float(vc) < 14]
 
 requirements:
   build:
@@ -36,7 +36,7 @@ requirements:
     - libxslt 1.1.*
     - krb5
     - openssl
-    - msinttypes  # [win and vc<14]
+    - msinttypes  # [win and float(vc) < 14]
     - openssl
     - readline         # [not win]
     - zlib
@@ -68,7 +68,7 @@ outputs:
         - tzcode          # [not win]
         - zlib
         - libxml2
-        - msinttypes       # [win and vc<14]
+        - msinttypes       # [win and float(vc) < 14]
         - {{ pin_subpackage('libpq', exact=True) }}
       run:
         - {{ pin_subpackage('libpq', exact=True) }}
@@ -142,7 +142,7 @@ outputs:
         - readline         # [not win]
         - tzcode          # [not win]
         - zlib
-        - msinttypes       # [win and vc<14]
+        - msinttypes       # [win and float(vc) <14]
     script: install_runtime.sh   # [unix]
     script: install_runtime.bat  # [win]
     test:
