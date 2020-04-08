@@ -16,7 +16,7 @@ source:
     - patches/fix_gssapi_setenv_win.patch  # [win]
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win and float(vc) < 14]
 
 requirements:
