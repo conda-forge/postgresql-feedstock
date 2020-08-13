@@ -1,4 +1,4 @@
-{% set version = "12.3" %}
+{% set version = "12.4" %}
 {% set libpqver = '.'.join(("5", version.split('.')[0])) %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
-  sha256: 94ed64a6179048190695c86ec707cc25d016056ce10fc9d229267d9a8f1dcf41
+  sha256: bee93fbe2c32f59419cb162bcc0145c58da9a8644ee154a30b9a5ce47de606cc
   patches:
     - patches/0001-fix-win-zlib-name.patch
     - patches/0002-disable-new-dtags.patch
