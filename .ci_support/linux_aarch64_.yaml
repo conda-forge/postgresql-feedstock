@@ -52,5 +52,7 @@ python:
 - 3.8.* *_cpython
 readline:
 - '8.0'
+target_platform:
+- linux-aarch64
 zlib:
 - '1.2'
