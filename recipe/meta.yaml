@@ -12,7 +12,7 @@ source:
     - patches/0001-fix-win-zlib-name.patch
     - patches/0002-disable-new-dtags.patch
     - patches/fix_gss_win64.patch  # [win64]
-    - patches/0004-fix-windows-openssl-links-for-openssl-1.1.1.patch
+    #- patches/0004-fix-windows-openssl-links-for-openssl-1.1.1.patch
     - patches/fix_gssapi_setenv_win.patch  # [win]
 
 build:
