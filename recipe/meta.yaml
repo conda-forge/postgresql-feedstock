@@ -47,6 +47,8 @@ requirements:
     - openssl
     - readline        # [not win]
     - tzcode          # [not win]
+  run_constrained:
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.15") }}  # [osx]
 
 outputs:
   - name: postgresql
@@ -76,6 +78,8 @@ outputs:
         - readline         # [not win]
         - tzcode          # [not win]
         - zlib
+      run_constrained:
+        - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.15") }}  # [osx]
     test:
       commands:
         - postgres --help
@@ -116,6 +120,8 @@ outputs:
         - openssl
         - readline         # [not win]
         - zlib
+      run_constrained:
+        - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.15") }}  # [osx]
     script: install_plpython.sh  # [unix]
     test:
       commands:
@@ -142,6 +148,8 @@ outputs:
         - tzcode          # [not win]
         - zlib
         - msinttypes       # [win and float(vc) <14]
+      run_constrained:
+        - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.15") }}  # [osx]
     script: install_runtime.sh  # [unix]
     script: install_runtime.bat  # [win]
     test:
