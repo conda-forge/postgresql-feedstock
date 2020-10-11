@@ -24,6 +24,7 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
     - make                       # [unix]
+    - pkg-config                 # [unix]
   host:
     - m2-bison         # [win]
     - m2-diffutils     # [win]
@@ -61,6 +62,7 @@ outputs:
         - {{ compiler('c') }}
         - perl                 # [win]
         - make                 # [unix]
+        - pkg-config                 # [unix]
       host:
         # these are here for sake of run_exports taking effect
         - krb5
@@ -100,6 +102,7 @@ outputs:
         - {{ compiler('c') }}
         - perl                 # [win]
         - make                 # [unix]
+        - pkg-config                 # [unix]
       host:
         # these are here for sake of run_exports taking effect
         - krb5     # [not osx]
@@ -140,6 +143,7 @@ outputs:
         - {{ compiler('c') }}
         - perl                 # [win]
         - make             # [unix]
+        - pkg-config                 # [unix]
       host:
         # these are here for sake of run_exports taking effect
         - krb5
