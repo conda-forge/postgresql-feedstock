@@ -1,2 +1,2 @@
-provider: {linux_aarch64: azure, linux_ppc64le: azure, win: azure}
+provider: {linux_aarch64: native, linux_ppc64le: native, win: azure}
 conda_forge_output_validation: true
