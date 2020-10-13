@@ -9,7 +9,7 @@ Subject: [PATCH] fix windows openssl links for openssl 1.1.1
  2 files changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/src/include/pg_config.h.win32 b/src/include/pg_config.h.win32
-index cd9df86acd..53621693df 100644
+index abcca83..21e2e51 100644
 --- a/src/include/pg_config.h.win32
 +++ b/src/include/pg_config.h.win32
 @@ -73,13 +73,13 @@
@@ -30,21 +30,21 @@ index cd9df86acd..53621693df 100644
  /* Define to 1 if you have the `cbrt' function. */
  //#define HAVE_CBRT 1
 diff --git a/src/tools/msvc/Solution.pm b/src/tools/msvc/Solution.pm
-index 78db247b29..feee9b8eb2 100644
+index 4dd5237..e3fa77e 100644
 --- a/src/tools/msvc/Solution.pm
 +++ b/src/tools/msvc/Solution.pm
-@@ -591,9 +591,9 @@ sub AddProject
- 			# We don't expect the config-specific library to be here,
- 			# so don't ask for it in last parameter
- 			$proj->AddLibrary(
--				$self->{options}->{openssl} . '\lib\ssleay32.lib', 0);
-+				$self->{options}->{openssl} . '\lib\libcrypto.lib', 0);
- 			$proj->AddLibrary(
--				$self->{options}->{openssl} . '\lib\libeay32.lib', 0);
-+				$self->{options}->{openssl} . '\lib\libssl.lib', 0);
+@@ -716,9 +716,9 @@ sub AddProject
+ 				# to be here, so don't ask for it in last
+ 				# parameter.
+ 				$proj->AddLibrary(
+-					$self->{options}->{openssl} . '\lib\ssleay32.lib', 0);
++					$self->{options}->{openssl} . '\lib\libcrypto.lib', 0);
+ 				$proj->AddLibrary(
+-					$self->{options}->{openssl} . '\lib\libeay32.lib', 0);
++					$self->{options}->{openssl} . '\lib\libssl.lib', 0);
+ 			}
  		}
  	}
- 	if ($self->{options}->{nls})
 -- 
-2.20.1
+2.28.0
 
