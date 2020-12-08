@@ -16,7 +16,7 @@ source:
     - patches/fix_gssapi_setenv_win.patch  # [win]
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win and float(vc) < 14]
 
 requirements:
@@ -82,7 +82,7 @@ outputs:
         - postgres --help
         - conda inspect linkages postgresql  # [not win]
         - conda inspect objects postgresql  # [osx]
-    script: install_db.sh   # [unix
+    script: install_db.sh   # [unix]
     script: install_db.bat  # [win]
     about:
       summary: PostgreSQL is a powerful, open source object-relational database system.
