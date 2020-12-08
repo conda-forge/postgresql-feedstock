@@ -1,4 +1,4 @@
-{% set version = "12.3" %}
+{% set version = "13.1" %}
 {% set libpqver = '.'.join(("5", version.split('.')[0])) %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
-  sha256: 94ed64a6179048190695c86ec707cc25d016056ce10fc9d229267d9a8f1dcf41
+  sha256: 12345c83b89aa29808568977f5200d6da00f88a035517f925293355432ffe61f
   patches:
     - patches/0001-fix-win-zlib-name.patch
     - patches/0002-disable-new-dtags.patch
@@ -16,7 +16,7 @@ source:
     - patches/fix_gssapi_setenv_win.patch  # [win]
 
 build:
-  number: 3
+  number: 0
   skip: true  # [win and float(vc) < 14]
 
 requirements:
@@ -80,9 +80,7 @@ outputs:
     test:
       commands:
         - postgres --help
-        - conda inspect linkages postgresql  # [not win]
-        - conda inspect objects postgresql  # [osx]
-    script: install_db.sh   # [unix]
+    script: install_db.sh  # [unix]
     script: install_db.bat  # [win]
     about:
       summary: PostgreSQL is a powerful, open source object-relational database system.
@@ -120,8 +118,6 @@ outputs:
     script: install_plpython.sh  # [unix]
     test:
       commands:
-        - conda inspect linkages postgresql-plpython  # [not win]
-        - conda inspect objects postgresql-plpython  # [osx]
     about:
       summary: The plpythonu postgresql extension
 
