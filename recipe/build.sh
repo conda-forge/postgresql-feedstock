@@ -23,12 +23,12 @@ export FC=$(basename "$FC")
 make -j $CPU_COUNT
 make -j $CPU_COUNT -C contrib
 
-# make check # Failing with 'initdb: cannot be run as root'.
-if [ ${target_platform} == linux-64 ]; then
-    # osx, aarch64 and ppc64le checks fail in some strange ways
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
-    make check
+    # make check # Failing with 'initdb: cannot be run as root'.
+    if [ ${target_platform} == linux-64 ]; then
+        # osx, aarch64 and ppc64le checks fail in some strange ways
+        make check
+        make check -C contrib
+    fi
+    # make check -C src/interfaces/ecpg
 fi
-    make check -C contrib
-fi
-# make check -C src/interfaces/ecpg

@@ -14,6 +14,7 @@ source:
     - patches/fix_gss_win64.patch  # [win64]
     - patches/0004-fix-windows-openssl-links-for-openssl-1.1.1.patch
     - patches/fix_gssapi_setenv_win.patch  # [win]
+    - patches/2c8ef9363db199aed9e8f17edba866b1215803c6.patch
 
 build:
   number: 3
