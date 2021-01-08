@@ -17,7 +17,7 @@ source:
     - patches/2c8ef9363db199aed9e8f17edba866b1215803c6.patch
 
 build:
-  number: 3
+  number: 4
   skip: true  # [win and float(vc) < 14]
 
 requirements:
