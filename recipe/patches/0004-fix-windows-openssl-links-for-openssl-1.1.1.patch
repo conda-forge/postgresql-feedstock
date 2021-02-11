@@ -1,39 +1,6 @@
-From 73785e4f0780b1462899b440c549b2a75d9f231e Mon Sep 17 00:00:00 2001
-From: Marius van Niekerk <marius.v.niekerk@gmail.com>
-Date: Thu, 28 Feb 2019 19:38:04 -0500
-Subject: [PATCH] fix windows openssl links for openssl 1.1.1
-
----
- src/include/pg_config.h.win32 | 6 +++---
- src/tools/msvc/Solution.pm    | 4 ++--
- 2 files changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/src/include/pg_config.h.win32 b/src/include/pg_config.h.win32
-index abcca83..21e2e51 100644
---- a/src/include/pg_config.h.win32
-+++ b/src/include/pg_config.h.win32
-@@ -73,13 +73,13 @@
- #endif
- 
- /* Define to 1 if you have the `ASN1_STRING_get0_data' function. */
--/* #undef HAVE_ASN1_STRING_GET0_DATA */
-+#define HAVE_ASN1_STRING_GET0_DATA 1
- 
- /* Define to 1 if you have the `BIO_get_data' function. */
--/* #undef HAVE_BIO_GET_DATA */
-+#define HAVE_BIO_GET_DATA 1
- 
- /* Define to 1 if you have the `BIO_meth_new' function. */
--/* #undef HAVE_BIO_METH_NEW */
-+#define HAVE_BIO_METH_NEW 1
- 
- /* Define to 1 if you have the `cbrt' function. */
- //#define HAVE_CBRT 1
-diff --git a/src/tools/msvc/Solution.pm b/src/tools/msvc/Solution.pm
-index 4dd5237..e3fa77e 100644
---- a/src/tools/msvc/Solution.pm
-+++ b/src/tools/msvc/Solution.pm
-@@ -716,9 +716,9 @@ sub AddProject
+--- postgresql-13.1.orig/src/tools/msvc/Solution.pm	2020-11-09 19:24:30.000000000 -0300
++++ postgresql-13.1/src/tools/msvc/Solution.pm	2021-01-25 17:36:45.877508849 -0300
+@@ -990,9 +990,9 @@
  				# to be here, so don't ask for it in last
  				# parameter.
  				$proj->AddLibrary(
@@ -45,6 +12,3 @@ index 4dd5237..e3fa77e 100644
  			}
  		}
  	}
--- 
-2.28.0
-
