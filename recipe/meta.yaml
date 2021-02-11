@@ -1,4 +1,4 @@
-{% set version = "13.1" %}
+{% set version = "13.2" %}
 {% set libpqver = '.'.join(("5", version.split('.')[0])) %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
-  sha256: 12345c83b89aa29808568977f5200d6da00f88a035517f925293355432ffe61f
+  sha256: 5fd7fcd08db86f5b2aed28fcfaf9ae0aca8e9428561ac547764c2a2b0f41adfc
   patches:
     - patches/0001-fix-win-zlib-name.patch
     - patches/0002-disable-new-dtags.patch
@@ -81,7 +81,7 @@ outputs:
     test:
       commands:
         - postgres --help
-    script: install_db.sh   # [unix]
+    script: install_db.sh  # [unix]
     script: install_db.bat  # [win]
     about:
       summary: PostgreSQL is a powerful, open source object-relational database system.
