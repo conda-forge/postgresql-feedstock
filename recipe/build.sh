@@ -18,7 +18,7 @@ export FC=$(basename "$FC")
     --with-libxslt \
     --with-gssapi \
     --with-system-tzdata=$PREFIX/share/zoneinfo \
-    PG_SYSROOT="${CONDA_BUILD_SYSROOT}"
+    PG_SYSROOT="undefined"
 
 make -j $CPU_COUNT
 make -j $CPU_COUNT -C contrib
