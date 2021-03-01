@@ -16,7 +16,7 @@ source:
     - patches/fix_gssapi_setenv_win.patch  # [win]
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win and float(vc) < 14]
 
 requirements:
@@ -44,11 +44,13 @@ requirements:
     - vc  # [win]
     - libuuid         # [not win]
     - tzcode          # [not win]
+    - tzdata          # [not win]
   run:
     - krb5
     - openssl
     - readline        # [not win]
     - tzcode          # [not win]
+    - tzdata          # [not win]
 
 outputs:
   - name: postgresql
@@ -67,6 +69,7 @@ outputs:
         - openssl
         - readline         # [not win]
         - tzcode          # [not win]
+        - tzdata          # [not win]
         - zlib
         - libxml2
         - msinttypes       # [win and float(vc) < 14]
@@ -77,6 +80,7 @@ outputs:
         - openssl
         - readline         # [not win]
         - tzcode          # [not win]
+        - tzdata          # [not win]
         - zlib
     test:
       commands:
@@ -140,6 +144,7 @@ outputs:
         - openssl
         - readline         # [not win]
         - tzcode          # [not win]
+        - tzdata          # [not win]
         - zlib
         - msinttypes       # [win and float(vc) <14]
     script: install_runtime.sh  # [unix]
