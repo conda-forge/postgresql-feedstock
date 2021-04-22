@@ -1,0 +1,25 @@
+From 5782e553cc30666b7e64d45701b09e203f97eb9d Mon Sep 17 00:00:00 2001
+From: Marius van Niekerk <marius.v.niekerk@gmail.com>
+Date: Wed, 21 Apr 2021 15:55:23 -0400
+Subject: [PATCH 2/2] Update patch
+
+---
+ src/backend/libpq/auth.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/backend/libpq/auth.c b/src/backend/libpq/auth.c
+index 45dcd65afaf..db7f06c8dbe 100644
+--- a/src/backend/libpq/auth.c
++++ b/src/backend/libpq/auth.c
+@@ -1060,7 +1060,7 @@ pg_GSS_recvauth(Port *port)
+ 	 */
+ 	if (pg_krb_server_keyfile != NULL && pg_krb_server_keyfile[0] != '\0')
+ 	{
+-		if (setenv("KRB5_KTNAME", pg_krb_server_keyfile, 1) != 0)
++		if (_putenv_s("KRB5_KTNAME", pg_krb_server_keyfile) != 0)
+ 		{
+ 			/* The only likely failure cause is OOM, so use that errcode */
+ 			ereport(FATAL,
+-- 
+2.30.1
+
