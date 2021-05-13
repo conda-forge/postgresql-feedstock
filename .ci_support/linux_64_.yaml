@@ -19,7 +19,7 @@ fortran_compiler:
 fortran_compiler_version:
 - '9'
 krb5:
-- 1.17.1
+- '1.19'
 libuuid:
 - 2.32.1
 libxml2:
@@ -48,7 +48,7 @@ python:
 - 3.8.* *_cpython
 - 3.9.* *_cpython
 readline:
-- '8.0'
+- '8'
 target_platform:
 - linux-64
 zip_keys:
