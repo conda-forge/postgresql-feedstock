@@ -1,4 +1,4 @@
-{% set version = "13.2" %}
+{% set version = "13.3" %}
 {% set libpqver = '.'.join(("5", version.split('.')[0])) %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
-  sha256: 5fd7fcd08db86f5b2aed28fcfaf9ae0aca8e9428561ac547764c2a2b0f41adfc
+  sha256: 3cd9454fa8c7a6255b6743b767700925ead1b9ab0d7a0f9dcb1151010f8eb4a1
   patches:
     - patches/0001-fix-win-zlib-name.patch
     - patches/0002-disable-new-dtags.patch
@@ -15,10 +15,9 @@ source:
     - patches/0004-fix-windows-openssl-links-for-openssl-1.1.1.patch
     - patches/fix_gssapi_setenv_win.patch  # [win]
     - patches/fix_auth_setenv_win.patch  # [win]
-    
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win and float(vc) < 14]
 
 requirements:
