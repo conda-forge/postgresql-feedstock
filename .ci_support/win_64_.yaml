@@ -13,7 +13,7 @@ libxml2:
 openssl:
 - 1.1.1
 perl:
-- 5.26.2
+- 5.32.1
 pin_run_as_build:
   krb5:
     max_pin: x.x
