@@ -9,6 +9,12 @@ echo $config-^>{xslt} = '%LIBRARY_PREFIX%';    >> config.pl
 echo $config-^>{iconv} = '%LIBRARY_PREFIX%';   >> config.pl
 echo $config-^>{gss} = '%LIBRARY_PREFIX%';     >> config.pl
 
+:: the msvc solution expects that the krb5 links are in this directory
+if not exist "%PREFIX%\Library\lib\amd64" md "%PREFIX%\Library\lib\amd64"
+COPY "%PREFIX%\Library\lib\krb5_64.lib" "%PREFIX%\Library\lib\amd64\krb5_64.lib"
+COPY "%PREFIX%\Library\lib\comerr64.lib" "%PREFIX%\Library\lib\amd64\comerr64.lib"
+COPY "%PREFIX%\Library\lib\gssapi64" "%PREFIX%\Library\lib\amd64\gssapi64.lib"
+
 :: Appveyor's postgres install is on PATH and interferes with testing
 IF NOT "%APPVEYOR%" == "" (
     ECHO Deleting AppVeyor's PostgreSQL installs
