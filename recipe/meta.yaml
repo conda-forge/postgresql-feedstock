@@ -27,13 +27,12 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
     - make                       # [unix]
-  host:
     - m2-bison         # [win]
     - m2-diffutils     # [win]
     - m2-flex          # [win]
-    # perl pinned to older version due to issues with @INC not being recursive or something like that.
     - perl             # [win]
     - posix            # [win]
+  host:
     - libxml2
     - libxslt 1.1.*
     - krb5
