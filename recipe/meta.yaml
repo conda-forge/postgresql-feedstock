@@ -17,7 +17,7 @@ source:
     - patches/fix_auth_setenv_win.patch  # [win]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win and float(vc) < 14]
 
 requirements:
@@ -27,13 +27,12 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
     - make                       # [unix]
-  host:
     - m2-bison         # [win]
     - m2-diffutils     # [win]
     - m2-flex          # [win]
-    # perl pinned to older version due to issues with @INC not being recursive or something like that.
-    - perl             # [win]
+    - perl 5.*         # [win]
     - posix            # [win]
+  host:
     - libxml2
     - libxslt 1.1.*
     - krb5
@@ -62,7 +61,7 @@ outputs:
       build:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
-        - perl                 # [win]
+        - perl 5.*             # [win]
         - make                 # [unix]
       host:
         # these are here for sake of run_exports taking effect
@@ -101,7 +100,7 @@ outputs:
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
-        - perl                 # [win]
+        - perl 5.*             # [win]
         - make                 # [unix]
       host:
         # these are here for sake of run_exports taking effect
@@ -137,7 +136,7 @@ outputs:
       build:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
-        - perl                 # [win]
+        - perl 5.*             # [win]
         - make             # [unix]
       host:
         # these are here for sake of run_exports taking effect
