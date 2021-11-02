@@ -112,7 +112,6 @@ outputs:
         - python
         - libxml2
         - libxslt 1.1.*
-        - msinttypes  # [win and py27]
         - vc  # [win]
         - libuuid         # [not win]
       run:
