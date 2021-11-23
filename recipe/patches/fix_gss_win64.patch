@@ -2,7 +2,7 @@ diff --git a/src/tools/msvc/Solution.pm b/src/tools/msvc/Solution.pm
 index 9ba3acf..3c7d3c5 100644
 --- a/src/tools/msvc/Solution.pm
 +++ b/src/tools/msvc/Solution.pm
-@@ -1006,7 +1006,6 @@
+@@ -1025,7 +1025,6 @@
  	if ($self->{options}->{gss})
  	{
  		$proj->AddIncludeDir($self->{options}->{gss} . '\include');
@@ -10,7 +10,7 @@ index 9ba3acf..3c7d3c5 100644
  		if ($self->{platform} eq 'Win32')
  		{
  			$proj->AddLibrary(
-@@ -1019,11 +1018,11 @@
+@@ -1038,11 +1037,11 @@
  		else
  		{
  			$proj->AddLibrary(
