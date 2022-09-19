@@ -3,7 +3,7 @@ About postgresql-split
 
 Home: 
 
-Package license: 
+Package license: PostgreSQL
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/postgresql-feedstock/blob/main/LICENSE.txt)
 
