@@ -33,9 +33,6 @@ if "%ARCH%" == "32" (
    set ARCH=x64
 )
 
-:: Attempt to fix x509v3.h include
-set WIN32_LEAN_AND_MEAN=1
-
 perl mkvcbuild.pl
 if %ERRORLEVEL% NEQ 0 exit 1
 

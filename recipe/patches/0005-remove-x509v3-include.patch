@@ -1,0 +1,20 @@
+--- postgresql-15.0.orig/src/interfaces/libpq/fe-secure-openssl.c	2022-11-21 14:54:19.626561640 -0600
++++ postgresql-15.0/src/interfaces/libpq/fe-secure-openssl.c	2022-11-21 14:55:27.394452640 -0600
+@@ -65,7 +65,6 @@
+ #ifdef USE_SSL_ENGINE
+ #include <openssl/engine.h>
+ #endif
+-#include <openssl/x509v3.h>
+ 
+ 
+ static int	verify_cb(int ok, X509_STORE_CTX *ctx);
+--- postgresql-15.0.orig/src/backend/libpq/be-secure-openssl.c	2022-11-21 14:54:19.599561286 -0600
++++ postgresql-15.0/src/backend/libpq/be-secure-openssl.c	2022-11-21 14:55:13.312265363 -0600
+@@ -49,7 +49,6 @@
+ #ifndef OPENSSL_NO_ECDH
+ #include <openssl/ec.h>
+ #endif
+-#include <openssl/x509v3.h>
+ 
+ 
+ /* default init hook can be overridden by a shared library */
