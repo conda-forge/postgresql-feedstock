@@ -15,7 +15,6 @@ source:
     - patches/0004-fix-windows-openssl-links-for-openssl-1.1.1.patch
     - patches/fix_gssapi_setenv_win.patch  # [win]
     - patches/fix_auth_setenv_win.patch  # [win]
-    - patches/0005-remove-x509v3-include.patch  # [win]
 
 build:
   number: 1
