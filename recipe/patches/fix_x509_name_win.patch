@@ -1,0 +1,12 @@
+--- ./src/backend/libpq/be-secure-openssl.c.orig	2022-11-23 08:22:21.890086164 +1000
++++ ./src/backend/libpq/be-secure-openssl.c	2022-11-23 08:24:39.244360362 +1000
+@@ -43,6 +43,9 @@
+  * <wincrypt.h> by #undef'ing the conflicting macros.  (We don't directly
+  * include <wincrypt.h>, but some other Windows headers do.)
+  */
++#ifdef X509_NAME
++#undef X509_NAME
++#endif
+ #include "common/openssl.h"
+ #include <openssl/conf.h>
+ #include <openssl/dh.h>
