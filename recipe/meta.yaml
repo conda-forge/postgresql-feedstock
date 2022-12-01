@@ -17,7 +17,7 @@ source:
     - patches/fix_auth_setenv_win.patch  # [win]
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win and float(vc) < 14]
 
 requirements:
@@ -106,7 +106,9 @@ outputs:
         # these are here for sake of run_exports taking effect
         - krb5     # [not osx]
         - openssl
-        - readline         # [not win]
+        # Readline is only a dependency of the executable psql
+        # included in the postgresql package
+        # - readline         # [not win]
         - zlib
         - {{ pin_subpackage('postgresql', exact=True) }}
         - python
@@ -119,13 +121,14 @@ outputs:
         - python
         - krb5
         - openssl
-        - readline         # [not win]
         - zlib
     script: install_plpython.sh  # [unix]
     test:
       commands:
     about:
       summary: The plpythonu postgresql extension
+      license: PostgreSQL
+      license_file: COPYRIGHT
 
   - name: libpq
     build:
@@ -141,7 +144,9 @@ outputs:
         # these are here for sake of run_exports taking effect
         - krb5
         - openssl
-        - readline         # [not win]
+        # Readline is only a dependency of the executable psql
+        # included in the postgresql package
+        # - readline         # [not win]
         - tzcode          # [not win]
         - tzdata          # [not win]
         - zlib
@@ -161,6 +166,8 @@ outputs:
         - IF NOT EXIST %LIBRARY_BIN%\pg_config.exe EXIT 1  # [win]
     about:
       summary: The postgres runtime libraries and utilities (not the server itself)
+      license: PostgreSQL
+      license_file: COPYRIGHT
 
 about:
   home: http://www.postgresql.org/
