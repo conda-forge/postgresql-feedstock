@@ -18,7 +18,7 @@ source:
     - patches/fix_x509_name_win.patch  # [win]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win and float(vc) < 14]
 
 requirements:
@@ -107,7 +107,9 @@ outputs:
         # these are here for sake of run_exports taking effect
         - krb5     # [not osx]
         - openssl
-        - readline         # [not win]
+        # Readline is only a dependency of the executable psql
+        # included in the postgresql package
+        # - readline         # [not win]
         - zlib
         - {{ pin_subpackage('postgresql', exact=True) }}
         - python
@@ -120,7 +122,6 @@ outputs:
         - python
         - krb5
         - openssl
-        - readline         # [not win]
         - zlib
     script: install_plpython.sh  # [unix]
     test:
@@ -142,7 +143,9 @@ outputs:
         # these are here for sake of run_exports taking effect
         - krb5
         - openssl
-        - readline         # [not win]
+        # Readline is only a dependency of the executable psql
+        # included in the postgresql package
+        # - readline         # [not win]
         - tzcode          # [not win]
         - tzdata          # [not win]
         - zlib
