@@ -1,5 +1,5 @@
 {% set version = "14.5" %}
-{% set libpqver = '.'.join(("5", version.split('.')[0])) %}
+{% set pqver = '.'.join(("5", version.split('.')[0])) %}
 
 package:
   name: postgresql-split
@@ -17,11 +17,13 @@ source:
     - patches/fix_auth_setenv_win.patch  # [win]
 
 build:
-  number: 4
+  number: 5
   skip: true  # [win and float(vc) < 14]
 
 requirements:
   build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - gnuconfig  # [unix]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
@@ -156,10 +158,10 @@ outputs:
     test:
       commands:
         - pg_config
-        - test -f $PREFIX/lib/libpq.so.{{ libpqver }}      # [linux]
+        - test -f $PREFIX/lib/libpq.so.{{ pqver }}      # [linux]
         - test -f $PREFIX/lib/libpq.so.5                   # [linux]
         - test -f $PREFIX/lib/libpq.so                     # [linux]
-        - test -f $PREFIX/lib/libpq.{{ libpqver }}.dylib   # [osx]
+        - test -f $PREFIX/lib/libpq.{{ pqver }}.dylib   # [osx]
         - test -f $PREFIX/lib/libpq.5.dylib                # [osx]
         - test -f $PREFIX/lib/libpq.dylib                  # [osx]
         - IF NOT EXIST %LIBRARY_BIN%\libpq.dll EXIT 1      # [win]
