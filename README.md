@@ -1,13 +1,40 @@
-About postgresql-split
-======================
-
-Home: 
-
-Package license: PostgreSQL
+About postgresql-split-feedstock
+================================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/postgresql-feedstock/blob/main/LICENSE.txt)
 
+About postgresql-split
+----------------------
+
+Home: http://www.postgresql.org/
+
+Package license: PostgreSQL
+
+Summary: multi-ouput recipe for postgresql
+About libpq
+-----------
+
+
+
+Package license: PostgreSQL
+
 Summary: The postgres runtime libraries and utilities (not the server itself)
+About postgresql
+----------------
+
+
+
+Package license: 
+
+Summary: PostgreSQL is a powerful, open source object-relational database system.
+About postgresql-plpython
+-------------------------
+
+
+
+Package license: PostgreSQL
+
+Summary: The plpythonu postgresql extension
 
 Current build status
 ====================
