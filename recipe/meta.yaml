@@ -19,7 +19,6 @@ source:
 
 build:
   number: 1
-  skip: true  # [win and float(vc) < 14]
 
 requirements:
   build:
