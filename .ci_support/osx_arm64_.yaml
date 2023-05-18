@@ -21,7 +21,7 @@ krb5:
 libuuid:
 - '2'
 libxml2:
-- '2.10'
+- '2.11'
 macos_machine:
 - arm64-apple-darwin20.0.0
 openssl:
