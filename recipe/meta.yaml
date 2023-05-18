@@ -18,8 +18,7 @@ source:
     - patches/fix_x509_name_win.patch  # [win]
 
 build:
-  number: 0
-  skip: true  # [win and float(vc) < 14]
+  number: 1
 
 requirements:
   build:
