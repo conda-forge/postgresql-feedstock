@@ -7,7 +7,7 @@ channel_targets:
 cxx_compiler:
 - vs2019
 krb5:
-- '1.20'
+- '1.21'
 libxml2:
 - '2.11'
 openssl:
