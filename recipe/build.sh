@@ -11,6 +11,7 @@ export FC=$(basename "$FC")
     --prefix=$PREFIX \
     --with-readline \
     --with-libraries=$PREFIX/lib \
+    --without-icu \
     --with-includes=$PREFIX/include \
     --with-openssl \
     --with-uuid=e2fs \
