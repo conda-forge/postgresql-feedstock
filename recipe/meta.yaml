@@ -160,7 +160,6 @@ outputs:
         - test -f $PREFIX/lib/libpq.so.{{ pqver }}      # [linux]
         - test -f $PREFIX/lib/libpq.so.5                   # [linux]
         - test -f $PREFIX/lib/libpq.so                     # [linux]
-        - test -f $PREFIX/lib/libpq.{{ pqver }}.dylib   # [osx]
         - test -f $PREFIX/lib/libpq.5.dylib                # [osx]
         - test -f $PREFIX/lib/libpq.dylib                  # [osx]
         - IF NOT EXIST %LIBRARY_BIN%\libpq.dll EXIT 1      # [win]
