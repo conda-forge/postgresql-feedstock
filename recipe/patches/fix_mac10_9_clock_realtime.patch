@@ -1,0 +1,42 @@
+--- postgresql-16.0.orig/src/include/portability/instr_time.h	2023-09-14 10:35:53.371776136 -0500
++++ postgresql-16.0/src/include/portability/instr_time.h	2023-09-22 14:26:58.858806269 -0500
+@@ -85,6 +85,8 @@
+ /* Use clock_gettime() */
+ 
+ #include <time.h>
++#include <mach/clock.h>
++#include <mach/mach.h>
+ 
+ /*
+  * The best clockid to use according to the POSIX spec is CLOCK_MONOTONIC,
+@@ -98,23 +100,20 @@
+  * CLOCK_MONOTONIC_RAW which is both faster to read and higher resolution than
+  * their version of CLOCK_MONOTONIC.
+  */
+-#if defined(__darwin__) && defined(CLOCK_MONOTONIC_RAW)
+-#define PG_INSTR_CLOCK	CLOCK_MONOTONIC_RAW
+-#elif defined(CLOCK_MONOTONIC)
+-#define PG_INSTR_CLOCK	CLOCK_MONOTONIC
+-#else
+-#define PG_INSTR_CLOCK	CLOCK_REALTIME
+-#endif
+ 
+ /* helper for INSTR_TIME_SET_CURRENT */
+ static inline instr_time
+ pg_clock_gettime_ns(void)
+ {
+ 	instr_time	now;
+-	struct timespec tmp;
++	// https://gist.github.com/jbenet/1087739
++        clock_serv_t cclock;
++        mach_timespec_t mts;
++        host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &cclock);
++        clock_get_time(cclock, &mts);
++        mach_port_deallocate(mach_task_self(), cclock);
+ 
+-	clock_gettime(PG_INSTR_CLOCK, &tmp);
+-	now.ticks = tmp.tv_sec * NS_PER_S + tmp.tv_nsec;
++	now.ticks = mts.tv_sec * NS_PER_S + mts.tv_nsec;
+ 
+ 	return now;
+ }
