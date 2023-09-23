@@ -1,4 +1,4 @@
-{% set version = "15.4" %}
+{% set version = "16.0" %}
 {% set pqver = '.'.join(("5", version.split('.')[0])) %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
-  sha256: baec5a4bdc4437336653b6cb5d9ed89be5bd5c0c58b94e0becee0a999e63c8f9
+  sha256: df9e823eb22330444e1d48e52cc65135a652a6fdb3ce325e3f08549339f51b99
   patches:
     - patches/0001-fix-win-zlib-name.patch
     - patches/0002-disable-new-dtags.patch
@@ -16,6 +16,7 @@ source:
     - patches/fix_gssapi_setenv_win.patch  # [win]
     - patches/fix_auth_setenv_win.patch  # [win]
     - patches/fix_x509_name_win.patch  # [win]
+    - patches/fix_mac10_9_clock_realtime.patch  # [osx]
 
 build:
   number: 0
@@ -159,7 +160,6 @@ outputs:
         - test -f $PREFIX/lib/libpq.so.{{ pqver }}      # [linux]
         - test -f $PREFIX/lib/libpq.so.5                   # [linux]
         - test -f $PREFIX/lib/libpq.so                     # [linux]
-        - test -f $PREFIX/lib/libpq.{{ pqver }}.dylib   # [osx]
         - test -f $PREFIX/lib/libpq.5.dylib                # [osx]
         - test -f $PREFIX/lib/libpq.dylib                  # [osx]
         - IF NOT EXIST %LIBRARY_BIN%\libpq.dll EXIT 1      # [win]
