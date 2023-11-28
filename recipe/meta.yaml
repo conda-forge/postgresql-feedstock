@@ -162,6 +162,9 @@ outputs:
         - tzdata          # [not win]
         - zlib
         - msinttypes       # [win and float(vc) <14]
+      run:
+        # for openssl pin https://github.com/conda-forge/postgresql-feedstock/issues/178
+        - {{ pin_compatible('openssl', upper_bound='3.2') }}
     script: install_runtime.sh  # [unix]
     script: install_runtime.bat  # [win]
     test:
