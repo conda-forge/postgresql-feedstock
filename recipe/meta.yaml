@@ -19,7 +19,7 @@ source:
     - patches/fix_mac10_9_clock_realtime.patch  # [osx]
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -38,8 +38,9 @@ requirements:
     - libxslt 1.1.*
     - krb5
     - openssl
+    # for openssl pin https://github.com/conda-forge/postgresql-feedstock/issues/178
+    - openssl <3.2.0a
     - msinttypes  # [win and float(vc) < 14]
-    - openssl
     - readline         # [not win]
     - zlib
     - vc  # [win]
@@ -48,7 +49,8 @@ requirements:
     - tzdata          # [not win]
   run:
     - krb5
-    - openssl
+    # for openssl pin https://github.com/conda-forge/postgresql-feedstock/issues/178
+    - {{ pin_compatible('openssl', upper_bound='3.2') }}
     - readline        # [not win]
     - tzcode          # [not win]
     - tzdata          # [not win]
@@ -68,6 +70,8 @@ outputs:
         # these are here for sake of run_exports taking effect
         - krb5
         - openssl
+        # for openssl pin https://github.com/conda-forge/postgresql-feedstock/issues/178
+        - openssl <3.2.0a
         - readline         # [not win]
         - tzcode          # [not win]
         - tzdata          # [not win]
@@ -78,7 +82,8 @@ outputs:
       run:
         - {{ pin_subpackage('libpq', exact=True) }}
         - krb5
-        - openssl
+        # for openssl pin https://github.com/conda-forge/postgresql-feedstock/issues/178
+        - {{ pin_compatible('openssl', upper_bound='3.2') }}
         - readline         # [not win]
         - tzcode          # [not win]
         - tzdata          # [not win]
@@ -107,6 +112,8 @@ outputs:
         # these are here for sake of run_exports taking effect
         - krb5     # [not osx]
         - openssl
+        # for openssl pin https://github.com/conda-forge/postgresql-feedstock/issues/178
+        - openssl <3.2.0a
         # Readline is only a dependency of the executable psql
         # included in the postgresql package
         # - readline         # [not win]
@@ -121,7 +128,8 @@ outputs:
         - {{ pin_subpackage('postgresql', exact=True) }}
         - python
         - krb5
-        - openssl
+        # for openssl pin https://github.com/conda-forge/postgresql-feedstock/issues/178
+        - {{ pin_compatible('openssl', upper_bound='3.2') }}
         - zlib
     script: install_plpython.sh  # [unix]
     test:
@@ -145,6 +153,8 @@ outputs:
         # these are here for sake of run_exports taking effect
         - krb5
         - openssl
+        # for openssl pin https://github.com/conda-forge/postgresql-feedstock/issues/178
+        - openssl <3.2.0a
         # Readline is only a dependency of the executable psql
         # included in the postgresql package
         # - readline         # [not win]
