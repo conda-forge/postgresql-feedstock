@@ -94,6 +94,8 @@ outputs:
     script: install_db.bat  # [win]
     about:
       summary: PostgreSQL is a powerful, open source object-relational database system.
+      license: PostgreSQL
+      license_file: COPYRIGHT
 
   - name: postgresql-plpython
     build:
