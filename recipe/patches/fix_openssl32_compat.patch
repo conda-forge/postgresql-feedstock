@@ -135,15 +135,15 @@ index 5a44ac5c30..93cf70b0ed 100644
 @@ -1830,11 +1830,6 @@ PQsslAttribute(PGconn *conn, const char *attribute_name)
   * to retry; do we need to adopt their logic for that?
   */
- 
+
 -#ifndef HAVE_BIO_GET_DATA
 -#define BIO_get_data(bio) (bio->ptr)
 -#define BIO_set_data(bio, data) (bio->ptr = data)
 -#endif
 -
- /* protected by ssl_config_mutex */
  static BIO_METHOD *my_bio_methods;
- 
+
+ static int
 @@ -1843,7 +1838,7 @@ my_sock_read(BIO *h, char *buf, int size)
  {
  	int			res;
