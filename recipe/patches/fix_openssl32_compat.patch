@@ -119,7 +119,7 @@ diff --git a/src/interfaces/libpq/fe-secure-openssl.c b/src/interfaces/libpq/fe-
 index 62f813df68..d863d279a0 100644
 --- a/src/interfaces/libpq/fe-secure-openssl.c
 +++ b/src/interfaces/libpq/fe-secure-openssl.c
-@@ -1800,11 +1800,6 @@ PQsslAttribute(PGconn *conn, const char *attribute_name)
+@@ -1800,11 +1800,6 @@
   * to retry; do we need to adopt their logic for that?
   */
  
@@ -128,9 +128,9 @@ index 62f813df68..d863d279a0 100644
 -#define BIO_set_data(bio, data) (bio->ptr = data)
 -#endif
 -
- /* protected by ssl_config_mutex */
  static BIO_METHOD *my_bio_methods;
  
+ static int
 @@ -1813,7 +1808,7 @@ my_sock_read(BIO *h, char *buf, int size)
  {
  	int			res;
