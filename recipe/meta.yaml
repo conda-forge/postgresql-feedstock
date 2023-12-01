@@ -27,6 +27,9 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
+    # workaround unknown failure with latest clang pulling libxml2 2.12
+    - libxml2
+    - libxml2 <2.12
     - make                       # [unix]
     - m2-bison         # [win]
     - m2-diffutils     # [win]
@@ -35,6 +38,7 @@ requirements:
     - posix            # [win]
   host:
     - libxml2
+    - libxml2 <2.12
     - libxslt 1.1.*
     - krb5
     - openssl
