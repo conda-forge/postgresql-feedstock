@@ -16,6 +16,7 @@ source:
     - patches/fix_gssapi_setenv_win.patch  # [win]
     - patches/fix_auth_setenv_win.patch  # [win]
     - patches/fix_x509_name_win.patch  # [win]
+    - patches/fix_openssl32_compat.patch
 
 build:
   number: 2
