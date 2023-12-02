@@ -16,9 +16,10 @@ source:
     - patches/fix_gssapi_setenv_win.patch  # [win]
     - patches/fix_auth_setenv_win.patch  # [win]
     - patches/fix_x509_name_win.patch  # [win]
+    - patches/fix_openssl32_compat.patch
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
@@ -26,6 +27,8 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
+    - libxml2
+    - libxml2 <2.12
     - make                       # [unix]
     - m2-bison         # [win]
     - m2-diffutils     # [win]
@@ -34,6 +37,7 @@ requirements:
     - posix            # [win]
   host:
     - libxml2
+    - libxml2 <2.12
     - libxslt 1.1.*
     - krb5
     - openssl
