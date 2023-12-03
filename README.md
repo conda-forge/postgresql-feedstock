@@ -27,7 +27,7 @@ About postgresql
 
 
 
-Package license: 
+Package license: PostgreSQL
 
 Summary: PostgreSQL is a powerful, open source object-relational database system.
 
