@@ -17,6 +17,7 @@ source:
     - patches/fix_auth_setenv_win.patch  # [win]
     - patches/fix_x509_name_win.patch  # [win]
     - patches/fix_mac10_9_clock_realtime.patch  # [osx]
+    - patches/libxml2_212_compat_const.patch
 
 build:
   number: 3
