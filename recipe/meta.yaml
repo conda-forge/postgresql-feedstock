@@ -19,7 +19,7 @@ source:
     - patches/fix_openssl32_compat.patch
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
@@ -27,25 +27,22 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
-    - libxml2
-    - libxml2 <2.12
     - make                       # [unix]
     - m2-bison         # [win]
     - m2-diffutils     # [win]
     - m2-flex          # [win]
     - perl 5.*         # [win]
     - posix            # [win]
+    - pkg-config       # [unix]
   host:
     - libxml2
-    - libxml2 <2.12
-    - libxslt 1.1.*
+    - libxslt
     - krb5
     - openssl
-    - msinttypes  # [win and float(vc) < 14]
     - openssl
-    - readline         # [not win]
+    - readline        # [not win]
     - zlib
-    - vc  # [win]
+    - vc              # [win]
     - libuuid         # [not win]
     - tzcode          # [not win]
     - tzdata          # [not win]
@@ -67,6 +64,7 @@ outputs:
         - {{ compiler('c') }}
         - perl 5.*             # [win]
         - make                 # [unix]
+        - pkg-config           # [unix]
       host:
         # these are here for sake of run_exports taking effect
         - krb5
@@ -76,7 +74,6 @@ outputs:
         - tzdata          # [not win]
         - zlib
         - libxml2
-        - msinttypes       # [win and float(vc) < 14]
         - {{ pin_subpackage('libpq', exact=True) }}
       run:
         - {{ pin_subpackage('libpq', exact=True) }}
@@ -106,6 +103,7 @@ outputs:
         - {{ compiler('c') }}
         - perl 5.*             # [win]
         - make                 # [unix]
+        - pkg-config           # [unix]
       host:
         # these are here for sake of run_exports taking effect
         - krb5     # [not osx]
@@ -142,25 +140,27 @@ outputs:
       build:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
-        - perl 5.*             # [win]
-        - make             # [unix]
+        - perl 5.*               # [win]
+        - make                   # [unix]
+        - pkg-config             # [unix]
       host:
+        - libxml2
         # these are here for sake of run_exports taking effect
         - krb5
         - openssl
         # Readline is only a dependency of the executable psql
         # included in the postgresql package
-        # - readline         # [not win]
-        - tzcode          # [not win]
-        - tzdata          # [not win]
+        # - readline             # [not win]
+        - tzcode                 # [not win]
+        - tzdata                 # [not win]
         - zlib
-        - msinttypes       # [win and float(vc) <14]
-    script: install_runtime.sh  # [unix]
+        - msinttypes             # [win and float(vc) <14]
+    script: install_runtime.sh   # [unix]
     script: install_runtime.bat  # [win]
     test:
       commands:
         - pg_config
-        - test -f $PREFIX/lib/libpq.so.{{ pqver }}      # [linux]
+        - test -f $PREFIX/lib/libpq.so.{{ pqver }}         # [linux]
         - test -f $PREFIX/lib/libpq.so.5                   # [linux]
         - test -f $PREFIX/lib/libpq.so                     # [linux]
         - test -f $PREFIX/lib/libpq.{{ pqver }}.dylib   # [osx]
