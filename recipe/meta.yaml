@@ -39,7 +39,6 @@ requirements:
     - libxslt
     - krb5
     - openssl
-    - msinttypes      # [win and float(vc) < 14]
     - openssl
     - readline        # [not win]
     - zlib
@@ -75,7 +74,6 @@ outputs:
         - tzdata          # [not win]
         - zlib
         - libxml2
-        - msinttypes       # [win and float(vc) < 14]
         - {{ pin_subpackage('libpq', exact=True) }}
       run:
         - {{ pin_subpackage('libpq', exact=True) }}
