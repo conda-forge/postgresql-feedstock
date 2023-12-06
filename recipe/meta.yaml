@@ -51,6 +51,8 @@ requirements:
   run:
     - krb5
     - openssl
+    # temporary, see #191
+    - openssl <3.2
     - readline        # [not win]
     - tzcode          # [not win]
     - tzdata          # [not win]
@@ -83,6 +85,8 @@ outputs:
         - {{ pin_subpackage('libpq', exact=True) }}
         - krb5
         - openssl
+        # temporary, see #191
+        - openssl <3.2
         - readline         # [not win]
         - tzcode          # [not win]
         - tzdata          # [not win]
@@ -131,6 +135,8 @@ outputs:
         - python
         - krb5
         - openssl
+        # temporary, see #191
+        - openssl <3.2
         - zlib
     script: install_plpython.sh  # [unix]
     test:
