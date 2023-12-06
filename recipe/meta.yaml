@@ -20,7 +20,7 @@ source:
     - patches/libxml2_212_compat_const.patch
 
 build:
-  number: 6
+  number: 5
 
 requirements:
   build:
@@ -40,7 +40,8 @@ requirements:
     - libxslt
     - krb5
     - openssl
-    - openssl
+    # temporary, see #191
+    - openssl <3.2
     - readline        # [not win]
     - zlib
     - vc              # [win]
@@ -70,6 +71,8 @@ outputs:
         # these are here for sake of run_exports taking effect
         - krb5
         - openssl
+        # temporary, see #191
+        - openssl <3.2
         - readline         # [not win]
         - tzcode          # [not win]
         - tzdata          # [not win]
@@ -111,6 +114,8 @@ outputs:
         # these are here for sake of run_exports taking effect
         - krb5     # [not osx]
         - openssl
+        # temporary, see #191
+        - openssl <3.2
         # Readline is only a dependency of the executable psql
         # included in the postgresql package
         # - readline         # [not win]
@@ -151,6 +156,8 @@ outputs:
         # these are here for sake of run_exports taking effect
         - krb5
         - openssl
+        # temporary, see #191
+        - openssl <3.2
         # Readline is only a dependency of the executable psql
         # included in the postgresql package
         # - readline             # [not win]
