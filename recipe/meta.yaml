@@ -20,7 +20,7 @@ source:
     - patches/libxml2_212_compat_const.patch
 
 build:
-  number: 4
+  number: 6
 
 requirements:
   build:
