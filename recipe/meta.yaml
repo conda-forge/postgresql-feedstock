@@ -18,9 +18,11 @@ source:
     - patches/fix_x509_name_win.patch  # [win]
     - patches/fix_mac10_9_clock_realtime.patch  # [osx]
     - patches/libxml2_212_compat_const.patch
+    # Fix openssl 3.2 compat issue likely to be fixed in 16.2
+    - patches/fix_openssl32_compat.patch
 
 build:
-  number: 5
+  number: 6
 
 requirements:
   build:
@@ -40,8 +42,6 @@ requirements:
     - libxslt
     - krb5
     - openssl
-    # temporary, see #191
-    - openssl <3.2
     - readline        # [not win]
     - zlib
     - vc              # [win]
@@ -51,8 +51,6 @@ requirements:
   run:
     - krb5
     - openssl
-    # temporary, see #191
-    - openssl <3.2
     - readline        # [not win]
     - tzcode          # [not win]
     - tzdata          # [not win]
@@ -73,8 +71,6 @@ outputs:
         # these are here for sake of run_exports taking effect
         - krb5
         - openssl
-        # temporary, see #191
-        - openssl <3.2
         - readline         # [not win]
         - tzcode          # [not win]
         - tzdata          # [not win]
@@ -85,8 +81,6 @@ outputs:
         - {{ pin_subpackage('libpq', exact=True) }}
         - krb5
         - openssl
-        # temporary, see #191
-        - openssl <3.2
         - readline         # [not win]
         - tzcode          # [not win]
         - tzdata          # [not win]
@@ -118,8 +112,6 @@ outputs:
         # these are here for sake of run_exports taking effect
         - krb5     # [not osx]
         - openssl
-        # temporary, see #191
-        - openssl <3.2
         # Readline is only a dependency of the executable psql
         # included in the postgresql package
         # - readline         # [not win]
@@ -135,8 +127,6 @@ outputs:
         - python
         - krb5
         - openssl
-        # temporary, see #191
-        - openssl <3.2
         - zlib
     script: install_plpython.sh  # [unix]
     test:
@@ -162,8 +152,6 @@ outputs:
         # these are here for sake of run_exports taking effect
         - krb5
         - openssl
-        # temporary, see #191
-        - openssl <3.2
         # Readline is only a dependency of the executable psql
         # included in the postgresql package
         # - readline             # [not win]
