@@ -22,7 +22,7 @@ source:
     - patches/fix_openssl32_compat.patch
 
 build:
-  number: 6
+  number: 7
 
 requirements:
   build:
@@ -79,12 +79,8 @@ outputs:
         - {{ pin_subpackage('libpq', exact=True) }}
       run:
         - {{ pin_subpackage('libpq', exact=True) }}
-        - krb5
-        - openssl
-        - readline         # [not win]
         - tzcode          # [not win]
         - tzdata          # [not win]
-        - zlib
     test:
       commands:
         - postgres --help
@@ -112,22 +108,16 @@ outputs:
         # these are here for sake of run_exports taking effect
         - krb5     # [not osx]
         - openssl
-        # Readline is only a dependency of the executable psql
-        # included in the postgresql package
-        # - readline         # [not win]
         - zlib
         - {{ pin_subpackage('postgresql', exact=True) }}
         - python
         - libxml2
-        - libxslt 1.1.*
+        - libxslt
         - vc  # [win]
         - libuuid         # [not win]
       run:
         - {{ pin_subpackage('postgresql', exact=True) }}
         - python
-        - krb5
-        - openssl
-        - zlib
     script: install_plpython.sh  # [unix]
     test:
       commands:
@@ -148,17 +138,11 @@ outputs:
         - make                   # [unix]
         - pkg-config             # [unix]
       host:
-        - libxml2
         # these are here for sake of run_exports taking effect
         - krb5
         - openssl
-        # Readline is only a dependency of the executable psql
-        # included in the postgresql package
-        # - readline             # [not win]
         - tzcode                 # [not win]
         - tzdata                 # [not win]
-        - zlib
-        - msinttypes             # [win and float(vc) <14]
     script: install_runtime.sh   # [unix]
     script: install_runtime.bat  # [win]
     test:
