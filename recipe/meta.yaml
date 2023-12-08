@@ -149,7 +149,6 @@ outputs:
         - make                   # [unix]
         - pkg-config             # [unix]
       host:
-        - libxml2
         # these are here for sake of run_exports taking effect
         - krb5
         - openssl
@@ -158,14 +157,11 @@ outputs:
         # - readline             # [not win]
         - tzcode                 # [not win]
         - tzdata                 # [not win]
-        - zlib
         - msinttypes             # [win and float(vc) <14]
       run:
         # It seems necessary to add these to match other outputs
         - krb5
-        - libxml2
         - openssl
-        - zlib
     script: install_runtime.sh   # [unix]
     script: install_runtime.bat  # [win]
     test:
