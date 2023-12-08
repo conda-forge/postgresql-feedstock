@@ -27,7 +27,7 @@ krb5:
 libuuid:
 - '2'
 libxml2:
-- '2.12'
+- '2.11'
 openssl:
 - '3'
 pin_run_as_build:
