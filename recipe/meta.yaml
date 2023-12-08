@@ -23,7 +23,7 @@ source:
     - patches/fix_openssl32_compat.patch
 
 build:
-  number: 6
+  number: 7
 
 requirements:
   build:
