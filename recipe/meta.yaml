@@ -159,6 +159,12 @@ outputs:
         - tzdata                 # [not win]
         - zlib
         - msinttypes             # [win and float(vc) <14]
+      run:
+        # It seems necessary to add these to match other outputs
+        - krb5
+        - libxml2
+        - openssl
+        - zlib
     script: install_runtime.sh   # [unix]
     script: install_runtime.bat  # [win]
     test:
