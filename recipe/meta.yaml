@@ -17,9 +17,6 @@ source:
     - patches/fix_auth_setenv_win.patch  # [win]
     - patches/fix_x509_name_win.patch  # [win]
     - patches/fix_mac10_9_clock_realtime.patch  # [osx]
-    - patches/libxml2_212_compat_const.patch  # [libxml2 != '2.11']
-    # Fix openssl 3.2 compat issue likely to be fixed in 16.2
-    - patches/fix_openssl32_compat.patch
 
 build:
   number: 0
