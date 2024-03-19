@@ -1,7 +1,0 @@
-# Dual build of libxml2 for one version until we get to the next migration
-# We wanted a build of 2.11 + openssl 3.2 compatibility while the
-# libxml2 2.12 migration finishes
-# https://github.com/conda-forge/tensorflow-feedstock/pull/353
-libxml2:
-  - '2.11'
-  - '2.12'

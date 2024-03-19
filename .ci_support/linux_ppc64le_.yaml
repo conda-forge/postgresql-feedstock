@@ -1,11 +1,7 @@
-BUILD:
-- aarch64-conda_cos7-linux-gnu
 c_compiler:
 - gcc
 c_compiler_version:
 - '12'
-cdt_arch:
-- aarch64
 cdt_name:
 - cos7
 channel_sources:
@@ -27,7 +23,7 @@ krb5:
 libuuid:
 - '2'
 libxml2:
-- '2.12'
+- '2'
 openssl:
 - '3'
 pin_run_as_build:
@@ -43,7 +39,7 @@ python:
 readline:
 - '8'
 target_platform:
-- linux-aarch64
+- linux-ppc64le
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
