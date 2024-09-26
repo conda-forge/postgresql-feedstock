@@ -9,7 +9,6 @@ source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
   sha256: 7e276131c0fdd6b62588dbad9b3bb24b8c3498d5009328dba59af16e819109de
   patches:
-    - patches/0001-fix-win-zlib-name.patch
     - patches/0002-disable-new-dtags.patch
     - patches/fix_gss_win64.patch  # [win64]
     - patches/0004-fix-windows-openssl-links-for-openssl-1.1.1.patch
