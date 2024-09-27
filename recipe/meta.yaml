@@ -25,13 +25,14 @@ requirements:
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
-    - make                       # [unix]
+    - make             # [unix]
+    - pkg-config       # [unix]
+    - bison            # [unix]
     - m2-bison         # [win]
     - m2-diffutils     # [win]
     - m2-flex          # [win]
     - perl 5.*         # [win]
     - posix            # [win]
-    - pkg-config       # [unix]
   host:
     - libxml2
     - libxslt
@@ -63,6 +64,7 @@ outputs:
         - perl 5.*             # [win]
         - make                 # [unix]
         - pkg-config           # [unix]
+        - bison                # [unix]
       host:
         # these are here for sake of run_exports taking effect
         - krb5
@@ -101,6 +103,7 @@ outputs:
         - perl 5.*             # [win]
         - make                 # [unix]
         - pkg-config           # [unix]
+        - bison                # [unix]
       host:
         # these are here for sake of run_exports taking effect
         - krb5     # [not osx]
@@ -135,6 +138,7 @@ outputs:
         - perl 5.*               # [win]
         - make                   # [unix]
         - pkg-config             # [unix]
+        - bison                  # [unix]
       host:
         # these are here for sake of run_exports taking effect
         - krb5
