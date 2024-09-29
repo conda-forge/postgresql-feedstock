@@ -8,10 +8,10 @@ export PYTHON=$PREFIX/bin/python
     --with-includes=$PREFIX/include \
     --with-openssl \
     --with-uuid=e2fs \
-    --without-icu \
     --with-libxml \
     --with-libxslt \
     --with-gssapi \
+    --with-icu \
     --with-system-tzdata=$PREFIX/share/zoneinfo \
     --with-python
 
