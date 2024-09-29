@@ -30,5 +30,6 @@ if errorlevel 1 exit 1
 ninja -C build -j %CPU_COUNT%
 if errorlevel 1 exit 1
 
-meson test --print-errorlogs --no-rebuild -C build --num-processes %CPU_COUNT%
+:: Run a set of tests that is equivalent to running make check.
+meson test --print-errorlogs --no-rebuild -C build --suite setup --suite regress
 if errorlevel 1 exit 1
