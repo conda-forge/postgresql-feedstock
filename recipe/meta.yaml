@@ -20,18 +20,19 @@ build:
 
 requirements:
   build:
+    - meson      # [win]
     - gnuconfig  # [unix]
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
+    - ninja            # [win]
     - make             # [unix]
     - pkg-config       # [unix]
     - bison            # [unix]
     - m2-bison         # [win]
     - m2-diffutils     # [win]
     - m2-flex          # [win]
-    - perl 5.*         # [win]
     - posix            # [win]
     - icu
   host:
@@ -63,7 +64,7 @@ outputs:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
-        - perl 5.*             # [win]
+        - ninja                # [win]
         - make                 # [unix]
         - pkg-config           # [unix]
         - bison                # [unix]
@@ -105,7 +106,7 @@ outputs:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
-        - perl 5.*             # [win]
+        - ninja                # [win]
         - make                 # [unix]
         - pkg-config           # [unix]
         - bison                # [unix]
@@ -142,7 +143,7 @@ outputs:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
-        - perl 5.*               # [win]
+        - ninja                  # [win]
         - make                   # [unix]
         - pkg-config             # [unix]
         - bison                  # [unix]

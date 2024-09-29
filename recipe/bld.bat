@@ -1,14 +1,5 @@
 @echo on
 
-pushd src\tools\msvc
-
-echo $config-^>{openssl} = '%LIBRARY_PREFIX%'; >> config.pl
-echo $config-^>{zlib} = '%LIBRARY_PREFIX%';    >> config.pl
-echo $config-^>{xml} = '%LIBRARY_PREFIX%';     >> config.pl
-echo $config-^>{xslt} = '%LIBRARY_PREFIX%';    >> config.pl
-echo $config-^>{iconv} = '%LIBRARY_PREFIX%';   >> config.pl
-echo $config-^>{gss} = '%LIBRARY_PREFIX%';     >> config.pl
-
 :: Appveyor's postgres install is on PATH and interferes with testing
 IF NOT "%APPVEYOR%" == "" (
     ECHO Deleting AppVeyor's PostgreSQL installs
@@ -33,8 +24,11 @@ if "%ARCH%" == "32" (
    set ARCH=x64
 )
 
-perl mkvcbuild.pl
-if %ERRORLEVEL% NEQ 0 exit 1
+meson setup --backend ninja --buildtype=release -Dcassert=false -Dnls=disabled --prefix=%LIBRARY_PREFIX% build
+if errorlevel 1 exit 1
 
-call msbuild %SRC_DIR%\pgsql.sln /p:Configuration=Release /p:Platform="%ARCH%"
-if %ERRORLEVEL% NEQ 0 exit 1
+ninja -C build -j %CPU_COUNT%
+if errorlevel 1 exit 1
+
+meson test --print-errorlogs --no-rebuild -C build --num-processes %CPU_COUNT%
+if errorlevel 1 exit 1
