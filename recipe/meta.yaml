@@ -30,6 +30,7 @@ requirements:
     - make             # [unix]
     - pkg-config       # [unix]
     - bison            # [unix]
+    - perl 5.*         # [win]
     - m2-bison         # [win]
     - m2-diffutils     # [win]
     - m2-flex          # [win]
@@ -66,6 +67,7 @@ outputs:
         - {{ stdlib("c") }}
         - ninja                # [win]
         - make                 # [unix]
+        - perl 5.*             # [win]
         - pkg-config           # [unix]
         - bison                # [unix]
         - icu
@@ -107,6 +109,7 @@ outputs:
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
         - ninja                # [win]
+        - perl 5.*             # [win]
         - make                 # [unix]
         - pkg-config           # [unix]
         - bison                # [unix]
@@ -144,6 +147,7 @@ outputs:
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
         - ninja                  # [win]
+        - perl 5.*               # [win]
         - make                   # [unix]
         - pkg-config             # [unix]
         - bison                  # [unix]
