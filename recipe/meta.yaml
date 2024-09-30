@@ -20,17 +20,17 @@ build:
 
 requirements:
   build:
-    - meson      # [win]
-    - gnuconfig  # [unix]
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
+    - meson            # [win]
     - ninja            # [win]
+    - perl 5.*         # [win]
+    - gnuconfig        # [unix]
     - make             # [unix]
     - pkg-config       # [unix]
     - bison            # [unix]
-    - perl 5.*         # [win]
     - m2-bison         # [win]
     - m2-diffutils     # [win]
     - m2-flex          # [win]
@@ -65,11 +65,16 @@ outputs:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
+        - meson                # [win]
         - ninja                # [win]
-        - make                 # [unix]
         - perl 5.*             # [win]
+        - make                 # [unix]
         - pkg-config           # [unix]
         - bison                # [unix]
+        - m2-bison             # [win]
+        - m2-diffutils         # [win]
+        - m2-flex              # [win]
+        - posix                # [win]
         - icu
       host:
         # these are here for sake of run_exports taking effect
@@ -108,11 +113,16 @@ outputs:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
+        - meson                # [win]
         - ninja                # [win]
         - perl 5.*             # [win]
         - make                 # [unix]
         - pkg-config           # [unix]
         - bison                # [unix]
+        - m2-bison             # [win]
+        - m2-diffutils         # [win]
+        - m2-flex              # [win]
+        - posix                # [win]
         - icu
       host:
         # these are here for sake of run_exports taking effect
@@ -146,11 +156,16 @@ outputs:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
+        - meson                  # [win]
         - ninja                  # [win]
         - perl 5.*               # [win]
         - make                   # [unix]
         - pkg-config             # [unix]
         - bison                  # [unix]
+        - m2-bison               # [win]
+        - m2-diffutils           # [win]
+        - m2-flex                # [win]
+        - posix                  # [win]
         - icu
       host:
         # these are here for sake of run_exports taking effect

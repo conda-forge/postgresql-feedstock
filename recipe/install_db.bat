@@ -1,1 +1,1 @@
-ninja install -C build
+meson install --no-rebuild -C build

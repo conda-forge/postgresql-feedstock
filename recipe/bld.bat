@@ -24,7 +24,15 @@ if "%ARCH%" == "32" (
    set ARCH=x64
 )
 
-meson setup --backend ninja --buildtype=release -Dcassert=false -Dnls=disabled --prefix=%LIBRARY_PREFIX% build
+meson setup ^
+   --prefix=%LIBRARY_PREFIX% ^
+   --backend ninja ^
+   --buildtype=release ^
+   -Dcassert=false ^
+   -Dnls=disabled ^
+   -Dplperl=disabled ^
+   -Dpltcl=disabled ^
+   build
 if errorlevel 1 exit 1
 
 ninja -C build -j %CPU_COUNT%
