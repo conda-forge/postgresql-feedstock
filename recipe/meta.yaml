@@ -43,6 +43,7 @@ requirements:
     - libxml2
     - libxslt
     - krb5
+    - openldap        # [not win]
     - openssl
     - zlib
     - vc              # [win]
@@ -52,6 +53,7 @@ requirements:
     - tzdata          # [not win]
   run:
     - krb5
+    - openldap        # [not win]
     - openssl
     - readline        # [not win]
     - tzcode          # [not win]
@@ -85,6 +87,7 @@ outputs:
         - libxml2
         - libxslt
         - krb5
+        - openldap            # [not win]
         - openssl
         - zlib
         - readline            # [not win]
@@ -136,6 +139,7 @@ outputs:
         - libxml2
         - libxslt
         - krb5
+        - openldap               # [not win]
         - openssl
         - zlib
         - vc                     # [win]
@@ -179,6 +183,7 @@ outputs:
         # these are here for sake of run_exports taking effect
         - icu
         - krb5
+        - openldap               # [not win]
         - openssl
         - tzcode                 # [not win]
         - tzdata                 # [not win]

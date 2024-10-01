@@ -18,6 +18,7 @@ export FC=$(basename "$FC")
     --enable-thread-safety \
     --with-gssapi \
     --with-icu \
+    --with-ldap \
     --with-libxml \
     --with-libxslt \
     --with-openssl \

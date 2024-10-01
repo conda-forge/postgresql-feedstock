@@ -18,6 +18,7 @@ export PYTHON=$PREFIX/bin/python
     --enable-thread-safety \
     --with-gssapi \
     --with-icu \
+    --with-ldap \
     --with-libxml \
     --with-libxslt \
     --with-openssl \
