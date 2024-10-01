@@ -20,17 +20,19 @@ build:
 
 requirements:
   build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - gnuconfig        # [unix]
+    - meson            # [win]
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
-    - meson            # [win]
-    - ninja            # [win]
-    - perl 5.*         # [win]
-    - gnuconfig        # [unix]
     - make             # [unix]
     - pkg-config       # [unix]
     - bison            # [unix]
+    - ninja            # [win]
+    - perl 5.*         # [win]
     - m2-bison         # [win]
     - m2-diffutils     # [win]
     - m2-flex          # [win]
@@ -42,10 +44,10 @@ requirements:
     - libxslt
     - krb5
     - openssl
-    - readline        # [not win]
     - zlib
     - vc              # [win]
     - libuuid         # [not win]
+    - readline        # [not win]
     - tzcode          # [not win]
     - tzdata          # [not win]
   run:
@@ -62,15 +64,16 @@ outputs:
         - {{ pin_subpackage('libpq') }}
     requirements:
       build:
+        - gnuconfig            # [unix]
+        - meson                # [win]
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
-        - meson                # [win]
-        - ninja                # [win]
-        - perl 5.*             # [win]
         - make                 # [unix]
         - pkg-config           # [unix]
         - bison                # [unix]
+        - ninja                # [win]
+        - perl 5.*             # [win]
         - m2-bison             # [win]
         - m2-diffutils         # [win]
         - m2-flex              # [win]
@@ -83,15 +86,15 @@ outputs:
         - libxslt
         - krb5
         - openssl
-        - readline         # [not win]
-        - tzcode          # [not win]
-        - tzdata          # [not win]
         - zlib
+        - readline            # [not win]
+        - tzcode              # [not win]
+        - tzdata              # [not win]
         - {{ pin_subpackage('libpq', exact=True) }}
       run:
         - {{ pin_subpackage('libpq', exact=True) }}
-        - tzcode          # [not win]
-        - tzdata          # [not win]
+        - tzcode              # [not win]
+        - tzdata              # [not win]
     test:
       commands:
         - postgres --help
@@ -112,32 +115,34 @@ outputs:
       build:
         - python                                 # [build_platform != target_platform]
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+        - gnuconfig              # [unix]
+        - meson                  # [win]
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
-        - meson                # [win]
-        - ninja                # [win]
-        - perl 5.*             # [win]
-        - make                 # [unix]
-        - pkg-config           # [unix]
-        - bison                # [unix]
-        - m2-bison             # [win]
-        - m2-diffutils         # [win]
-        - m2-flex              # [win]
-        - posix                # [win]
+        - make                   # [unix]
+        - pkg-config             # [unix]
+        - bison                  # [unix]
+        - ninja                  # [win]
+        - perl 5.*               # [win]
+        - m2-bison               # [win]
+        - m2-diffutils           # [win]
+        - m2-flex                # [win]
+        - posix                  # [win]
         - icu
       host:
         # these are here for sake of run_exports taking effect
         - icu
         - libxml2
         - libxslt
-        - krb5     # [not osx]
+        - krb5
         - openssl
         - zlib
+        - vc                     # [win]
+        - libuuid                # [not win]
+        - readline               # [not win]
         - {{ pin_subpackage('postgresql', exact=True) }}
         - python
-        - vc  # [win]
-        - libuuid         # [not win]
       run:
         - {{ pin_subpackage('postgresql', exact=True) }}
         - python
@@ -155,15 +160,16 @@ outputs:
         - {{ pin_subpackage('libpq') }}
     requirements:
       build:
+        - gnuconfig              # [unix]
+        - meson                  # [win]
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
-        - meson                  # [win]
-        - ninja                  # [win]
-        - perl 5.*               # [win]
         - make                   # [unix]
         - pkg-config             # [unix]
         - bison                  # [unix]
+        - ninja                  # [win]
+        - perl 5.*               # [win]
         - m2-bison               # [win]
         - m2-diffutils           # [win]
         - m2-flex                # [win]
@@ -176,7 +182,7 @@ outputs:
         - openssl
         - tzcode                 # [not win]
         - tzdata                 # [not win]
-    script: install_runtime.sh  # [unix]
+    script: install_runtime.sh   # [unix]
     script: install_runtime.bat  # [win]
     test:
       commands:
