@@ -15,6 +15,8 @@ krb5:
 - '1.21'
 libxml2:
 - '2'
+lz4_c:
+- 1.9.3
 openssl:
 - '3'
 target_platform:
@@ -23,3 +25,5 @@ vc:
 - '14'
 zlib:
 - '1'
+zstd:
+- '1.5'

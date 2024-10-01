@@ -34,6 +34,8 @@ libuuid:
 - '2'
 libxml2:
 - '2'
+lz4_c:
+- 1.9.3
 macos_machine:
 - arm64-apple-darwin20.0.0
 openssl:
@@ -60,3 +62,5 @@ zip_keys:
   - channel_sources
 zlib:
 - '1'
+zstd:
+- '1.5'
