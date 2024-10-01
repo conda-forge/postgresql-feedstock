@@ -106,6 +106,8 @@ outputs:
     build:
       run_exports:
         - {{ pin_subpackage('postgresql-plpython') }}
+      # needs packaging help on windows
+      skip: True  # [win]
     requirements:
       build:
         - python                                 # [build_platform != target_platform]
