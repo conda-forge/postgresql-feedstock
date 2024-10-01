@@ -1,17 +1,24 @@
-set -x
-set -e
+#!/bin/bash
+
+set -exo pipefail
+
+# avoid absolute-paths in compilers
+export CC=$(basename "$CC")
+export CXX=$(basename "$CXX")
+export FC=$(basename "$FC")
+
 export PYTHON=$PREFIX/bin/python
 ./configure \
     --prefix=$PREFIX \
-    --with-readline \
     --with-libraries=$PREFIX/lib \
     --with-includes=$PREFIX/include \
-    --with-openssl \
-    --with-uuid=e2fs \
-    --without-icu \
+    --enable-thread-safety \
+    --with-gssapi \
+    --with-icu \
     --with-libxml \
     --with-libxslt \
-    --with-gssapi \
+    --with-openssl \
+    --with-uuid=e2fs \
     --with-system-tzdata=$PREFIX/share/zoneinfo \
     --with-python
 

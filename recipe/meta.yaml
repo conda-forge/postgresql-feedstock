@@ -1,4 +1,4 @@
-{% set version = "16.4" %}
+{% set version = "17.0" %}
 {% set pqver = '.'.join(("5", version.split('.')[0])) %}
 
 package:
@@ -7,35 +7,37 @@ package:
 
 source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
-  sha256: 971766d645aa73e93b9ef4e3be44201b4f45b5477095b049125403f9f3386d6f
+  sha256: 7e276131c0fdd6b62588dbad9b3bb24b8c3498d5009328dba59af16e819109de
   patches:
-    - patches/0001-fix-win-zlib-name.patch
     - patches/0002-disable-new-dtags.patch
-    - patches/fix_gss_win64.patch  # [win64]
-    - patches/0004-fix-windows-openssl-links-for-openssl-1.1.1.patch
     - patches/fix_gssapi_setenv_win.patch  # [win]
     - patches/fix_auth_setenv_win.patch  # [win]
     - patches/fix_x509_name_win.patch  # [win]
     - patches/fix_mac10_9_clock_realtime.patch  # [osx]
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
-    - gnuconfig  # [unix]
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
-    - make                       # [unix]
+    - meson            # [win]
+    - ninja            # [win]
+    - perl 5.*         # [win]
+    - gnuconfig        # [unix]
+    - make             # [unix]
+    - pkg-config       # [unix]
+    - bison            # [unix]
     - m2-bison         # [win]
     - m2-diffutils     # [win]
     - m2-flex          # [win]
-    - perl 5.*         # [win]
     - posix            # [win]
-    - pkg-config       # [unix]
+    - icu
   host:
+    - icu
     - libxml2
     - libxslt
     - krb5
@@ -63,18 +65,28 @@ outputs:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
+        - meson                # [win]
+        - ninja                # [win]
         - perl 5.*             # [win]
         - make                 # [unix]
         - pkg-config           # [unix]
+        - bison                # [unix]
+        - m2-bison             # [win]
+        - m2-diffutils         # [win]
+        - m2-flex              # [win]
+        - posix                # [win]
+        - icu
       host:
         # these are here for sake of run_exports taking effect
+        - icu
+        - libxml2
+        - libxslt
         - krb5
         - openssl
         - readline         # [not win]
         - tzcode          # [not win]
         - tzdata          # [not win]
         - zlib
-        - libxml2
         - {{ pin_subpackage('libpq', exact=True) }}
       run:
         - {{ pin_subpackage('libpq', exact=True) }}
@@ -94,6 +106,8 @@ outputs:
     build:
       run_exports:
         - {{ pin_subpackage('postgresql-plpython') }}
+      # needs packaging help on windows
+      skip: True  # [win]
     requirements:
       build:
         - python                                 # [build_platform != target_platform]
@@ -101,18 +115,27 @@ outputs:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
+        - meson                # [win]
+        - ninja                # [win]
         - perl 5.*             # [win]
         - make                 # [unix]
         - pkg-config           # [unix]
+        - bison                # [unix]
+        - m2-bison             # [win]
+        - m2-diffutils         # [win]
+        - m2-flex              # [win]
+        - posix                # [win]
+        - icu
       host:
         # these are here for sake of run_exports taking effect
+        - icu
+        - libxml2
+        - libxslt
         - krb5     # [not osx]
         - openssl
         - zlib
         - {{ pin_subpackage('postgresql', exact=True) }}
         - python
-        - libxml2
-        - libxslt
         - vc  # [win]
         - libuuid         # [not win]
       run:
@@ -135,11 +158,20 @@ outputs:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
+        - meson                  # [win]
+        - ninja                  # [win]
         - perl 5.*               # [win]
         - make                   # [unix]
         - pkg-config             # [unix]
+        - bison                  # [unix]
+        - m2-bison               # [win]
+        - m2-diffutils           # [win]
+        - m2-flex                # [win]
+        - posix                  # [win]
+        - icu
       host:
         # these are here for sake of run_exports taking effect
+        - icu
         - krb5
         - openssl
         - tzcode                 # [not win]
@@ -170,6 +202,7 @@ about:
 extra:
   recipe-maintainers:
     - akrherz
+    - flaviomartins
     - gillins
     - msarahan
     - ocefpaf
