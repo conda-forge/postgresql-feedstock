@@ -32,6 +32,8 @@ meson setup ^
    -Dnls=disabled ^
    -Dplperl=disabled ^
    -Dpltcl=disabled ^
+   -Dextra_include_dirs=%LIBRARY_INC% ^
+   -Dextra_lib_dirs=%LIBRARY_LIB% ^
    build
 if errorlevel 1 exit 1
 

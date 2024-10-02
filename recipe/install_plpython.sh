@@ -2,6 +2,9 @@
 
 set -exo pipefail
 
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/gnuconfig/config.* ./config
+
 # avoid absolute-paths in compilers
 export CC=$(basename "$CC")
 export CXX=$(basename "$CXX")
@@ -15,8 +18,11 @@ export PYTHON=$PREFIX/bin/python
     --enable-thread-safety \
     --with-gssapi \
     --with-icu \
+    --with-ldap \
     --with-libxml \
     --with-libxslt \
+    --with-lz4 \
+    --with-zstd \
     --with-openssl \
     --with-uuid=e2fs \
     --with-system-tzdata=$PREFIX/share/zoneinfo \
