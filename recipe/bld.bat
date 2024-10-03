@@ -1,8 +1,8 @@
 @echo on
 
-:: Appveyor's postgres install is on PATH and interferes with testing
-IF NOT "%APPVEYOR%" == "" (
-    ECHO Deleting AppVeyor's PostgreSQL installs
+:: Check if running in a CI environment
+if "%CI%"=="true" (
+    echo Running in a CI environment. Deleting existing PostgreSQL installation.
     RD /S /Q "C:\Program Files\PostgreSQL"
 )
 
@@ -37,13 +37,13 @@ meson setup ^
    build
 if errorlevel 1 exit 1
 
-ninja -C build -j %CPU_COUNT%
+meson compile -C build
 if errorlevel 1 exit 1
 
 :: Run a minimal set of tests.
 meson test --print-errorlogs --no-rebuild -C build --suite setup
 if errorlevel 1 exit 1
 
-:: The main regression tests take too long for this purpose. Skipping them.
-:: meson test --print-errorlogs --no-rebuild -C build --suite regress
-:: if errorlevel 1 exit 1
+:: The main regression tests may take too long for this purpose.
+meson test --print-errorlogs --no-rebuild -C build --suite regress
+if errorlevel 1 exit 1
