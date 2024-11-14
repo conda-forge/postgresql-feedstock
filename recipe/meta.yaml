@@ -116,7 +116,7 @@ outputs:
       run_exports:
         - {{ pin_subpackage('postgresql-plpython') }}
       # needs packaging help on windows
-      skip: True  # [win]
+      skip: true  # [win]
     requirements:
       build:
         - python                                 # [build_platform != target_platform]
@@ -192,7 +192,7 @@ outputs:
         - openssl
         - tzcode                 # [not win]
         - tzdata                 # [not win]
-    script: install_runtime.sh   # [unix]
+    script: install_runtime.sh  # [unix]
     script: install_runtime.bat  # [win]
     test:
       commands:
