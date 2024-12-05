@@ -22,12 +22,14 @@ icu:
 - '75'
 krb5:
 - '1.21'
+libpq:
+- '16'
 libuuid:
 - '2'
 libxml2:
 - '2'
 lz4_c:
-- 1.9.3
+- '1.10'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 openssl:
@@ -36,6 +38,8 @@ pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
+postgresql:
+- '16'
 python:
 - 3.10.* *_cpython
 - 3.11.* *_cpython
