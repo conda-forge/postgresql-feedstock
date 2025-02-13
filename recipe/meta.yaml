@@ -19,7 +19,7 @@ source:
     - patches/fix_mac10_9_clock_realtime.patch  # [osx]
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
