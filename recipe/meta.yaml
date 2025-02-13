@@ -1,4 +1,4 @@
-{% set version = "17.2" %}
+{% set version = "17.3" %}
 {% set pqver = '.'.join(("5", version.split('.')[0])) %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
-  sha256: 82ef27c0af3751695d7f64e2d963583005fbb6a0c3df63d0e4b42211d7021164
+  sha256: 13c18b35bf67a97bd639925fc581db7fd2aae4d3548eac39fcdb8da74ace2bea
   patches:
     - patches/0002-disable-new-dtags.patch
     - patches/fix_gssapi_setenv_win.patch  # [win]
@@ -16,7 +16,7 @@ source:
     - patches/fix_mac10_9_clock_realtime.patch  # [osx]
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -116,7 +116,7 @@ outputs:
       run_exports:
         - {{ pin_subpackage('postgresql-plpython') }}
       # needs packaging help on windows
-      skip: True  # [win]
+      skip: true  # [win]
     requirements:
       build:
         - python                                 # [build_platform != target_platform]
@@ -192,7 +192,7 @@ outputs:
         - openssl
         - tzcode                 # [not win]
         - tzdata                 # [not win]
-    script: install_runtime.sh   # [unix]
+    script: install_runtime.sh  # [unix]
     script: install_runtime.bat  # [win]
     test:
       commands:
