@@ -17,6 +17,7 @@ source:
 
 build:
   number: 0
+  skip: true  # [not (linux and aarch64)]
 
 requirements:
   build:
@@ -101,9 +102,14 @@ outputs:
         - {{ pin_subpackage('libpq', exact=True) }}
         - tzcode              # [not win]
         - tzdata              # [not win]
+
     test:
       commands:
         - postgres --help
+        # check symbols
+        - nm -D $(which postgres)  # [linux]
+      requirements:
+        - binutils   # [linux]
     script: install_db.sh  # [unix]
     script: install_db.bat  # [win]
     about:
