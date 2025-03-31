@@ -10,6 +10,12 @@ export CC=$(basename "$CC")
 export CXX=$(basename "$CXX")
 export FC=$(basename "$FC")
 
+# remove `-fvisibility=hidden` from CFLAGS
+export CFLAGS="${CFLAGS/-fvisibility=hidden/}"
+export CXXFLAGS="${CXXFLAGS/-fvisibility=hidden/}"
+
+echo $CFLAGS
+echo $CXXFLAGS
 
 ./configure \
     --prefix=$PREFIX \
