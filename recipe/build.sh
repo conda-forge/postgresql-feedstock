@@ -32,7 +32,8 @@ echo $CXXFLAGS
     --with-openssl \
     --with-uuid=e2fs \
     --with-system-tzdata=$PREFIX/share/zoneinfo \
-    PG_SYSROOT="undefined"
+    PG_SYSROOT="undefined" \
+    LDFLAGS_EX_BE="-Wl,--export-dynamic" \
 
 make -j $CPU_COUNT
 make -j $CPU_COUNT -C contrib
