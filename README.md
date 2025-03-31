@@ -3,17 +3,73 @@ About postgresql-split-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/postgresql-feedstock/blob/main/LICENSE.txt)
 
+
+About postgresql-split
+----------------------
+
 Home: http://www.postgresql.org/
 
 Package license: PostgreSQL
 
 Summary: multi-ouput recipe for postgresql
 
+About libpq
+-----------
+
+
+
+Package license: PostgreSQL
+
+Summary: The postgres runtime libraries and utilities (not the server itself)
+
+About postgresql
+----------------
+
+
+
+Package license: PostgreSQL
+
+Summary: PostgreSQL is a powerful, open source object-relational database system.
+
+About postgresql-plpython
+-------------------------
+
+
+
+Package license: PostgreSQL
+
+Summary: The plpythonu postgresql extension
+
 Current build status
 ====================
 
 
 <table>
+    
+  <tr>
+    <td>Azure</td>
+    <td>
+      <details>
+        <summary>
+          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=802&branchName=main">
+            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/postgresql-feedstock?branchName=main">
+          </a>
+        </summary>
+        <table>
+          <thead><tr><th>Variant</th><th>Status</th></tr></thead>
+          <tbody><tr>
+              <td>linux_aarch64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=802&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/postgresql-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
+    </td>
+  </tr>
 </table>
 
 Current release info
@@ -21,7 +77,9 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-postgresql--split-green.svg)](https://anaconda.org/conda-forge/postgresql-split) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/postgresql-split.svg)](https://anaconda.org/conda-forge/postgresql-split) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/postgresql-split.svg)](https://anaconda.org/conda-forge/postgresql-split) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/postgresql-split.svg)](https://anaconda.org/conda-forge/postgresql-split) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libpq-green.svg)](https://anaconda.org/conda-forge/libpq) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libpq.svg)](https://anaconda.org/conda-forge/libpq) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libpq.svg)](https://anaconda.org/conda-forge/libpq) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libpq.svg)](https://anaconda.org/conda-forge/libpq) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-postgresql-green.svg)](https://anaconda.org/conda-forge/postgresql) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/postgresql.svg)](https://anaconda.org/conda-forge/postgresql) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/postgresql.svg)](https://anaconda.org/conda-forge/postgresql) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/postgresql.svg)](https://anaconda.org/conda-forge/postgresql) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-postgresql--plpython-green.svg)](https://anaconda.org/conda-forge/postgresql-plpython) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/postgresql-plpython.svg)](https://anaconda.org/conda-forge/postgresql-plpython) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/postgresql-plpython.svg)](https://anaconda.org/conda-forge/postgresql-plpython) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/postgresql-plpython.svg)](https://anaconda.org/conda-forge/postgresql-plpython) |
 
 Installing postgresql-split
 ===========================
@@ -33,41 +91,41 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `postgresql-split` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `libpq, postgresql, postgresql-plpython` can be installed with `conda`:
 
 ```
-conda install postgresql-split
-```
-
-or with `mamba`:
-
-```
-mamba install postgresql-split
-```
-
-It is possible to list all of the versions of `postgresql-split` available on your platform with `conda`:
-
-```
-conda search postgresql-split --channel conda-forge
+conda install libpq postgresql postgresql-plpython
 ```
 
 or with `mamba`:
 
 ```
-mamba search postgresql-split --channel conda-forge
+mamba install libpq postgresql postgresql-plpython
+```
+
+It is possible to list all of the versions of `libpq` available on your platform with `conda`:
+
+```
+conda search libpq --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search libpq --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search postgresql-split --channel conda-forge
+mamba repoquery search libpq --channel conda-forge
 
-# List packages depending on `postgresql-split`:
-mamba repoquery whoneeds postgresql-split --channel conda-forge
+# List packages depending on `libpq`:
+mamba repoquery whoneeds libpq --channel conda-forge
 
-# List dependencies of `postgresql-split`:
-mamba repoquery depends postgresql-split --channel conda-forge
+# List dependencies of `libpq`:
+mamba repoquery depends libpq --channel conda-forge
 ```
 
 
