@@ -64,6 +64,7 @@ outputs:
       build:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - perl 5.*             # [win]
         - make                 # [unix]
       host:
@@ -103,6 +104,7 @@ outputs:
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - perl 5.*             # [win]
         - make                 # [unix]
       host:
@@ -141,6 +143,7 @@ outputs:
       build:
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - perl 5.*             # [win]
         - make             # [unix]
       host:
