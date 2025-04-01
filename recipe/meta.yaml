@@ -87,12 +87,12 @@ outputs:
       commands:
         - postgres --help
         # run a simple initdb check on unix
-        - export TEST_DIR=./test_postgres                       # [unix]
-        - initdb -D $TEST_DIR                                   # [unix]
-        - pg_ctl -D $TEST_DIR -l logfile start || cat ./logfile # [unix]
-        - pg_ctl -D $TEST_DIR stop                              # [unix]
+        - export TEST_DIR=./test_postgres                        # [unix]
+        - initdb -D $TEST_DIR                                    # [unix]
+        - pg_ctl -D $TEST_DIR -l logfile start || cat ./logfile  # [unix]
+        - pg_ctl -D $TEST_DIR stop                               # [unix]
         # Make sure that postgres contains `palloc0` symbol
-        - nm -D $(which postgres) | grep -q palloc0 || exit 1   # [linux]
+        - nm -D $(which postgres) | grep -q palloc0 || exit 1    # [linux]
 
       requirements:
         - binutils   # [linux]
