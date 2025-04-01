@@ -10,6 +10,12 @@ export CC=$(basename "$CC")
 export CXX=$(basename "$CXX")
 export FC=$(basename "$FC")
 
+EXTRA_CONFIG_ARGS=""
+
+if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" && "${target_platform}" == linux* ]]; then
+    # Only add this flag during cross-compilation on Linux platforms
+    EXTRA_CONFIG_ARGS="LDFLAGS_EX_BE=-Wl,--export-dynamic"
+fi
 
 ./configure \
     --prefix=$PREFIX \
@@ -26,7 +32,9 @@ export FC=$(basename "$FC")
     --with-openssl \
     --with-uuid=e2fs \
     --with-system-tzdata=$PREFIX/share/zoneinfo \
-    PG_SYSROOT="undefined"
+    PG_SYSROOT="undefined" \
+    $EXTRA_CONFIG_ARGS
+
 
 make -j $CPU_COUNT
 make -j $CPU_COUNT -C contrib
