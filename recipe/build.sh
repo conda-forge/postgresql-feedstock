@@ -10,13 +10,6 @@ export CC=$(basename "$CC")
 export CXX=$(basename "$CXX")
 export FC=$(basename "$FC")
 
-# remove `-fvisibility=hidden` from CFLAGS
-export CFLAGS="${CFLAGS/-fvisibility=hidden/}"
-export CXXFLAGS="${CXXFLAGS/-fvisibility=hidden/}"
-
-echo $CFLAGS
-echo $CXXFLAGS
-
 ./configure \
     --prefix=$PREFIX \
     --with-libraries=$PREFIX/lib \
@@ -32,8 +25,7 @@ echo $CXXFLAGS
     --with-openssl \
     --with-uuid=e2fs \
     --with-system-tzdata=$PREFIX/share/zoneinfo \
-    PG_SYSROOT="undefined" \
-    LDFLAGS_EX_BE="-Wl,--export-dynamic" \
+    PG_SYSROOT="undefined"
 
 make -j $CPU_COUNT
 make -j $CPU_COUNT -C contrib
