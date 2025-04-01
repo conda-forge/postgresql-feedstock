@@ -10,12 +10,9 @@ export CC=$(basename "$CC")
 export CXX=$(basename "$CXX")
 export FC=$(basename "$FC")
 
-# remove `-fvisibility=hidden` from CFLAGS
-export CFLAGS="${CFLAGS/-fvisibility=hidden/}"
-export CXXFLAGS="${CXXFLAGS/-fvisibility=hidden/}"
-
-echo $CFLAGS
-echo $CXXFLAGS
+if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" ]]; then
+    export LINK_ARGS='LDFLAGS_EX_BE="-Wl,--export-dynamic"'
+fi
 
 ./configure \
     --prefix=$PREFIX \
@@ -33,7 +30,8 @@ echo $CXXFLAGS
     --with-uuid=e2fs \
     --with-system-tzdata=$PREFIX/share/zoneinfo \
     PG_SYSROOT="undefined" \
-    LDFLAGS_EX_BE="-Wl,--export-dynamic" \
+    $LINK_ARGS
+
 
 make -j $CPU_COUNT
 make -j $CPU_COUNT -C contrib
