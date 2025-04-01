@@ -95,6 +95,8 @@ outputs:
         - pg_ctl -D $TEST_DIR stop                               # [unix]
         # Make sure that postgres contains `palloc0` symbol
         - nm -D $(which postgres) | grep -q palloc0 || exit 1    # [linux]
+      requirements:
+        - binutils   # [linux]
 
     script: install_db.sh  # [unix]
     script: install_db.bat  # [win]
