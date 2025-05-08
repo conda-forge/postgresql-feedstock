@@ -15,7 +15,7 @@ krb5:
 libpq:
 - '17'
 libxml2:
-- '2'
+- '2.13'
 lz4_c:
 - '1.10'
 openssl:
