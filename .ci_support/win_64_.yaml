@@ -13,7 +13,7 @@ krb5:
 libpq:
 - '17'
 libxml2:
-- '2'
+- '2.13'
 openssl:
 - '3'
 pin_run_as_build:
