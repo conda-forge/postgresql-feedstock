@@ -19,7 +19,7 @@ fi
 
 # ARMv8+ CRC32 vector support
 if [[ "${target_platform}" == "linux-aarch64" ]]; then
-    export CPPFLAGS="${CPPFLAGS:-} -DHWCAP_CRC32=0x80"
+    export CPPFLAGS="${CPPFLAGS:-} -DHWCAP_CRC32=0x80 -DHWCAP_SVE=0x400000"
 fi
 
 ./configure \
