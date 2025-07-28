@@ -125,9 +125,7 @@ outputs:
   - name: postgresql-plpython
     build:
       run_exports:
-        - {{ pin_subpackage('postgresql-plpython') }}
-      # needs packaging help on windows
-      skip: true  # [win]
+        - {{ pin_subpackage('postgresql-plpython') }}  
     requirements:
       build:
         - python                                 # [build_platform != target_platform]
@@ -170,7 +168,7 @@ outputs:
     test:
       commands:
     about:
-      summary: The plpythonu postgresql extension
+      summary: The plpython postgresql extension
       license: PostgreSQL
       license_file: COPYRIGHT
 
