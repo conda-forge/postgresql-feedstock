@@ -38,7 +38,7 @@ About postgresql-plpython
 
 Package license: PostgreSQL
 
-Summary: The plpythonu postgresql extension
+Summary: The plpython postgresql extension
 
 Current build status
 ====================
