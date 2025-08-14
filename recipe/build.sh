@@ -17,6 +17,11 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" && "${target_platform}" == linux
     EXTRA_CONFIG_ARGS="LDFLAGS_EX_BE=-Wl,--export-dynamic"
 fi
 
+# ARMv8+ CRC32 vector support
+if [[ "${target_platform}" == "linux-aarch64" ]]; then
+    export CPPFLAGS="${CPPFLAGS:-} -DHWCAP_CRC32=0x80 -DHWCAP_SVE=0x400000"
+fi
+
 ./configure \
     --prefix=$PREFIX \
     --with-libraries=$PREFIX/lib \
