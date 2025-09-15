@@ -16,7 +16,7 @@ source:
     - patches/fix_mac10_9_clock_realtime.patch  # [osx]
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -39,7 +39,7 @@ requirements:
     - icu
   host:
     - icu
-    - libxml2
+    - libxml2-devel
     - libxslt
     - krb5
     - openldap        # [not win]
@@ -85,7 +85,7 @@ outputs:
       host:
         # these are here for sake of run_exports taking effect
         - icu
-        - libxml2
+        - libxml2-devel
         - libxslt
         - krb5
         - openldap            # [not win]
@@ -150,7 +150,7 @@ outputs:
       host:
         # these are here for sake of run_exports taking effect
         - icu
-        - libxml2
+        - libxml2-devel
         - libxslt
         - krb5
         - openldap               # [not win]
