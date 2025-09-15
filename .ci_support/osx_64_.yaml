@@ -28,8 +28,8 @@ libpq:
 - '17'
 libuuid:
 - '2'
-libxml2:
-- '2.13'
+libxml2_devel:
+- '2.14'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 openssl:
