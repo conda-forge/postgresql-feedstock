@@ -19,7 +19,7 @@ source:
     - patches/fix_mac10_9_clock_realtime.patch  # [osx]
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -38,7 +38,7 @@ requirements:
     - posix            # [win]
     - pkg-config       # [unix]
   host:
-    - libxml2
+    - libxml2-devel
     - libxslt
     - krb5
     - openssl
@@ -76,7 +76,7 @@ outputs:
         - tzcode          # [not win]
         - tzdata          # [not win]
         - zlib
-        - libxml2
+        - libxml2-devel
         - {{ pin_subpackage('libpq', exact=True) }}
       run:
         - {{ pin_subpackage('libpq', exact=True) }}
@@ -124,7 +124,7 @@ outputs:
         - zlib
         - {{ pin_subpackage('postgresql', exact=True) }}
         - python
-        - libxml2
+        - libxml2-devel
         - libxslt
         - vc  # [win]
         - libuuid         # [not win]
