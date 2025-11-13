@@ -35,7 +35,7 @@ requirements:
     - m2-bison         # [win]
     - m2-diffutils     # [win]
     - m2-flex          # [win]
-    - posix            # [win]
+    - m2-base          # [win]
     - icu
   host:
     - icu
@@ -80,7 +80,7 @@ outputs:
         - m2-bison             # [win]
         - m2-diffutils         # [win]
         - m2-flex              # [win]
-        - posix                # [win]
+        - m2-base              # [win]
         - icu
       host:
         # these are here for sake of run_exports taking effect
@@ -145,7 +145,7 @@ outputs:
         - m2-bison               # [win]
         - m2-diffutils           # [win]
         - m2-flex                # [win]
-        - posix                  # [win]
+        - m2-base                # [win]
         - icu
       host:
         # these are here for sake of run_exports taking effect
@@ -193,7 +193,7 @@ outputs:
         - m2-bison               # [win]
         - m2-diffutils           # [win]
         - m2-flex                # [win]
-        - posix                  # [win]
+        - m2-base                # [win]
         - icu
       host:
         # these are here for sake of run_exports taking effect
