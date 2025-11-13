@@ -1,4 +1,4 @@
-{% set version = "18.0" %}
+{% set version = "18.1" %}
 {% set pqver = '.'.join(("5", version.split('.')[0])) %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
-  sha256: 0d5b903b1e5fe361bca7aa9507519933773eb34266b1357c4e7780fdee6d6078
+  sha256: ff86675c336c46e98ac991ebb306d1b67621ece1d06787beaade312c2c915d54
   patches:
     - patches/0002-disable-new-dtags.patch
     - patches/fix_gssapi_setenv_win.patch  # [win]
