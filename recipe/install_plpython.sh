@@ -23,9 +23,9 @@ export PYTHON=$PREFIX/bin/python
     --with-libxml \
     --with-libxslt \
     --with-lz4 \
-    --with-zstd \
-    --with-openssl \
+    --with-ssl=openssl \
     --with-uuid=e2fs \
+    --with-zstd \
     --with-system-tzdata=$PREFIX/share/zoneinfo \
     --with-python
 

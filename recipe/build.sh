@@ -11,11 +11,16 @@ if [[ "${target_platform}" == osx* ]]; then
   export LDFLAGS="${LDFLAGS} -fuse-ld=lld"
 fi
 
+EXTRA_FEATURES=""
 EXTRA_CONFIG_ARGS=""
+
+if [[ "${target_platform}" == linux* ]]; then
+    EXTRA_FEATURES+=" --with-liburing"
+fi
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" && "${target_platform}" == linux* ]]; then
     # Only add this flag during cross-compilation on Linux platforms
-    EXTRA_CONFIG_ARGS="LDFLAGS_EX_BE=-Wl,--export-dynamic"
+    EXTRA_CONFIG_ARGS+=" LDFLAGS_EX_BE=-Wl,--export-dynamic"
 fi
 
 # ARMv8+ CRC32 vector support
@@ -34,10 +39,11 @@ fi
     --with-libxml \
     --with-libxslt \
     --with-lz4 \
-    --with-zstd \
-    --with-openssl \
+    --with-ssl=openssl \
     --with-uuid=e2fs \
+    --with-zstd \
     --with-system-tzdata=$PREFIX/share/zoneinfo \
+    $EXTRA_FEATURES \
     PG_SYSROOT="undefined" \
     $EXTRA_CONFIG_ARGS
 
