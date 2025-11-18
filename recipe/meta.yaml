@@ -26,7 +26,6 @@ requirements:
     - lld              # [osx]
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
-    - {{ compiler('cxx') }}
     - make             # [unix]
     - pkg-config       # [unix]
     - bison            # [unix]
