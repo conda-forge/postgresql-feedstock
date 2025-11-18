@@ -22,9 +22,8 @@ build:
 
 requirements:
   build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - gnuconfig  # [unix]
+    - gnuconfig        # [unix]
+    - lld              # [osx]
     - {{ stdlib("c") }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
@@ -62,6 +61,8 @@ outputs:
         - {{ pin_subpackage('libpq') }}
     requirements:
       build:
+        - gnuconfig            # [unix]
+        - lld                  # [osx]
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
@@ -102,6 +103,8 @@ outputs:
       build:
         - python                                 # [build_platform != target_platform]
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+        - gnuconfig              # [unix]
+        - lld                    # [osx]
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
@@ -141,6 +144,8 @@ outputs:
         - {{ pin_subpackage('libpq') }}
     requirements:
       build:
+        - gnuconfig              # [unix]
+        - lld                    # [osx]
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
