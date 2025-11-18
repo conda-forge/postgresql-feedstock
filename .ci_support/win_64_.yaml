@@ -4,11 +4,8 @@ c_stdlib:
 - vs
 channel_sources:
 - conda-forge
-- conda-forge,conda-forge/label/python_rc
 channel_targets:
 - conda-forge main
-cxx_compiler:
-- vs2022
 icu:
 - '75'
 krb5:
@@ -20,7 +17,7 @@ libxml2_devel:
 lz4_c:
 - '1.10'
 openssl:
-- '3'
+- '3.5'
 target_platform:
 - win-64
 vc:
