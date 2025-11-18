@@ -10,6 +10,12 @@ export CC=$(basename "$CC")
 export CXX=$(basename "$CXX")
 export FC=$(basename "$FC")
 
+# Use lld linker on osx
+if [[ "${target_platform}" == osx* ]]; then
+  export LD=ld.lld
+  export LDFLAGS="${LDFLAGS} -fuse-ld=lld"
+fi
+
 export PYTHON=$PREFIX/bin/python
 ./configure \
     --prefix=$PREFIX \
