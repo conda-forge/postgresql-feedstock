@@ -7,6 +7,14 @@ export CC=$(basename "$CC")
 export CXX=$(basename "$CXX")
 export FC=$(basename "$FC")
 
+# Use lld linker on osx
+if [[ "${target_platform}" == osx* ]]; then
+  export LD=ld.lld
+  export LDFLAGS="${LDFLAGS} -fuse-ld=lld"
+fi
+
+EXTRA_CONFIG_ARGS=""
+
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" && "${target_platform}" == linux* ]]; then
     # Only add this flag during cross-compilation on Linux platforms
     EXTRA_CONFIG_ARGS="LDFLAGS_EX_BE=-Wl,--export-dynamic"
