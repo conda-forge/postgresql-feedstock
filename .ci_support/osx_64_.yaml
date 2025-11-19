@@ -1,11 +1,11 @@
 MACOSX_DEPLOYMENT_TARGET:
 - '10.13'
 MACOSX_SDK_VERSION:
-- '10.13'
+- '11.0'
 c_compiler:
 - clang
 c_compiler_version:
-- '19'
+- '20.1'
 c_stdlib:
 - macosx_deployment_target
 c_stdlib_version:
@@ -17,7 +17,7 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '19'
+- '20.1'
 icu:
 - '75'
 krb5:
@@ -28,6 +28,8 @@ libuuid:
 - '2'
 libxml2_devel:
 - '2.14'
+lld:
+- '20.1'
 lz4_c:
 - '1.10'
 macos_machine:
