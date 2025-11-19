@@ -15,7 +15,7 @@ source:
     - patches/fix_x509_name_win.patch  # [win]
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -38,6 +38,7 @@ requirements:
     - icu
   host:
     - icu
+    - liburing        # [linux]
     - libxml2-devel
     - libxslt
     - krb5
@@ -85,6 +86,7 @@ outputs:
       host:
         # these are here for sake of run_exports taking effect
         - icu
+        - liburing            # [linux]
         - libxml2-devel
         - libxslt
         - krb5
