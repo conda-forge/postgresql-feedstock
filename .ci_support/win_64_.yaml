@@ -15,7 +15,7 @@ libpq:
 libxml2:
 - '2.13'
 openssl:
-- '3'
+- '3.5'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -26,7 +26,7 @@ python:
 - 3.10.* *_cpython
 - 3.11.* *_cpython
 - 3.12.* *_cpython
-- 3.9.* *_cpython
+- 3.13.* *_cp313
 target_platform:
 - win-64
 vc:
