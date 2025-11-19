@@ -5,23 +5,19 @@ MACOSX_SDK_VERSION:
 c_compiler:
 - clang
 c_compiler_version:
-- '19'
+- '20.1'
 c_stdlib:
 - macosx_deployment_target
 c_stdlib_version:
 - '11.0'
 channel_sources:
 - conda-forge
-- conda-forge
-- conda-forge
-- conda-forge
-- conda-forge,conda-forge/label/python_rc
 channel_targets:
 - conda-forge main
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '19'
+- '20.1'
 icu:
 - '75'
 krb5:
@@ -32,12 +28,14 @@ libuuid:
 - '2'
 libxml2_devel:
 - '2.14'
+lld:
+- '20.1'
 lz4_c:
 - '1.10'
 macos_machine:
 - arm64-apple-darwin20.0.0
 openssl:
-- '3'
+- '3.5'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -57,8 +55,6 @@ target_platform:
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
-- - python
-  - channel_sources
 zlib:
 - '1'
 zstd:
