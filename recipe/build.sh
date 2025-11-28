@@ -5,6 +5,11 @@ set -exo pipefail
 # Get an updated config.sub and config.guess
 cp $BUILD_PREFIX/share/gnuconfig/config.* ./config
 
+# avoid absolute-paths in compilers
+export CC=$(basename "$CC")
+export CXX=$(basename "$CXX")
+export FC=$(basename "$FC")
+
 # Use lld linker on osx
 if [[ "${target_platform}" == osx* ]]; then
   export LD=ld.lld
