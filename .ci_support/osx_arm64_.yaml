@@ -15,7 +15,7 @@ channel_sources:
 channel_targets:
 - conda-forge main
 icu:
-- '75'
+- '78'
 krb5:
 - '1.21'
 libpq:
