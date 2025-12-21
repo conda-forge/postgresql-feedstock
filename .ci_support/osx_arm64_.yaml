@@ -19,7 +19,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '20.1'
 icu:
-- '75'
+- '78'
 krb5:
 - '1.21'
 libpq:
