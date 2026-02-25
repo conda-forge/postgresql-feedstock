@@ -19,7 +19,7 @@ docker_image:
 icu:
 - '78'
 krb5:
-- '1.21'
+- '1.22'
 libpq:
 - '17'
 libuuid:
