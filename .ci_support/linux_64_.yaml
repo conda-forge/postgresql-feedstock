@@ -15,9 +15,11 @@ docker_image:
 icu:
 - '78'
 krb5:
-- '1.21'
+- '1.22'
 libpq:
 - '17'
+liburing:
+- '2.14'
 libuuid:
 - '2'
 libxml2_devel:

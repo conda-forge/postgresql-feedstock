@@ -9,7 +9,7 @@ channel_targets:
 icu:
 - '78'
 krb5:
-- '1.21'
+- '1.22'
 libpq:
 - '17'
 libxml2_devel:
