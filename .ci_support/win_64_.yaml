@@ -9,7 +9,7 @@ channel_targets:
 cxx_compiler:
 - vs2022
 krb5:
-- '1.21'
+- '1.22'
 libpq:
 - '17'
 libxml2_devel:
