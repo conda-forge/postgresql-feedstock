@@ -3,7 +3,7 @@
 
 package:
   name: postgresql-split
-  version: {{ version }}
+  version: "{{ version }}"
 
 source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
@@ -29,11 +29,11 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
     - make                       # [unix]
+    - m2-base          # [win]
     - m2-bison         # [win]
     - m2-diffutils     # [win]
     - m2-flex          # [win]
     - perl 5.*         # [win]
-    - posix            # [win]
     - pkg-config       # [unix]
   host:
     - libxml2
