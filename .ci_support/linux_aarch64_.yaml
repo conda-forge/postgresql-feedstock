@@ -23,11 +23,11 @@ fortran_compiler_version:
 krb5:
 - '1.22'
 libpq:
-- '17'
+- '18'
 libuuid:
 - '2'
 libxml2:
-- '2.13'
+- '2.14'
 openssl:
 - '3.5'
 pin_run_as_build:
@@ -35,7 +35,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 postgresql:
-- '17'
+- '18'
 python:
 - 3.10.* *_cpython
 - 3.11.* *_cpython
