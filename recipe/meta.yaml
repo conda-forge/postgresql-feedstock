@@ -1,13 +1,13 @@
-{% set version = "14.22" %}
+{% set version = "14.23" %}
 {% set pqver = '.'.join(("5", version.split('.')[0])) %}
 
 package:
   name: postgresql-split
-  version: {{ version }}
+  version: "{{ version }}"
 
 source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
-  sha256: f57938ad30067077720277f6d7db05aafc07d1545efd2ed82f199ba828a7ad34
+  sha256: cc7216822b546330e29c2f91e123c8734a4c41795082145bb962aa712e8c94a5
   patches:
     - patches/0001-fix-win-zlib-name.patch
     - patches/0002-disable-new-dtags.patch
@@ -29,13 +29,13 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}  # [not win]
     - make                       # [unix]
+    - m2-base            # [win]
     - m2-bison         # [win]
     - m2-diffutils     # [win]
     - m2-flex          # [win]
     - perl 5.*         # [win]
-    - posix            # [win]
   host:
-    - libxml2
+    - libxml2-devel
     - libxslt 1.1.*
     - krb5
     - openssl
@@ -76,7 +76,7 @@ outputs:
         - tzcode          # [not win]
         - tzdata          # [not win]
         - zlib
-        - libxml2
+        - libxml2-devel
         - msinttypes       # [win and float(vc) < 14]
         - {{ pin_subpackage('libpq', exact=True) }}
       run:
@@ -120,7 +120,7 @@ outputs:
         - zlib
         - {{ pin_subpackage('postgresql', exact=True) }}
         - python
-        - libxml2
+        - libxml2-devel
         - libxslt 1.1.*
         - vc  # [win]
         - libuuid         # [not win]
