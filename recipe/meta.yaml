@@ -35,7 +35,7 @@ requirements:
     - m2-flex          # [win]
     - perl 5.*         # [win]
   host:
-    - libxml2
+    - libxml2-devel
     - libxslt 1.1.*
     - krb5
     - openssl
@@ -76,7 +76,7 @@ outputs:
         - tzcode          # [not win]
         - tzdata          # [not win]
         - zlib
-        - libxml2
+        - libxml2-devel
         - msinttypes       # [win and float(vc) < 14]
         - {{ pin_subpackage('libpq', exact=True) }}
       run:
@@ -120,7 +120,7 @@ outputs:
         - zlib
         - {{ pin_subpackage('postgresql', exact=True) }}
         - python
-        - libxml2
+        - libxml2-devel
         - libxslt 1.1.*
         - vc  # [win]
         - libuuid         # [not win]
