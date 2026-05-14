@@ -3,7 +3,7 @@
 
 package:
   name: postgresql-split
-  version: {{ version }}
+  version: "{{ version }}"
 
 source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
@@ -32,10 +32,10 @@ requirements:
     - bison            # [unix]
     - ninja            # [win]
     - perl 5.*         # [win]
+    - m2-base          # [win]
     - m2-bison         # [win]
     - m2-diffutils     # [win]
     - m2-flex          # [win]
-    - posix            # [win]
     - icu
   host:
     - icu
