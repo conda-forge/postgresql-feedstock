@@ -23,7 +23,7 @@ icu:
 krb5:
 - '1.22'
 libpq:
-- '17'
+- '18'
 libuuid:
 - '2'
 libxml2_devel:
@@ -41,7 +41,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 postgresql:
-- '17'
+- '18'
 python:
 - 3.10.* *_cpython
 - 3.11.* *_cpython
