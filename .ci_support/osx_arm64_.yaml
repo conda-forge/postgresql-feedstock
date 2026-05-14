@@ -28,7 +28,7 @@ libpq:
 - '18'
 libuuid:
 - '2'
-libxml2:
+libxml2_devel:
 - '2.14'
 lld:
 - '20.1'
