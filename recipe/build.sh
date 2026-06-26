@@ -52,10 +52,8 @@ make -j $CPU_COUNT -C contrib
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
     # make check # Failing with 'initdb: cannot be run as root'.
-    if [ ${target_platform} == linux-64 ]; then
-        # osx, aarch64 and ppc64le checks fail in some strange ways
+    if [ "${target_platform}" != "linux-ppc64le" ]; then
         make check
         make check -C contrib
     fi
-    # make check -C src/interfaces/ecpg
 fi
