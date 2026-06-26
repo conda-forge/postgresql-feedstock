@@ -23,7 +23,6 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - gnuconfig        # [unix]
     - meson            # [win]
-    - lld              # [osx]
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - make             # [unix]
@@ -69,7 +68,6 @@ outputs:
       build:
         - gnuconfig            # [unix]
         - meson                # [win]
-        - lld                  # [osx]
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
@@ -136,7 +134,6 @@ outputs:
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         - gnuconfig              # [unix]
         - meson                  # [win]
-        - lld                    # [osx]
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
@@ -185,7 +182,6 @@ outputs:
       build:
         - gnuconfig              # [unix]
         - meson                  # [win]
-        - lld                    # [osx]
         # solely for sake of lining up vc versions and other runtimes
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
