@@ -8,6 +8,8 @@ EXTRA_CONFIG_ARGS=""
 # Get an updated config.sub and config.guess
 cp $BUILD_PREFIX/share/gnuconfig/config.* ./config
 
+EXTRA_FEATURES+=" --with-llvm"
+
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" && "${target_platform}" == linux* ]]; then
     # Only add this flag during cross-compilation on Linux platforms
     EXTRA_CONFIG_ARGS+=" LDFLAGS_EX_BE=-Wl,--export-dynamic"
@@ -26,7 +28,6 @@ fi
     --prefix=$PREFIX \
     --with-libraries=$PREFIX/lib \
     --with-includes=$PREFIX/include \
-    --enable-thread-safety \
     --with-gssapi \
     --with-icu \
     --with-ldap \

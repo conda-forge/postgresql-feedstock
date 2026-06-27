@@ -29,6 +29,7 @@ meson setup ^
    --backend ninja ^
    --buildtype=release ^
    -Dcassert=false ^
+   -Dllvm=enabled ^
    -Dnls=disabled ^
    -Dplperl=disabled ^
    -Dpltcl=disabled ^
