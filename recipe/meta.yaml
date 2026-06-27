@@ -1,5 +1,6 @@
 {% set version = "18.4" %}
 {% set pqver = '.'.join(("5", version.split('.')[0])) %}
+{% set llvm_version = "21" %}
 
 package:
   name: postgresql-split
@@ -23,8 +24,9 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - gnuconfig        # [unix]
     - meson            # [win]
-    - {{ compiler('c') }}
     - {{ stdlib("c") }}
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - make             # [unix]
     - pkg-config       # [unix]
     - bison            # [unix]
@@ -35,6 +37,8 @@ requirements:
     - m2-diffutils     # [win]
     - m2-flex          # [win]
     - icu
+    - llvmdev {{ llvm_version }}.*
+    - llvm-tools {{ llvm_version }}.*
   host:
     - icu
     - liburing        # [linux]
@@ -69,8 +73,9 @@ outputs:
         - gnuconfig            # [unix]
         - meson                # [win]
         # solely for sake of lining up vc versions and other runtimes
-        - {{ compiler('c') }}
         - {{ stdlib("c") }}
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
         - make                 # [unix]
         - pkg-config           # [unix]
         - bison                # [unix]
@@ -81,6 +86,8 @@ outputs:
         - m2-flex              # [win]
         - posix                # [win]
         - icu
+        - llvmdev {{ llvm_version }}.*
+        - llvm-tools {{ llvm_version }}.*
       host:
         # these are here for sake of run_exports taking effect
         - icu
@@ -135,8 +142,9 @@ outputs:
         - gnuconfig              # [unix]
         - meson                  # [win]
         # solely for sake of lining up vc versions and other runtimes
-        - {{ compiler('c') }}
         - {{ stdlib("c") }}
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
         - make                   # [unix]
         - pkg-config             # [unix]
         - bison                  # [unix]
@@ -147,6 +155,8 @@ outputs:
         - m2-flex                # [win]
         - posix                  # [win]
         - icu
+        - llvmdev {{ llvm_version }}.*
+        - llvm-tools {{ llvm_version }}.*
       host:
         # these are here for sake of run_exports taking effect
         - icu
@@ -183,8 +193,9 @@ outputs:
         - gnuconfig              # [unix]
         - meson                  # [win]
         # solely for sake of lining up vc versions and other runtimes
-        - {{ compiler('c') }}
         - {{ stdlib("c") }}
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
         - make                   # [unix]
         - pkg-config             # [unix]
         - bison                  # [unix]
@@ -195,6 +206,8 @@ outputs:
         - m2-flex                # [win]
         - posix                  # [win]
         - icu
+        - llvmdev {{ llvm_version }}.*
+        - llvm-tools {{ llvm_version }}.*
       host:
         # these are here for sake of run_exports taking effect
         - icu
