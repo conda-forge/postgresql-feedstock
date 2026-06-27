@@ -2,26 +2,11 @@
 
 set -exo pipefail
 
-# Get an updated config.sub and config.guess
-cp $BUILD_PREFIX/share/gnuconfig/config.* ./config
-
-# avoid absolute-paths in compilers
-export CC=$(basename "$CC")
-export CXX=$(basename "$CXX")
-export FC=$(basename "$FC")
-
-# Use lld linker on osx
-if [[ "${target_platform}" == osx* ]]; then
-  export LD=ld.lld
-  export LDFLAGS="${LDFLAGS} -fuse-ld=lld"
-fi
-
 EXTRA_FEATURES=""
 EXTRA_CONFIG_ARGS=""
 
-if [[ "${target_platform}" == linux* ]]; then
-    EXTRA_FEATURES+=" --with-liburing"
-fi
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/gnuconfig/config.* ./config
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" && "${target_platform}" == linux* ]]; then
     # Only add this flag during cross-compilation on Linux platforms
@@ -31,6 +16,10 @@ fi
 # ARMv8+ CRC32 vector support
 if [[ "${target_platform}" == "linux-aarch64" ]]; then
     export CPPFLAGS="${CPPFLAGS:-} -DHWCAP_CRC32=0x80 -DHWCAP_SVE=0x400000"
+fi
+
+if [[ "${target_platform}" == linux* ]]; then
+    EXTRA_FEATURES+=" --with-liburing"
 fi
 
 ./configure \
@@ -57,11 +46,6 @@ make -j $CPU_COUNT
 make -j $CPU_COUNT -C contrib
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
-    # make check # Failing with 'initdb: cannot be run as root'.
-    if [ ${target_platform} == linux-64 ]; then
-        # osx, aarch64 and ppc64le checks fail in some strange ways
-        make check
-        make check -C contrib
-    fi
-    # make check -C src/interfaces/ecpg
+    make check
+    make check -C contrib
 fi

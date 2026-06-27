@@ -1,5 +1,6 @@
+#!/bin/bash
+
+set -exo pipefail
+
 make install
-mkdir backup
-mv $PREFIX/bin/pg_config backup
-rm -rf $PREFIX/bin/*
-mv backup/pg_config $PREFIX/bin
+find $PREFIX/bin -type f ! -name pg_config -exec rm {} \;
