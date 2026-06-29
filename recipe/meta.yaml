@@ -15,7 +15,7 @@ source:
     - patches/fix_x509_name_win.patch  # [win]
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
