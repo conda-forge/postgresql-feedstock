@@ -41,6 +41,7 @@ requirements:
     - llvm-tools {{ llvm_version }}.*
   host:
     - icu
+    - llvm {{ llvm_version }}.*
     - liburing        # [linux]
     - libxml2-devel
     - libxslt
@@ -91,6 +92,7 @@ outputs:
       host:
         # these are here for sake of run_exports taking effect
         - icu
+        - llvm {{ llvm_version }}.*
         - liburing            # [linux]
         - libxml2-devel
         - libxslt
@@ -160,6 +162,7 @@ outputs:
       host:
         # these are here for sake of run_exports taking effect
         - icu
+        - llvm {{ llvm_version }}.*
         - libxml2-devel
         - libxslt
         - krb5
@@ -211,6 +214,7 @@ outputs:
       host:
         # these are here for sake of run_exports taking effect
         - icu
+        - llvm {{ llvm_version }}.*
         - krb5
         - openldap               # [not win]
         - openssl

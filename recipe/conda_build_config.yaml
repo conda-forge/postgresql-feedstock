@@ -4,7 +4,11 @@ MACOSX_SDK_VERSION:            # [osx]
 # https://github.com/EnterpriseDB/edb-installers/blob/REL-18/settings.sh.in
 c_stdlib_version:              # [osx]
   - '13'                       # [osx]
-c_compiler_version:            # [osx]
-  - '21'                       # [osx]
-cxx_compiler_version:          # [osx]
-  - '21'                       # [osx]
+c_compiler:
+  - clang
+cxx_compiler:
+  - clangxx
+c_compiler_version:
+  - '21'
+cxx_compiler_version:
+  - '21'
