@@ -220,18 +220,17 @@ outputs:
         - openssl
         - tzcode                 # [not win]
         - tzdata                 # [not win]
-    script: install_runtime.sh  # [unix]
+    script: install_runtime.sh   # [unix]
     script: install_runtime.bat  # [win]
     test:
       commands:
-        - $PREFIX/bin/pg_config                            # [unix]
-        - %LIBRARY_BIN%\\pg_config.exe                     # [win]
         - test -f $PREFIX/lib/libpq.so.{{ pqver }}         # [linux]
         - test -f $PREFIX/lib/libpq.so.5                   # [linux]
         - test -f $PREFIX/lib/libpq.so                     # [linux]
         - test -f $PREFIX/lib/libpq.5.dylib                # [osx]
         - test -f $PREFIX/lib/libpq.dylib                  # [osx]
         - IF NOT EXIST %LIBRARY_BIN%\libpq.dll EXIT 1      # [win]
+        - test -f $PREFIX/bin/pg_config                    # [unix]
         - IF NOT EXIST %LIBRARY_BIN%\pg_config.exe EXIT 1  # [win]
     about:
       summary: The postgres runtime libraries and utilities (not the server itself)
