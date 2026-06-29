@@ -224,7 +224,7 @@ outputs:
     script: install_runtime.bat  # [win]
     test:
       commands:
-        - pg_config                                        # [unix]
+        - "$PREFIX/bin/pg_config" --version                  # [unix]
         - "%LIBRARY_BIN%\\pg_config.exe" --version         # [win]
         - test -f $PREFIX/lib/libpq.so.{{ pqver }}         # [linux]
         - test -f $PREFIX/lib/libpq.so.5                   # [linux]
