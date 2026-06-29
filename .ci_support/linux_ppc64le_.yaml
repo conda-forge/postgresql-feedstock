@@ -1,7 +1,7 @@
 c_compiler:
-- gcc
+- clang
 c_compiler_version:
-- '14'
+- '21'
 c_stdlib:
 - sysroot
 c_stdlib_version:
@@ -10,6 +10,10 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
+cxx_compiler:
+- clangxx
+cxx_compiler_version:
+- '21'
 docker_image:
 - quay.io/condaforge/linux-anvil-x86_64:alma9
 icu:
@@ -44,6 +48,9 @@ readline:
 - '8'
 target_platform:
 - linux-ppc64le
+zip_keys:
+- - c_compiler_version
+  - cxx_compiler_version
 zlib:
 - '1'
 zstd:
