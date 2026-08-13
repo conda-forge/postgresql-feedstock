@@ -2,7 +2,6 @@
 
 set -exo pipefail
 
-EXTRA_FEATURES=""
 EXTRA_CONFIG_ARGS=""
 
 # Get an updated config.sub and config.guess
