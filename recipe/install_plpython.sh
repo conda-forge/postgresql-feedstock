@@ -2,18 +2,15 @@
 
 set -exo pipefail
 
+EXTRA_FEATURES=""
+EXTRA_CONFIG_ARGS=""
+
 # Get an updated config.sub and config.guess
 cp $BUILD_PREFIX/share/gnuconfig/config.* ./config
 
-# avoid absolute-paths in compilers
-export CC=$(basename "$CC")
-export CXX=$(basename "$CXX")
-export FC=$(basename "$FC")
-
-# Use lld linker on osx
-if [[ "${target_platform}" == osx* ]]; then
-  export LD=ld.lld
-  export LDFLAGS="${LDFLAGS} -fuse-ld=lld"
+if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" && "${target_platform}" == linux* ]]; then
+    # Only add this flag during cross-compilation on Linux platforms
+    EXTRA_CONFIG_ARGS+=" LDFLAGS_EX_BE=-Wl,--export-dynamic"
 fi
 
 export PYTHON=$PREFIX/bin/python
@@ -28,7 +25,9 @@ export PYTHON=$PREFIX/bin/python
     --with-libxslt \
     --with-gssapi \
     --with-system-tzdata=$PREFIX/share/zoneinfo \
-    --with-python
+    --with-python \
+    PG_SYSROOT="undefined" \
+    $EXTRA_CONFIG_ARGS
 
 for dir in src/pl/plpython contrib/hstore_plpython; do
   pushd $dir
