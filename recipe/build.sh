@@ -45,7 +45,7 @@ fi
 make -j $CPU_COUNT
 make -j $CPU_COUNT -C contrib
 
-if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
     make check
     make check -C contrib
 fi
