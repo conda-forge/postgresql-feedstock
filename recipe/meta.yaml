@@ -15,7 +15,7 @@ source:
     - patches/fix_x509_name_win.patch  # [win]
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -131,6 +131,7 @@ outputs:
     requirements:
       build:
         - python                                 # [build_platform != target_platform]
+        - libpython                              # [build_platform != target_platform]
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         - gnuconfig              # [unix]
         - meson                  # [win]
@@ -163,6 +164,7 @@ outputs:
         - readline               # [not win]
         - {{ pin_subpackage('postgresql', exact=True) }}
         - python
+        - libpython
       run:
         - {{ pin_subpackage('postgresql', exact=True) }}
         - python

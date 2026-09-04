@@ -1,11 +1,6 @@
 bot:
   abi_migration_branches:
   - v17.x
-provider:
-  linux_aarch64: default
-  linux_ppc64le: default
-  osx_arm64: default
-  win: azure
 build_platform:
   linux_ppc64le: linux_64
 conda_build:
@@ -14,4 +9,9 @@ conda_forge_output_validation: true
 github:
   branch_name: main
   tooling_branch_name: main
+provider:
+  linux_aarch64: default
+  linux_ppc64le: default
+  osx_arm64: default
+  win: azure
 test: native_and_emulated
