@@ -37,8 +37,9 @@ requirements:
     - m2-diffutils     # [win]
     - m2-flex          # [win]
     - icu
-    - llvmdev {{ llvm_version }}.*
-    - llvm-tools {{ llvm_version }}.*
+    - clang {{ llvm_version }}.*       # [unix]
+    - llvmdev {{ llvm_version }}.*     # [unix]
+    - llvm-tools {{ llvm_version }}.*  # [unix]
   host:
     - icu
     - llvm {{ llvm_version }}.*
@@ -87,8 +88,9 @@ outputs:
         - m2-flex              # [win]
         - posix                # [win]
         - icu
-        - llvmdev {{ llvm_version }}.*
-        - llvm-tools {{ llvm_version }}.*
+        - clang {{ llvm_version }}.*       # [unix]
+        - llvmdev {{ llvm_version }}.*     # [unix]
+        - llvm-tools {{ llvm_version }}.*  # [unix]
       host:
         # these are here for sake of run_exports taking effect
         - icu
@@ -162,8 +164,9 @@ outputs:
         - m2-flex                # [win]
         - posix                  # [win]
         - icu
-        - llvmdev {{ llvm_version }}.*
-        - llvm-tools {{ llvm_version }}.*
+        - clang {{ llvm_version }}.*       # [unix]
+        - llvmdev {{ llvm_version }}.*     # [unix]
+        - llvm-tools {{ llvm_version }}.*  # [unix]
       host:
         # these are here for sake of run_exports taking effect
         - icu
@@ -215,8 +218,9 @@ outputs:
         - m2-flex                # [win]
         - posix                  # [win]
         - icu
-        - llvmdev {{ llvm_version }}.*
-        - llvm-tools {{ llvm_version }}.*
+        - clang {{ llvm_version }}.*       # [unix]
+        - llvmdev {{ llvm_version }}.*     # [unix]
+        - llvm-tools {{ llvm_version }}.*  # [unix]
       host:
         # these are here for sake of run_exports taking effect
         - icu
