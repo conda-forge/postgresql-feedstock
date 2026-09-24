@@ -116,10 +116,10 @@ outputs:
         - $PREFIX/bin/postgres --help                            # [unix]
         - postgres --help                                        # [win]
         # run a simple initdb check on unix
-        - export TEST_DIR=$PWD/test_postgres                                 # [unix]
-        - $PREFIX/bin/initdb -D $TEST_DIR                                    # [unix]
-        - $PREFIX/bin/pg_ctl -D $TEST_DIR -l $TEST_DIR/logfile start || cat $TEST_DIR/logfile  # [unix]
-        - $PREFIX/bin/pg_ctl -D $TEST_DIR stop                               # [unix]
+        - export PGDATA=$SRC_DIR/test_postgres                                # [unix]
+        - $PREFIX/bin/initdb                                                  # [unix]
+        - $PREFIX/bin/pg_ctl -l $PGDATA/logfile start || cat $PGDATA/logfile  # [unix]
+        - $PREFIX/bin/pg_ctl stop                                             # [unix]
         # Make sure that postgres contains `palloc0` symbol
         - nm -D $PREFIX/bin/postgres | grep -q palloc0 || exit 1             # [linux]
 
