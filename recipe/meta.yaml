@@ -118,13 +118,16 @@ outputs:
         # run a simple initdb check on unix
         - export PGDATA=$SRC_DIR/test_postgres                                # [unix]
         - $PREFIX/bin/initdb                                                  # [unix]
-        - $PREFIX/bin/pg_ctl -l $PGDATA/logfile start || cat $PGDATA/logfile  # [unix]
+        - ls -la "$PGDATA"                                                    # [linux]
+        - strace -f -e trace=open,openat -P "$PGDATA/postmaster.pid" $PREFIX/bin/pg_ctl -l "$PGDATA/logfile" start || { cat "$PGDATA/logfile"; exit 1; }  # [linux]
+        - $PREFIX/bin/pg_ctl -l $PGDATA/logfile start || cat $PGDATA/logfile  # [unix and not linux]
         - $PREFIX/bin/pg_ctl stop                                             # [unix]
         # Make sure that postgres contains `palloc0` symbol
         - nm -D $PREFIX/bin/postgres | grep -q palloc0 || exit 1             # [linux]
 
       requirements:
         - binutils   # [linux]
+        - strace     # [linux]
     script: install_db.sh  # [unix]
     script: install_db.bat  # [win]
     about:
