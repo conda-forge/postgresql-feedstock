@@ -39,6 +39,7 @@ requirements:
     - icu
     - llvmdev {{ llvm_version }}.*
     - llvm-tools {{ llvm_version }}.*
+    - llvm {{ llvm_version }}.*  # [win]
   host:
     - icu
     - llvm {{ llvm_version }}.*
@@ -89,6 +90,7 @@ outputs:
         - icu
         - llvmdev {{ llvm_version }}.*
         - llvm-tools {{ llvm_version }}.*
+        - llvm {{ llvm_version }}.*  # [win]
       host:
         # these are here for sake of run_exports taking effect
         - icu
@@ -160,6 +162,7 @@ outputs:
         - icu
         - llvmdev {{ llvm_version }}.*
         - llvm-tools {{ llvm_version }}.*
+        - llvm {{ llvm_version }}.*  # [win]
       host:
         # these are here for sake of run_exports taking effect
         - icu
@@ -213,6 +216,7 @@ outputs:
         - icu
         - llvmdev {{ llvm_version }}.*
         - llvm-tools {{ llvm_version }}.*
+        - llvm {{ llvm_version }}.*  # [win]
       host:
         # these are here for sake of run_exports taking effect
         - icu
