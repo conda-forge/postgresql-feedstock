@@ -37,7 +37,6 @@ requirements:
     - m2-diffutils     # [win]
     - m2-flex          # [win]
     - icu
-    - clang_{{ target_platform }} {{ llvm_version }}.*  # [build_platform != target_platform and unix]
     - clang {{ llvm_version }}.*       # [unix]
     - llvmdev {{ llvm_version }}.*     # [unix]
     - llvm-tools {{ llvm_version }}.*  # [unix]
@@ -89,7 +88,6 @@ outputs:
         - m2-flex              # [win]
         - posix                # [win]
         - icu
-        - clang_{{ target_platform }} {{ llvm_version }}.*  # [build_platform != target_platform and unix]
         - clang {{ llvm_version }}.*       # [unix]
         - llvmdev {{ llvm_version }}.*     # [unix]
         - llvm-tools {{ llvm_version }}.*  # [unix]
@@ -163,7 +161,6 @@ outputs:
         - m2-flex                # [win]
         - posix                  # [win]
         - icu
-        - clang_{{ target_platform }} {{ llvm_version }}.*  # [build_platform != target_platform and unix]
         - clang {{ llvm_version }}.*       # [unix]
         - llvmdev {{ llvm_version }}.*     # [unix]
         - llvm-tools {{ llvm_version }}.*  # [unix]
@@ -218,7 +215,6 @@ outputs:
         - m2-flex                # [win]
         - posix                  # [win]
         - icu
-        - clang_{{ target_platform }} {{ llvm_version }}.*  # [build_platform != target_platform and unix]
         - clang {{ llvm_version }}.*       # [unix]
         - llvmdev {{ llvm_version }}.*     # [unix]
         - llvm-tools {{ llvm_version }}.*  # [unix]
