@@ -8,7 +8,10 @@ EXTRA_CONFIG_ARGS=""
 # Get an updated config.sub and config.guess
 cp $BUILD_PREFIX/share/gnuconfig/config.* ./config
 
-EXTRA_FEATURES+=" --with-llvm"
+if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
+   # Only add the LLVM feature when buiding natively
+    EXTRA_FEATURES+=" --with-llvm"
+fi
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" == "1" && "${target_platform}" == linux* ]]; then
     # Only add this flag during cross-compilation on Linux platforms
