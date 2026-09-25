@@ -1,5 +1,6 @@
 {% set version = "18.6" %}
 {% set pqver = '.'.join(("5", version.split('.')[0])) %}
+{% set llvm_version = "21" %}
 
 package:
   name: postgresql-split
@@ -15,7 +16,7 @@ source:
     - patches/fix_x509_name_win.patch  # [win]
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -23,8 +24,9 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - gnuconfig        # [unix]
     - meson            # [win]
-    - {{ compiler('c') }}
     - {{ stdlib("c") }}
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - make             # [unix]
     - pkg-config       # [unix]
     - bison            # [unix]
@@ -35,7 +37,11 @@ requirements:
     - m2-diffutils     # [win]
     - m2-flex          # [win]
     - icu
+    - clang {{ llvm_version }}.*       # [unix]
+    - llvmdev {{ llvm_version }}.*     # [unix]
+    - llvm-tools {{ llvm_version }}.*  # [unix]
   host:
+    - llvm {{ llvm_version }}.*        # [unix]
     - icu
     - liburing        # [linux]
     - libxml2-devel
@@ -69,8 +75,9 @@ outputs:
         - gnuconfig            # [unix]
         - meson                # [win]
         # solely for sake of lining up vc versions and other runtimes
-        - {{ compiler('c') }}
         - {{ stdlib("c") }}
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
         - make                 # [unix]
         - pkg-config           # [unix]
         - bison                # [unix]
@@ -81,8 +88,12 @@ outputs:
         - m2-flex              # [win]
         - posix                # [win]
         - icu
+        - clang {{ llvm_version }}.*       # [unix]
+        - llvmdev {{ llvm_version }}.*     # [unix]
+        - llvm-tools {{ llvm_version }}.*  # [unix]
       host:
         # these are here for sake of run_exports taking effect
+        - llvm {{ llvm_version }}.*        # [unix]
         - icu
         - liburing            # [linux]
         - libxml2-devel
@@ -104,14 +115,17 @@ outputs:
 
     test:
       commands:
-        - postgres --help
+        - test -f $PREFIX/bin/postgres                    # [unix]
+        - $PREFIX/bin/postgres --help                     # [unix]
+        - IF NOT EXIST %LIBRARY_BIN%\postgres.exe EXIT 1  # [win]
+        - postgres --help                                 # [win]
         # run a simple initdb check on unix
-        - export TEST_DIR=./test_postgres                      # [unix]
-        - initdb -D $TEST_DIR                                  # [unix]
-        - pg_ctl -D $TEST_DIR -l logfile start || cat ./logfile  # [unix]
-        - pg_ctl -D $TEST_DIR stop                             # [unix]
+        - export PGDATA=$SRC_DIR/test_postgres                                # [unix]
+        - $PREFIX/bin/initdb                                                  # [unix]
+        - $PREFIX/bin/pg_ctl -l $PGDATA/logfile start || cat $PGDATA/logfile  # [unix]
+        - $PREFIX/bin/pg_ctl stop                                             # [unix]
         # Make sure that postgres contains `palloc0` symbol
-        - nm -D $(which postgres) | grep -q palloc0 || exit 1  # [linux]
+        - nm -D $PREFIX/bin/postgres | grep -q palloc0 || exit 1             # [linux]
 
       requirements:
         - binutils   # [linux]
@@ -136,8 +150,9 @@ outputs:
         - gnuconfig              # [unix]
         - meson                  # [win]
         # solely for sake of lining up vc versions and other runtimes
-        - {{ compiler('c') }}
         - {{ stdlib("c") }}
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
         - make                   # [unix]
         - pkg-config             # [unix]
         - bison                  # [unix]
@@ -148,8 +163,12 @@ outputs:
         - m2-flex                # [win]
         - posix                  # [win]
         - icu
+        - clang {{ llvm_version }}.*       # [unix]
+        - llvmdev {{ llvm_version }}.*     # [unix]
+        - llvm-tools {{ llvm_version }}.*  # [unix]
       host:
         # these are here for sake of run_exports taking effect
+        - llvm {{ llvm_version }}.*        # [unix]
         - icu
         - libxml2-devel
         - libxslt
@@ -185,8 +204,9 @@ outputs:
         - gnuconfig              # [unix]
         - meson                  # [win]
         # solely for sake of lining up vc versions and other runtimes
-        - {{ compiler('c') }}
         - {{ stdlib("c") }}
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
         - make                   # [unix]
         - pkg-config             # [unix]
         - bison                  # [unix]
@@ -197,26 +217,32 @@ outputs:
         - m2-flex                # [win]
         - posix                  # [win]
         - icu
+        - clang {{ llvm_version }}.*       # [unix]
+        - llvmdev {{ llvm_version }}.*     # [unix]
+        - llvm-tools {{ llvm_version }}.*  # [unix]
       host:
         # these are here for sake of run_exports taking effect
+        - llvm {{ llvm_version }}.*        # [unix]
         - icu
         - krb5
         - openldap               # [not win]
         - openssl
         - tzcode                 # [not win]
         - tzdata                 # [not win]
-    script: install_runtime.sh  # [unix]
+    script: install_runtime.sh   # [unix]
     script: install_runtime.bat  # [win]
     test:
       commands:
-        - pg_config
         - test -f $PREFIX/lib/libpq.so.{{ pqver }}         # [linux]
         - test -f $PREFIX/lib/libpq.so.5                   # [linux]
         - test -f $PREFIX/lib/libpq.so                     # [linux]
         - test -f $PREFIX/lib/libpq.5.dylib                # [osx]
         - test -f $PREFIX/lib/libpq.dylib                  # [osx]
         - IF NOT EXIST %LIBRARY_BIN%\libpq.dll EXIT 1      # [win]
+        - test -f $PREFIX/bin/pg_config                    # [unix]
+        - $PREFIX/bin/pg_config                            # [unix]
         - IF NOT EXIST %LIBRARY_BIN%\pg_config.exe EXIT 1  # [win]
+        - pg_config                                        # [win]
     about:
       summary: The postgres runtime libraries and utilities (not the server itself)
       license: PostgreSQL
