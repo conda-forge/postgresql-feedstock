@@ -41,8 +41,8 @@ requirements:
     - llvmdev {{ llvm_version }}.*     # [unix]
     - llvm-tools {{ llvm_version }}.*  # [unix]
   host:
+    - llvm {{ llvm_version }}.*        # [unix]
     - icu
-    - llvm {{ llvm_version }}.*
     - liburing        # [linux]
     - libxml2-devel
     - libxslt
@@ -93,8 +93,8 @@ outputs:
         - llvm-tools {{ llvm_version }}.*  # [unix]
       host:
         # these are here for sake of run_exports taking effect
+        - llvm {{ llvm_version }}.*        # [unix]
         - icu
-        - llvm {{ llvm_version }}.*
         - liburing            # [linux]
         - libxml2-devel
         - libxslt
@@ -166,8 +166,8 @@ outputs:
         - llvm-tools {{ llvm_version }}.*  # [unix]
       host:
         # these are here for sake of run_exports taking effect
+        - llvm {{ llvm_version }}.*        # [unix]
         - icu
-        - llvm {{ llvm_version }}.*
         - libxml2-devel
         - libxslt
         - krb5
@@ -220,8 +220,8 @@ outputs:
         - llvm-tools {{ llvm_version }}.*  # [unix]
       host:
         # these are here for sake of run_exports taking effect
+        - llvm {{ llvm_version }}.*        # [unix]
         - icu
-        - llvm {{ llvm_version }}.*
         - krb5
         - openldap               # [not win]
         - openssl
