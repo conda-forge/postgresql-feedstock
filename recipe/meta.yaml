@@ -115,8 +115,10 @@ outputs:
 
     test:
       commands:
-        - $PREFIX/bin/postgres --help                            # [unix]
-        - postgres --help                                        # [win]
+        - test -f $PREFIX/bin/postgres                    # [unix]
+        - $PREFIX/bin/postgres --help                     # [unix]
+        - IF NOT EXIST %LIBRARY_BIN%\postgres.exe EXIT 1  # [win]
+        - postgres --help                                 # [win]
         # run a simple initdb check on unix
         - export PGDATA=$SRC_DIR/test_postgres                                # [unix]
         - $PREFIX/bin/initdb                                                  # [unix]
