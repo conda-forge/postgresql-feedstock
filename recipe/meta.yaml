@@ -16,7 +16,7 @@ source:
     - patches/fix_x509_name_win.patch  # [win]
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
@@ -41,7 +41,6 @@ requirements:
     - llvmdev {{ llvm_version }}.*     # [unix]
     - llvm-tools {{ llvm_version }}.*  # [unix]
   host:
-    - llvm {{ llvm_version }}.*        # [unix]
     - icu
     - liburing        # [linux]
     - libxml2-devel
@@ -83,17 +82,16 @@ outputs:
         - bison                # [unix]
         - ninja                # [win]
         - perl 5.*             # [win]
+        - m2-base              # [win]
         - m2-bison             # [win]
         - m2-diffutils         # [win]
         - m2-flex              # [win]
-        - posix                # [win]
         - icu
         - clang {{ llvm_version }}.*       # [unix]
         - llvmdev {{ llvm_version }}.*     # [unix]
         - llvm-tools {{ llvm_version }}.*  # [unix]
       host:
         # these are here for sake of run_exports taking effect
-        - llvm {{ llvm_version }}.*        # [unix]
         - icu
         - liburing            # [linux]
         - libxml2-devel
@@ -126,13 +124,43 @@ outputs:
         - $PREFIX/bin/pg_ctl stop                                             # [unix]
         # Make sure that postgres contains `palloc0` symbol
         - nm -D $PREFIX/bin/postgres | grep -q palloc0 || exit 1             # [linux]
-
+        # Make sure that llvmjit is not installed with this package
+        - test ! -e $PREFIX/lib/llvmjit.so                # [linux]
+        - test ! -e $PREFIX/lib/llvmjit.dylib             # [osx]
+        - test ! -e $PREFIX/lib/llvmjit_types.bc          # [unix]
       requirements:
         - binutils   # [linux]
     script: install_db.sh  # [unix]
     script: install_db.bat  # [win]
     about:
       summary: PostgreSQL is a powerful, open source object-relational database system.
+      license: PostgreSQL
+      license_file: COPYRIGHT
+
+  - name: postgresql-jit
+    build:
+      skip: true  # [win or build_platform != target_platform]
+    script: install_jit.sh
+    requirements:
+      build:
+        - make  # [unix]
+      run:
+        - {{ pin_subpackage('postgresql', exact=True) }}
+        - libllvm{{ llvm_version }} {{ llvm_version }}.*  # [unix]
+    test:
+      commands:
+        - test -f $PREFIX/lib/llvmjit.so                  # [linux]
+        - test -f $PREFIX/lib/llvmjit.dylib               # [osx]
+        - test -f $PREFIX/lib/llvmjit_types.bc
+        - export PGDATA=$SRC_DIR/test_postgres_jit
+        - $PREFIX/bin/initdb
+        - $PREFIX/bin/pg_ctl -l $PGDATA/logfile start || cat $PGDATA/logfile
+        - $PREFIX/bin/psql -d postgres -Atqc "SELECT setting FROM pg_settings WHERE name = 'jit_provider';" | grep -x llvmjit
+        - $PREFIX/bin/psql -d postgres -Atqc "SET jit = on; SELECT pg_jit_available();" | grep -x t
+        - $PREFIX/bin/psql -d postgres -Atqc "SET jit = on; SET jit_above_cost = 0; EXPLAIN ANALYZE SELECT sum(i) FROM generate_series(1, 10000000) AS i;" | grep -q 'JIT:'
+        - $PREFIX/bin/pg_ctl stop
+    about:
+      summary: Optional LLVM JIT provider for PostgreSQL
       license: PostgreSQL
       license_file: COPYRIGHT
 
@@ -161,14 +189,12 @@ outputs:
         - m2-bison               # [win]
         - m2-diffutils           # [win]
         - m2-flex                # [win]
-        - posix                  # [win]
         - icu
         - clang {{ llvm_version }}.*       # [unix]
         - llvmdev {{ llvm_version }}.*     # [unix]
         - llvm-tools {{ llvm_version }}.*  # [unix]
       host:
         # these are here for sake of run_exports taking effect
-        - llvm {{ llvm_version }}.*        # [unix]
         - icu
         - libxml2-devel
         - libxslt
@@ -191,7 +217,7 @@ outputs:
     test:
       commands:
     about:
-      summary: The plpythonu postgresql extension
+      summary: The plpython postgresql extension
       license: PostgreSQL
       license_file: COPYRIGHT
 
@@ -212,17 +238,16 @@ outputs:
         - bison                  # [unix]
         - ninja                  # [win]
         - perl 5.*               # [win]
+        - m2-base                # [win]
         - m2-bison               # [win]
         - m2-diffutils           # [win]
         - m2-flex                # [win]
-        - posix                  # [win]
         - icu
         - clang {{ llvm_version }}.*       # [unix]
         - llvmdev {{ llvm_version }}.*     # [unix]
         - llvm-tools {{ llvm_version }}.*  # [unix]
       host:
         # these are here for sake of run_exports taking effect
-        - llvm {{ llvm_version }}.*        # [unix]
         - icu
         - krb5
         - openldap               # [not win]
@@ -243,6 +268,10 @@ outputs:
         - $PREFIX/bin/pg_config                            # [unix]
         - IF NOT EXIST %LIBRARY_BIN%\pg_config.exe EXIT 1  # [win]
         - pg_config                                        # [win]
+        # Make sure llvmjit is not installed with this package
+        - test ! -e $PREFIX/lib/llvmjit.so                 # [linux]
+        - test ! -e $PREFIX/lib/llvmjit.dylib              # [osx]
+        - test ! -e $PREFIX/lib/llvmjit_types.bc           # [unix]
     about:
       summary: The postgres runtime libraries and utilities (not the server itself)
       license: PostgreSQL
