@@ -128,6 +128,7 @@ outputs:
         - test ! -e $PREFIX/lib/llvmjit.so                # [linux]
         - test ! -e $PREFIX/lib/llvmjit.dylib             # [osx]
         - test ! -e $PREFIX/lib/llvmjit_types.bc          # [unix]
+        - test ! -e $PREFIX/lib/bitcode                   # [unix]
       requirements:
         - binutils   # [linux]
     script: install_db.sh  # [unix]
@@ -152,6 +153,7 @@ outputs:
         - test -f $PREFIX/lib/llvmjit.so                  # [linux]
         - test -f $PREFIX/lib/llvmjit.dylib               # [osx]
         - test -f $PREFIX/lib/llvmjit_types.bc
+        - test -d $PREFIX/lib/bitcode
         - export PGDATA=$SRC_DIR/test_postgres_jit
         - $PREFIX/bin/initdb
         - $PREFIX/bin/pg_ctl -l $PGDATA/logfile start || cat $PGDATA/logfile
@@ -272,6 +274,7 @@ outputs:
         - test ! -e $PREFIX/lib/llvmjit.so                 # [linux]
         - test ! -e $PREFIX/lib/llvmjit.dylib              # [osx]
         - test ! -e $PREFIX/lib/llvmjit_types.bc           # [unix]
+        - test ! -e $PREFIX/lib/bitcode                    # [unix]
     about:
       summary: The postgres runtime libraries and utilities (not the server itself)
       license: PostgreSQL
