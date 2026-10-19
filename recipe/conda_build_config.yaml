@@ -1,3 +1,5 @@
+channel_targets:
+  - conda-forge postgresql_rc
 # https://github.com/EnterpriseDB/edb-installers/blob/REL-18/settings.sh.in
 MACOSX_SDK_VERSION:            # [osx]
   - '14.5'                     # [osx]
