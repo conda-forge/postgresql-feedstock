@@ -80,13 +80,6 @@ Current build status
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/postgresql-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
                 </a>
               </td>
-            </tr><tr>
-              <td>osx_arm64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=802&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/postgresql-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
-                </a>
-              </td>
             </tr>
           </tbody>
         </table>
@@ -108,10 +101,10 @@ Current release info
 Installing postgresql-split
 ===========================
 
-Installing `postgresql-split` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `postgresql-split` from the `conda-forge/label/postgresql_rc` channel can be achieved by adding `conda-forge/label/postgresql_rc` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/postgresql_rc
 conda config --set channel_priority strict
 ```
 
@@ -157,7 +150,7 @@ It is possible to list all of the versions of `libpq` available on your platform
 <summary>With conda</summary>
 
 ```
-conda search libpq --channel conda-forge
+conda search libpq --channel conda-forge/label/postgresql_rc
 ```
 
 </details>
@@ -166,7 +159,7 @@ conda search libpq --channel conda-forge
 <summary>With mamba</summary>
 
 ```
-mamba search libpq --channel conda-forge
+mamba search libpq --channel conda-forge/label/postgresql_rc
 ```
 
 </details>
@@ -175,7 +168,7 @@ mamba search libpq --channel conda-forge
 <summary>With pixi</summary>
 
 ```
-pixi search libpq --channel conda-forge
+pixi search libpq --channel conda-forge/label/postgresql_rc
 ```
 
 </details>
@@ -185,13 +178,13 @@ pixi search libpq --channel conda-forge
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search libpq --channel conda-forge
+mamba repoquery search libpq --channel conda-forge/label/postgresql_rc
 
 # List packages depending on `libpq`:
-mamba repoquery whoneeds libpq --channel conda-forge
+mamba repoquery whoneeds libpq --channel conda-forge/label/postgresql_rc
 
 # List dependencies of `libpq`:
-mamba repoquery depends libpq --channel conda-forge
+mamba repoquery depends libpq --channel conda-forge/label/postgresql_rc
 ```
 
 </details>
