@@ -1,6 +1,6 @@
 bot:
   abi_migration_branches:
-  - v17.x
+  - v18.x
 build_platform:
   linux_ppc64le: linux_64
 conda_build:
@@ -12,6 +12,4 @@ github:
 provider:
   linux_aarch64: default
   linux_ppc64le: default
-  osx_arm64: default
-  win: azure
 test: native_and_emulated
