@@ -23,11 +23,14 @@ if [[ "${target_platform}" == "linux-aarch64" ]]; then
     export CPPFLAGS="${CPPFLAGS:-} -DHWCAP_CRC32=0x80 -DHWCAP_SVE=0x400000"
 fi
 
+# Enable ThinLTO
+export CFLAGS="${CFLAGS:-} -flto=thin"
+export CXXFLAGS="${CXXFLAGS:-} -flto=thin"
+export LDFLAGS="${LDFLAGS:-} -flto=thin"
+
 if [[ "${target_platform}" == linux* ]]; then
     EXTRA_FEATURES+=" --with-liburing"
-    export CFLAGS="${CFLAGS:-} -flto=thin"
-    export CXXFLAGS="${CXXFLAGS:-} -flto=thin"
-    export LDFLAGS="${LDFLAGS:-} -flto=thin -fuse-ld=lld"
+    export LDFLAGS="${LDFLAGS:-} -fuse-ld=lld"
 fi
 
 ./configure \
