@@ -1,0 +1,30 @@
+c_compiler:
+- vs2022
+c_stdlib:
+- vs
+channel_sources:
+- conda-forge
+channel_targets:
+- conda-forge postgresql_rc
+cxx_compiler:
+- vs2022
+icu:
+- '78'
+krb5:
+- '1.22'
+libpq:
+- '18'
+libxml2_devel:
+- '2.15'
+lz4_c:
+- '1.10'
+openssl:
+- '3.5'
+target_platform:
+- win-arm64
+vc:
+- '14'
+zlib:
+- '1'
+zstd:
+- '1.5'
