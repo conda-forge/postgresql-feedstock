@@ -41,7 +41,6 @@ requirements:
     - clang {{ llvm_version }}.*       # [unix]
     - llvmdev {{ llvm_version }}.*     # [unix]
     - llvm-tools {{ llvm_version }}.*  # [unix]
-    - lld {{ llvm_version }}.*         # [linux]
   host:
     - icu
     - liburing        # [linux]
@@ -92,7 +91,6 @@ outputs:
         - clang {{ llvm_version }}.*       # [unix]
         - llvmdev {{ llvm_version }}.*     # [unix]
         - llvm-tools {{ llvm_version }}.*  # [unix]
-        - lld {{ llvm_version }}.*         # [linux]
       host:
         # these are here for sake of run_exports taking effect
         - icu
@@ -198,7 +196,6 @@ outputs:
         - clang {{ llvm_version }}.*       # [unix]
         - llvmdev {{ llvm_version }}.*     # [unix]
         - llvm-tools {{ llvm_version }}.*  # [unix]
-        - lld {{ llvm_version }}.*         # [linux]
       host:
         # these are here for sake of run_exports taking effect
         - icu
@@ -252,7 +249,6 @@ outputs:
         - clang {{ llvm_version }}.*       # [unix]
         - llvmdev {{ llvm_version }}.*     # [unix]
         - llvm-tools {{ llvm_version }}.*  # [unix]
-        - lld {{ llvm_version }}.*         # [linux]
       host:
         # these are here for sake of run_exports taking effect
         - icu

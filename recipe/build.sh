@@ -25,9 +25,6 @@ fi
 
 if [[ "${target_platform}" == linux* ]]; then
     EXTRA_FEATURES+=" --with-liburing"
-    export CFLAGS="${CFLAGS:-} -flto=thin"
-    export CXXFLAGS="${CXXFLAGS:-} -flto=thin"
-    export LDFLAGS="${LDFLAGS:-} -flto=thin -fuse-ld=lld"
 fi
 
 ./configure \
