@@ -17,7 +17,7 @@ libpq:
 libxml2_devel:
 - '2.15'
 lz4_c:
-- '1.10'
+- '1.11'
 openssl:
 - '3.5'
 target_platform:
