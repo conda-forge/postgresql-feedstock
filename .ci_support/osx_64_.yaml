@@ -29,7 +29,7 @@ libxml2_devel:
 lld:
 - '20.1'
 lz4_c:
-- '1.10'
+- '1.11'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 openssl:
