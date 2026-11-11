@@ -16,7 +16,7 @@ source:
     - patches/fix_x509_name_win.patch  # [win]
 
 build:
-  number: 4
+  number: 5
 
 requirements:
   build:
@@ -28,7 +28,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - make             # [unix]
-    - pkg-config       # [unix]
+    - pkgconf          # [unix]
     - bison            # [unix]
     - ninja            # [win]
     - perl 5.*         # [win]
