@@ -1,4 +1,4 @@
-{% set version = "16.15" %}
+{% set version = "16.16" %}
 {% set pqver = '.'.join(("5", version.split('.')[0])) %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://ftp.postgresql.org/pub/source/v{{ version }}/postgresql-{{ version }}.tar.bz2
-  sha256: c1575341fa7bd40f5274ea465b34390f4dc64cdd0770af327005caaeb9f6b7ed
+  sha256: 9d5cd8633043b75740d5d59749c6b7365e6aeb53c47098b1a5e80bb18f87881a
   patches:
     - patches/0001-fix-win-zlib-name.patch
     - patches/0002-disable-new-dtags.patch
