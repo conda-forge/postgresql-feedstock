@@ -34,7 +34,7 @@ requirements:
     - m2-diffutils     # [win]
     - m2-flex          # [win]
     - perl 5.*         # [win]
-    - pkg-config       # [unix]
+    - pkgconf          # [unix]
   host:
     - libxml2-devel
     - libxslt
@@ -68,7 +68,7 @@ outputs:
         - {{ stdlib("c") }}
         - perl 5.*             # [win]
         - make                 # [unix]
-        - pkg-config           # [unix]
+        - pkgconf              # [unix]
       host:
         # these are here for sake of run_exports taking effect
         - krb5
@@ -110,7 +110,7 @@ outputs:
         - {{ stdlib("c") }}
         - perl 5.*             # [win]
         - make                 # [unix]
-        - pkg-config           # [unix]
+        - pkgconf              # [unix]
       host:
         # these are here for sake of run_exports taking effect
         - krb5     # [not osx]
@@ -152,7 +152,7 @@ outputs:
         - {{ stdlib("c") }}
         - perl 5.*               # [win]
         - make                   # [unix]
-        - pkg-config             # [unix]
+        - pkgconf                # [unix]
       host:
         - libxml2-devel
         # these are here for sake of run_exports taking effect
