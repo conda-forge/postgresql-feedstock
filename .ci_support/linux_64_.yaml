@@ -25,7 +25,7 @@ krb5:
 libpq:
 - '18'
 liburing:
-- '2.14'
+- '2.15'
 libuuid:
 - '2'
 libxml2_devel:
