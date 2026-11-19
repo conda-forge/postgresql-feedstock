@@ -78,7 +78,78 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - make                 # [unix]
-        - pkg-config           # [unix]
+        - pkgconf              # [unix]
+        - bison                # [unix]
+        - ninja                # [win]
+        - perl 5.*             # [win]
+        - m2-base              # [win]
+        - m2-bison             # [win]
+        - m2-diffutils         # [win]
+        - m2-flex              # [win]
+        - icu
+        - clang {{ llvm_version }}.*       # [unix]
+        - llvmdev {{ llvm_version }}.*     # [unix]
+        - llvm-tools {{ llvm_version }}.*  # [unix]
+      host:
+        # these are here for sake of run_exports taking effect
+        - icu
+        - liburing            # [linux]
+        - libxml2-devel
+        - libxslt
+        - krb5
+        - openldap            # [not win]
+        - openssl
+        - lz4-c
+        - zlib
+        - zstd
+        - readline            # [not win]
+        - tzcode              # [not win]
+        - tzdata              # [not win]
+        - {{ pin_subpackage('libpq', exact=True) }}
+      run:
+        - {{ pin_subpackage('postgresql-client', exact=True) }}
+        - {{ pin_subpackage('libpq', exact=True) }}
+        - tzcode              # [not win]
+        - tzdata              # [not win]
+
+    test:
+      commands:
+        - test -f $PREFIX/bin/postgres                    # [unix]
+        - $PREFIX/bin/postgres --help                     # [unix]
+        - IF NOT EXIST %LIBRARY_BIN%\postgres.exe EXIT 1  # [win]
+        - postgres --help                                 # [win]
+        # run a simple initdb check on unix
+        - export PGDATA=$SRC_DIR/test_postgres                                # [unix]
+        - $PREFIX/bin/initdb                                                  # [unix]
+        - $PREFIX/bin/pg_ctl -l $PGDATA/logfile start || cat $PGDATA/logfile  # [unix]
+        - $PREFIX/bin/pg_ctl stop                                             # [unix]
+        # Make sure that postgres contains `palloc0` symbol
+        - nm -D $PREFIX/bin/postgres | grep -q palloc0 || exit 1             # [linux]
+        # Make sure that llvmjit is not installed with this package
+        - test ! -e $PREFIX/lib/llvmjit.so                # [linux]
+        - test ! -e $PREFIX/lib/llvmjit.dylib             # [osx]
+        - test ! -e $PREFIX/lib/llvmjit_types.bc          # [unix]
+        - test ! -e $PREFIX/lib/bitcode                   # [unix]
+      requirements:
+        - binutils   # [linux]
+    script: install_db.sh  # [unix]
+    script: install_db.bat  # [win]
+    about:
+      summary: PostgreSQL is a powerful, open source object-relational database system.
+      license: PostgreSQL
+      license_file: COPYRIGHT
+
+  - name: postgresql-client
+    requirements:
+      build:
+        - gnuconfig            # [unix]
+        - meson                # [win]
+        # solely for sake of lining up vc versions and other runtimes
+        - {{ stdlib("c") }}
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - make                 # [unix]
+        - pkgconf              # [unix]
         - bison                # [unix]
         - ninja                # [win]
         - perl 5.*             # [win]
@@ -110,31 +181,16 @@ outputs:
         - {{ pin_subpackage('libpq', exact=True) }}
         - tzcode              # [not win]
         - tzdata              # [not win]
-
     test:
       commands:
-        - test -f $PREFIX/bin/postgres                    # [unix]
-        - $PREFIX/bin/postgres --help                     # [unix]
-        - IF NOT EXIST %LIBRARY_BIN%\postgres.exe EXIT 1  # [win]
-        - postgres --help                                 # [win]
-        # run a simple initdb check on unix
-        - export PGDATA=$SRC_DIR/test_postgres                                # [unix]
-        - $PREFIX/bin/initdb                                                  # [unix]
-        - $PREFIX/bin/pg_ctl -l $PGDATA/logfile start || cat $PGDATA/logfile  # [unix]
-        - $PREFIX/bin/pg_ctl stop                                             # [unix]
-        # Make sure that postgres contains `palloc0` symbol
-        - nm -D $PREFIX/bin/postgres | grep -q palloc0 || exit 1             # [linux]
-        # Make sure that llvmjit is not installed with this package
-        - test ! -e $PREFIX/lib/llvmjit.so                # [linux]
-        - test ! -e $PREFIX/lib/llvmjit.dylib             # [osx]
-        - test ! -e $PREFIX/lib/llvmjit_types.bc          # [unix]
-        - test ! -e $PREFIX/lib/bitcode                   # [unix]
-      requirements:
-        - binutils   # [linux]
-    script: install_db.sh  # [unix]
-    script: install_db.bat  # [win]
+        - test ! -e $PREFIX/bin/postgres                                                                                                                        # [unix]
+        - $PREFIX/bin/psql --version                                                                                                                           # [unix]
+        - IF EXIST %LIBRARY_BIN%\postgres.exe EXIT 1  # [win]
+        - psql --version                             # [win]
+    script: install_client.sh   # [unix]
+    script: install_client.bat  # [win]
     about:
-      summary: PostgreSQL is a powerful, open source object-relational database system.
+      summary: PostgreSQL client programs
       license: PostgreSQL
       license_file: COPYRIGHT
 
@@ -184,7 +240,7 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - make                   # [unix]
-        - pkg-config             # [unix]
+        - pkgconf                # [unix]
         - bison                  # [unix]
         - ninja                  # [win]
         - perl 5.*               # [win]
@@ -236,7 +292,7 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - make                   # [unix]
-        - pkg-config             # [unix]
+        - pkgconf                # [unix]
         - bison                  # [unix]
         - ninja                  # [win]
         - perl 5.*               # [win]
@@ -265,18 +321,70 @@ outputs:
         - test -f $PREFIX/lib/libpq.so                     # [linux]
         - test -f $PREFIX/lib/libpq.5.dylib                # [osx]
         - test -f $PREFIX/lib/libpq.dylib                  # [osx]
+        - test -f $PREFIX/include/libpq-fe.h               # [unix]
+        - test ! -e $PREFIX/include/server/postgres.h      # [unix]
+        - test -f $PREFIX/lib/libpq.a                      # [unix]
+        - test -f $PREFIX/lib/pkgconfig/libpq.pc           # [unix]
         - IF NOT EXIST %LIBRARY_BIN%\libpq.dll EXIT 1      # [win]
-        - test -f $PREFIX/bin/pg_config                    # [unix]
-        - $PREFIX/bin/pg_config                            # [unix]
-        - IF NOT EXIST %LIBRARY_BIN%\pg_config.exe EXIT 1  # [win]
-        - pg_config                                        # [win]
+        - $PREFIX/bin/pg_config --version                  # [unix]
+        - pg_config --version                              # [win]
+        - IF NOT EXIST %LIBRARY_INC%\libpq-fe.h EXIT 1     # [win]
+        - IF EXIST %LIBRARY_INC%\server\postgres.h EXIT 1  # [win]
+        - IF NOT EXIST %LIBRARY_LIB%\libpq.lib EXIT 1      # [win]
         # Make sure llvmjit is not installed with this package
         - test ! -e $PREFIX/lib/llvmjit.so                 # [linux]
         - test ! -e $PREFIX/lib/llvmjit.dylib              # [osx]
         - test ! -e $PREFIX/lib/llvmjit_types.bc           # [unix]
         - test ! -e $PREFIX/lib/bitcode                    # [unix]
     about:
-      summary: The postgres runtime libraries and utilities (not the server itself)
+      summary: libpq runtime and client development files
+      license: PostgreSQL
+      license_file: COPYRIGHT
+
+  - name: postgresql-devel
+    build:
+      run_exports:
+        - {{ pin_subpackage('postgresql') }}
+    requirements:
+      build:
+        - gnuconfig              # [unix]
+        - meson                  # [win]
+        # solely for sake of lining up vc versions and other runtimes
+        - {{ stdlib("c") }}
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - make                   # [unix]
+        - pkgconf                # [unix]
+        - bison                  # [unix]
+        - ninja                  # [win]
+        - perl 5.*               # [win]
+        - m2-base                # [win]
+        - m2-bison               # [win]
+        - m2-diffutils           # [win]
+        - m2-flex                # [win]
+        - icu
+        - clang {{ llvm_version }}.*       # [unix]
+        - llvmdev {{ llvm_version }}.*     # [unix]
+        - llvm-tools {{ llvm_version }}.*  # [unix]
+      host:
+        # these are here for sake of run_exports taking effect
+        - icu
+        - krb5
+        - openldap               # [not win]
+        - openssl
+        - tzcode                 # [not win]
+        - tzdata                 # [not win]
+        - {{ pin_subpackage('postgresql', exact=True) }}
+      run:
+        - {{ pin_subpackage('postgresql', exact=True) }}
+    script: install_server_devel.sh   # [unix]
+    script: install_server_devel.bat  # [win]
+    test:
+      commands:
+        - test -f $PREFIX/include/server/postgres.h        # [unix]
+        - IF NOT EXIST %LIBRARY_INC%\server\postgres.h EXIT 1  # [win]
+    about:
+      summary: PostgreSQL server extension development headers
       license: PostgreSQL
       license_file: COPYRIGHT
 
