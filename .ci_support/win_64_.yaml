@@ -24,6 +24,8 @@ lz4_c:
 - '1.11'
 openssl:
 - '3.5'
+postgresql:
+- '18'
 target_platform:
 - win-64
 vc:
