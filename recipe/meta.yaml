@@ -262,7 +262,6 @@ outputs:
         - lz4-c
         - zlib
         - zstd
-        - vc                     # [win]
         - libuuid                # [not win]
         - readline               # [not win]
         - {{ pin_subpackage('postgresql', exact=True) }}
