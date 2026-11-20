@@ -20,7 +20,7 @@ About libpq
 
 Package license: PostgreSQL
 
-Summary: The postgres runtime libraries and utilities (not the server itself)
+Summary: libpq runtime and client development files
 
 About postgresql
 ----------------
@@ -30,6 +30,24 @@ About postgresql
 Package license: PostgreSQL
 
 Summary: PostgreSQL is a powerful, open source object-relational database system.
+
+About postgresql-client
+-----------------------
+
+
+
+Package license: PostgreSQL
+
+Summary: PostgreSQL client programs
+
+About postgresql-devel
+----------------------
+
+
+
+Package license: PostgreSQL
+
+Summary: PostgreSQL server extension development headers
 
 About postgresql-jit
 --------------------
@@ -102,6 +120,8 @@ Current release info
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libpq-green.svg)](https://anaconda.org/conda-forge/libpq) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libpq.svg)](https://anaconda.org/conda-forge/libpq) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libpq.svg)](https://anaconda.org/conda-forge/libpq) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libpq.svg)](https://anaconda.org/conda-forge/libpq) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-postgresql-green.svg)](https://anaconda.org/conda-forge/postgresql) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/postgresql.svg)](https://anaconda.org/conda-forge/postgresql) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/postgresql.svg)](https://anaconda.org/conda-forge/postgresql) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/postgresql.svg)](https://anaconda.org/conda-forge/postgresql) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-postgresql--client-green.svg)](https://anaconda.org/conda-forge/postgresql-client) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/postgresql-client.svg)](https://anaconda.org/conda-forge/postgresql-client) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/postgresql-client.svg)](https://anaconda.org/conda-forge/postgresql-client) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/postgresql-client.svg)](https://anaconda.org/conda-forge/postgresql-client) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-postgresql--devel-green.svg)](https://anaconda.org/conda-forge/postgresql-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/postgresql-devel.svg)](https://anaconda.org/conda-forge/postgresql-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/postgresql-devel.svg)](https://anaconda.org/conda-forge/postgresql-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/postgresql-devel.svg)](https://anaconda.org/conda-forge/postgresql-devel) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-postgresql--jit-green.svg)](https://anaconda.org/conda-forge/postgresql-jit) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/postgresql-jit.svg)](https://anaconda.org/conda-forge/postgresql-jit) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/postgresql-jit.svg)](https://anaconda.org/conda-forge/postgresql-jit) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/postgresql-jit.svg)](https://anaconda.org/conda-forge/postgresql-jit) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-postgresql--plpython-green.svg)](https://anaconda.org/conda-forge/postgresql-plpython) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/postgresql-plpython.svg)](https://anaconda.org/conda-forge/postgresql-plpython) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/postgresql-plpython.svg)](https://anaconda.org/conda-forge/postgresql-plpython) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/postgresql-plpython.svg)](https://anaconda.org/conda-forge/postgresql-plpython) |
 
@@ -122,7 +142,7 @@ How to use
 <summary>With conda</summary>
 
 ```
-conda install libpq postgresql postgresql-jit postgresql-plpython
+conda install libpq postgresql postgresql-client postgresql-devel postgresql-jit postgresql-plpython
 ```
 
 </details>
@@ -131,7 +151,7 @@ conda install libpq postgresql postgresql-jit postgresql-plpython
 <summary>With mamba</summary>
 
 ```
-mamba install libpq postgresql postgresql-jit postgresql-plpython
+mamba install libpq postgresql postgresql-client postgresql-devel postgresql-jit postgresql-plpython
 ```
 
 </details>
@@ -141,9 +161,9 @@ mamba install libpq postgresql postgresql-jit postgresql-plpython
 
 ```
 # for adding to your local project
-pixi add libpq postgresql postgresql-jit postgresql-plpython
+pixi add libpq postgresql postgresql-client postgresql-devel postgresql-jit postgresql-plpython
 # for installing globally
-pixi global install libpq postgresql postgresql-jit postgresql-plpython
+pixi global install libpq postgresql postgresql-client postgresql-devel postgresql-jit postgresql-plpython
 ```
 
 </details>
